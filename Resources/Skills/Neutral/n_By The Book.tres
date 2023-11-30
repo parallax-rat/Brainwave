@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="Skill" load_steps=2 format=3 uid="uid://b1rnhk2ui35hv"]
+
+[ext_resource type="Script" path="res://Scripts/skill_resource.gd" id="1_erigl"]
+
+[resource]
+script = ExtResource("1_erigl")
+skill_name = "By The Book"
+description = "Utilize your left mode. Protects you from enemy debuffs for 1 turn."
+bonus_effect = "Reflect enemy debuffs back toward them for the next 2 turns."
+skill_type = 1
+shift_direction = 0
+damage = 1
+healing = 0
+multiplier = 0.0
+linked_skills = Array[ExtResource("1_erigl")]([])

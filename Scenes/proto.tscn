@@ -1,0 +1,466 @@
+[gd_scene load_steps=26 format=3 uid="uid://blo6tp8i1s6o6"]
+
+[ext_resource type="Texture2D" uid="uid://dcgfxcrw4a2pu" path="res://Sprites/sword-brandish.svg" id="1_efdur"]
+[ext_resource type="FontFile" uid="uid://ddimb683llnpb" path="res://Fonts/Lambda-Regular.otf" id="1_x7jvf"]
+[ext_resource type="Texture2D" uid="uid://vek82nedqi4q" path="res://Sprites/bad-gnome (1).svg" id="2_6y8qm"]
+[ext_resource type="Texture2D" uid="uid://b4m8wby6mgbbd" path="res://Sprites/brain (2).svg" id="3_vx4ey"]
+[ext_resource type="LabelSettings" uid="uid://cqjvm7b5w72yk" path="res://Scenes/ability_window_title.tres" id="4_jwfc5"]
+[ext_resource type="LabelSettings" uid="uid://c50istc258y2e" path="res://Scenes/skill_name.tres" id="6_68ikc"]
+[ext_resource type="Texture2D" uid="uid://6goy20edw1uu" path="res://Sprites/meditation.svg" id="7_5t7f2"]
+[ext_resource type="FontFile" uid="uid://dva2kiv00fl33" path="res://Fonts/Kaph-Regular.otf" id="8_bl03b"]
+[ext_resource type="Texture2D" uid="uid://ckmypbha0vvvj" path="res://Sprites/square.svg" id="8_r36j1"]
+
+[sub_resource type="Gradient" id="Gradient_v7pdh"]
+colors = PackedColorArray(0.332881, 0.332881, 0.33288, 1, 0.60933, 0.60933, 0.60933, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_3i08x"]
+gradient = SubResource("Gradient_v7pdh")
+fill_from = Vector2(0.5, 1)
+fill_to = Vector2(0.5, 0)
+metadata/_snap_enabled = true
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_n3uy1"]
+bg_color = Color(1, 1, 1, 1)
+draw_center = false
+border_width_left = 40
+border_width_top = 20
+border_width_right = 40
+border_width_bottom = 300
+border_color = Color(0.2, 0.2, 0.2, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_gdre8"]
+draw_center = false
+border_width_left = 8
+border_width_top = 8
+border_width_right = 8
+border_width_bottom = 8
+border_color = Color(0.0627451, 0.0627451, 0.0627451, 1)
+corner_detail = 2
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_n2457"]
+bg_color = Color(1, 1, 1, 1)
+border_width_left = 8
+border_width_top = 8
+border_width_right = 8
+border_width_bottom = 8
+border_color = Color(0.0901961, 0.0901961, 0.0901961, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_0nahp"]
+bg_color = Color(1, 1, 1, 1)
+border_color = Color(0.0901961, 0.0901961, 0.0901961, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_sk6ch"]
+line_spacing = 2.0
+font = ExtResource("1_x7jvf")
+font_size = 24
+font_color = Color(0, 0, 0, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_17ifu"]
+bg_color = Color(1, 1, 0, 1)
+border_width_left = 8
+border_width_top = 8
+border_width_right = 8
+border_color = Color(0.0901961, 0.0901961, 0.0901961, 1)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_fc61d"]
+texture = ExtResource("1_efdur")
+texture_margin_left = 4.0
+texture_margin_top = 4.0
+texture_margin_right = 4.0
+texture_margin_bottom = 4.0
+modulate_color = Color(0.615686, 0.105882, 0.0745098, 1)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_h4i8h"]
+texture = ExtResource("7_5t7f2")
+texture_margin_left = 4.0
+texture_margin_top = 4.0
+texture_margin_right = 4.0
+texture_margin_bottom = 4.0
+modulate_color = Color(0.423529, 0.894118, 0.470588, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_mqa78"]
+bg_color = Color(0, 1, 0, 1)
+border_width_left = 8
+border_width_top = 8
+border_width_right = 8
+border_color = Color(0.0901961, 0.0901961, 0.0901961, 1)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_8p8pg"]
+texture = ExtResource("8_r36j1")
+expand_margin_left = 2.0
+expand_margin_top = 2.0
+expand_margin_right = 2.0
+expand_margin_bottom = 2.0
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_lkp7k"]
+texture = ExtResource("8_r36j1")
+texture_margin_left = 4.0
+texture_margin_top = 4.0
+texture_margin_right = 4.0
+texture_margin_bottom = 4.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_4mlyv"]
+bg_color = Color(1, 0.376471, 0, 1)
+border_width_left = 8
+border_width_top = 8
+border_width_right = 8
+border_color = Color(0.0901961, 0.0901961, 0.0901961, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ean1l"]
+bg_color = Color(0.74902, 0.52549, 0.584314, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_2rcss"]
+font = ExtResource("8_bl03b")
+font_size = 46
+
+[node name="Node2D" type="Node2D"]
+
+[node name="Game-Screen" type="Sprite2D" parent="."]
+show_behind_parent = true
+clip_children = 2
+position = Vector2(960, 400)
+scale = Vector2(28.5, 11.625)
+texture = SubResource("GradientTexture2D_3i08x")
+
+[node name="Bad-gnome" type="Sprite2D" parent="Game-Screen"]
+position = Vector2(0, 1.72043)
+scale = Vector2(0.0456414, 0.111895)
+texture = ExtResource("2_6y8qm")
+
+[node name="ProgressBar" type="ProgressBar" parent="Game-Screen/Bad-gnome"]
+show_behind_parent = true
+offset_left = -256.0
+offset_top = 229.0
+offset_right = 256.0
+offset_bottom = 256.0
+
+[node name="GUI" type="CanvasLayer" parent="."]
+layer = -1
+
+[node name="Control" type="Control" parent="GUI"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="BackgroundColor" type="Panel" parent="GUI/Control"]
+custom_minimum_size = Vector2(0, 780)
+layout_mode = 2
+offset_right = 1920.0
+offset_bottom = 1080.0
+size_flags_vertical = 3
+theme_override_styles/panel = SubResource("StyleBoxFlat_n3uy1")
+
+[node name="ScreenBorder" type="Panel" parent="GUI/Control"]
+layout_mode = 0
+offset_left = 40.0
+offset_top = 20.0
+offset_right = 1880.0
+offset_bottom = 780.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_gdre8")
+
+[node name="SkillAndActionBars" type="HBoxContainer" parent="GUI/Control"]
+layout_mode = 2
+offset_left = 40.0
+offset_top = 792.0
+offset_right = 1880.0
+offset_bottom = 1065.0
+size_flags_vertical = 10
+theme_override_constants/separation = 15
+
+[node name="BrainWaveMonitor" type="PanelContainer" parent="GUI/Control/SkillAndActionBars"]
+visible = false
+custom_minimum_size = Vector2(400, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_styles/panel = SubResource("StyleBoxFlat_n2457")
+
+[node name="MarginContainer" type="MarginContainer" parent="GUI/Control/SkillAndActionBars/BrainWaveMonitor"]
+layout_mode = 2
+theme_override_constants/margin_left = 2
+theme_override_constants/margin_top = 2
+theme_override_constants/margin_right = 2
+theme_override_constants/margin_bottom = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="GUI/Control/SkillAndActionBars/BrainWaveMonitor/MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 1
+
+[node name="ScrollContainer" type="ScrollContainer" parent="GUI/Control/SkillAndActionBars/BrainWaveMonitor/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_styles/panel = SubResource("StyleBoxFlat_0nahp")
+
+[node name="Label" type="Label" parent="GUI/Control/SkillAndActionBars/BrainWaveMonitor/MarginContainer/VBoxContainer/ScrollContainer"]
+layout_mode = 2
+size_flags_vertical = 1
+text = "ataijdsijd asd aisjd iajsidjiadjiajsdijasd asd
+ataijdsijd asd aisjd iajsidjiadjiajsdijasd asd
+ataijdsijd asd aisjd iajsidjiadjiajsdijasd asd
+ataijdsijd asd aisjd iajsidjiadjiajsdijasd asd
+ataijdsijd asd aisjd iajsidjiadjiajsdijasd asd
+ataijdsijd asd aisjd iajsidjiadjiajsdijasd asd
+ataijdsijd asd aisjd iajsidjiadjiajsdijasd asd
+ataijdsijd asd aisjd iajsidjiadjiajsdijasd asd
+ataijdsijd asd aisjd iajsidjiadjiajsdijasd asd
+ataijdsijd asd aisjd iajsidjiadjiajsdijasd asd
+ataijdsijd asd aisjd iajsidjiadjiajsdijasd asd
+ataijdsijd asd aisjd iajsidjiadjiajsdijasd asd"
+label_settings = SubResource("LabelSettings_sk6ch")
+
+[node name="SkillsAndChoices" type="VBoxContainer" parent="GUI/Control/SkillAndActionBars"]
+custom_minimum_size = Vector2(400, 220)
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 0
+
+[node name="SkillTitleBar" type="PanelContainer" parent="GUI/Control/SkillAndActionBars/SkillsAndChoices"]
+custom_minimum_size = Vector2(0, 40)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_17ifu")
+
+[node name="Label" type="Label" parent="GUI/Control/SkillAndActionBars/SkillsAndChoices/SkillTitleBar"]
+layout_mode = 2
+text = "Skills / Choices"
+label_settings = ExtResource("4_jwfc5")
+horizontal_alignment = 1
+vertical_alignment = 1
+uppercase = true
+
+[node name="PanelContainer2" type="PanelContainer" parent="GUI/Control/SkillAndActionBars/SkillsAndChoices"]
+custom_minimum_size = Vector2(400, 0)
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_styles/panel = SubResource("StyleBoxFlat_n2457")
+
+[node name="MarginContainer" type="MarginContainer" parent="GUI/Control/SkillAndActionBars/SkillsAndChoices/PanelContainer2"]
+layout_mode = 2
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_top = 14
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 5
+
+[node name="GridContainer" type="GridContainer" parent="GUI/Control/SkillAndActionBars/SkillsAndChoices/PanelContainer2/MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_constants/h_separation = 20
+theme_override_constants/v_separation = 14
+columns = 3
+
+[node name="ActiveSkill1" type="PanelContainer" parent="GUI/Control/SkillAndActionBars/SkillsAndChoices/PanelContainer2/MarginContainer/GridContainer"]
+custom_minimum_size = Vector2(180, 180)
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+theme_override_styles/panel = SubResource("StyleBoxTexture_fc61d")
+
+[node name="Label" type="Label" parent="GUI/Control/SkillAndActionBars/SkillsAndChoices/PanelContainer2/MarginContainer/GridContainer/ActiveSkill1"]
+layout_mode = 2
+size_flags_vertical = 8
+text = "Attack"
+label_settings = ExtResource("6_68ikc")
+horizontal_alignment = 1
+
+[node name="ActiveSkill2" type="PanelContainer" parent="GUI/Control/SkillAndActionBars/SkillsAndChoices/PanelContainer2/MarginContainer/GridContainer"]
+custom_minimum_size = Vector2(180, 180)
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+theme_override_styles/panel = SubResource("StyleBoxTexture_h4i8h")
+
+[node name="Label" type="Label" parent="GUI/Control/SkillAndActionBars/SkillsAndChoices/PanelContainer2/MarginContainer/GridContainer/ActiveSkill2"]
+layout_mode = 2
+size_flags_vertical = 8
+text = "MEDITATE"
+label_settings = ExtResource("6_68ikc")
+horizontal_alignment = 1
+vertical_alignment = 2
+
+[node name="Subconcious" type="VBoxContainer" parent="GUI/Control/SkillAndActionBars"]
+custom_minimum_size = Vector2(400, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 0
+
+[node name="SubconciousTitleBar" type="PanelContainer" parent="GUI/Control/SkillAndActionBars/Subconcious"]
+custom_minimum_size = Vector2(0, 40)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_mqa78")
+
+[node name="Label2" type="Label" parent="GUI/Control/SkillAndActionBars/Subconcious/SubconciousTitleBar"]
+layout_mode = 2
+text = "Subconcious"
+label_settings = ExtResource("4_jwfc5")
+horizontal_alignment = 1
+vertical_alignment = 1
+uppercase = true
+
+[node name="PanelContainer2" type="PanelContainer" parent="GUI/Control/SkillAndActionBars/Subconcious"]
+custom_minimum_size = Vector2(400, 0)
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_styles/panel = SubResource("StyleBoxFlat_n2457")
+
+[node name="MarginContainer" type="MarginContainer" parent="GUI/Control/SkillAndActionBars/Subconcious/PanelContainer2"]
+layout_mode = 2
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_top = 14
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 5
+
+[node name="GridContainer" type="GridContainer" parent="GUI/Control/SkillAndActionBars/Subconcious/PanelContainer2/MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_constants/h_separation = 20
+theme_override_constants/v_separation = 14
+columns = 3
+
+[node name="SubAbility1" type="PanelContainer" parent="GUI/Control/SkillAndActionBars/Subconcious/PanelContainer2/MarginContainer/GridContainer"]
+self_modulate = Color(1, 1, 1, 0.784314)
+custom_minimum_size = Vector2(180, 180)
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+theme_override_styles/panel = SubResource("StyleBoxTexture_8p8pg")
+
+[node name="Label" type="Label" parent="GUI/Control/SkillAndActionBars/Subconcious/PanelContainer2/MarginContainer/GridContainer/SubAbility1"]
+layout_mode = 2
+size_flags_vertical = 8
+text = "ABILITY 1
+"
+label_settings = ExtResource("6_68ikc")
+horizontal_alignment = 1
+
+[node name="SubAbility2" type="PanelContainer" parent="GUI/Control/SkillAndActionBars/Subconcious/PanelContainer2/MarginContainer/GridContainer"]
+self_modulate = Color(1, 1, 1, 0.784314)
+custom_minimum_size = Vector2(180, 180)
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+theme_override_styles/panel = SubResource("StyleBoxTexture_lkp7k")
+
+[node name="Label" type="Label" parent="GUI/Control/SkillAndActionBars/Subconcious/PanelContainer2/MarginContainer/GridContainer/SubAbility2"]
+layout_mode = 2
+size_flags_vertical = 8
+text = "Ability 2"
+label_settings = ExtResource("6_68ikc")
+horizontal_alignment = 1
+
+[node name="Reflex" type="VBoxContainer" parent="GUI/Control/SkillAndActionBars"]
+visible = false
+custom_minimum_size = Vector2(400, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 0
+
+[node name="ReflexTitleBar" type="PanelContainer" parent="GUI/Control/SkillAndActionBars/Reflex"]
+custom_minimum_size = Vector2(0, 40)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_4mlyv")
+
+[node name="Label3" type="Label" parent="GUI/Control/SkillAndActionBars/Reflex/ReflexTitleBar"]
+layout_mode = 2
+text = "Reflex"
+label_settings = ExtResource("4_jwfc5")
+horizontal_alignment = 1
+vertical_alignment = 1
+uppercase = true
+
+[node name="PanelContainer2" type="PanelContainer" parent="GUI/Control/SkillAndActionBars/Reflex"]
+custom_minimum_size = Vector2(420, 220)
+layout_mode = 2
+size_flags_horizontal = 9
+size_flags_vertical = 11
+theme_override_styles/panel = SubResource("StyleBoxFlat_n2457")
+
+[node name="MarginContainer" type="MarginContainer" parent="GUI/Control/SkillAndActionBars/Reflex/PanelContainer2"]
+layout_mode = 2
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_top = 14
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 5
+
+[node name="GridContainer" type="GridContainer" parent="GUI/Control/SkillAndActionBars/Reflex/PanelContainer2/MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_constants/h_separation = 20
+theme_override_constants/v_separation = 14
+columns = 3
+
+[node name="ReflexAbility1" type="PanelContainer" parent="GUI/Control/SkillAndActionBars/Reflex/PanelContainer2/MarginContainer/GridContainer"]
+self_modulate = Color(1, 1, 1, 0.784314)
+custom_minimum_size = Vector2(180, 180)
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+theme_override_styles/panel = SubResource("StyleBoxTexture_8p8pg")
+
+[node name="Label" type="Label" parent="GUI/Control/SkillAndActionBars/Reflex/PanelContainer2/MarginContainer/GridContainer/ReflexAbility1"]
+layout_mode = 2
+size_flags_vertical = 8
+text = "ABILITY 1
+"
+label_settings = ExtResource("6_68ikc")
+horizontal_alignment = 1
+
+[node name="ReflexAbility2" type="PanelContainer" parent="GUI/Control/SkillAndActionBars/Reflex/PanelContainer2/MarginContainer/GridContainer"]
+self_modulate = Color(1, 1, 1, 0.784314)
+custom_minimum_size = Vector2(180, 180)
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+theme_override_styles/panel = SubResource("StyleBoxTexture_lkp7k")
+
+[node name="Label" type="Label" parent="GUI/Control/SkillAndActionBars/Reflex/PanelContainer2/MarginContainer/GridContainer/ReflexAbility2"]
+layout_mode = 2
+size_flags_vertical = 8
+text = "Ability 2"
+label_settings = ExtResource("6_68ikc")
+horizontal_alignment = 1
+
+[node name="BrainWave" type="ProgressBar" parent="."]
+offset_left = 60.0
+offset_top = 40.0
+offset_right = 1860.0
+offset_bottom = 100.0
+size_flags_vertical = 1
+theme_override_styles/background = SubResource("StyleBoxFlat_ean1l")
+min_value = -4.0
+max_value = 4.0
+show_percentage = false
+
+[node name="Label" type="Label" parent="BrainWave"]
+modulate = Color(1, 1, 1, 0.529412)
+layout_mode = 1
+anchors_preset = 14
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_top = -28.0
+offset_bottom = 28.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "BRAIN WAVE"
+label_settings = SubResource("LabelSettings_2rcss")
+horizontal_alignment = 1
+vertical_alignment = 2
+
+[node name="Button_EndTurn" type="Button" parent="."]
+offset_left = 1600.0
+offset_top = 640.0
+offset_right = 1860.0
+offset_bottom = 760.0
+theme_override_font_sizes/font_size = 32
+text = "End Turn"
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(960, 540)
+
+[node name="Brain" type="Sprite2D" parent="."]
+visible = false
+modulate = Color(1, 0.847059, 0.992157, 1)
+position = Vector2(256, 928)
+scale = Vector2(0.46875, 0.46875)
+texture = ExtResource("3_vx4ey")

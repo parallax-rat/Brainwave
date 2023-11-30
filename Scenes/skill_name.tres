@@ -1,0 +1,10 @@
+[gd_resource type="LabelSettings" load_steps=2 format=3 uid="uid://c50istc258y2e"]
+
+[ext_resource type="FontFile" uid="uid://dva2kiv00fl33" path="res://Fonts/Kaph-Regular.otf" id="1_b7168"]
+
+[resource]
+line_spacing = 0.0
+font = ExtResource("1_b7168")
+font_size = 24
+outline_size = 12
+outline_color = Color(0, 0, 0, 1)

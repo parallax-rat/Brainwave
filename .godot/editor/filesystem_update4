@@ -1,0 +1,11 @@
+res://Scripts/combat_test.tscn
+res://Resources/Skills/Neutral/n_By The Book.tres
+res://Resources/Skills/Neutral/n_Intuition.tres
+res://Scenes/skill_button.tscn
+res://Resources/Skills/Left/Step in Line.tres
+res://Scripts/skill_resource.gd
+res://Resources/Skills/Neutral/n_Meditate.tres
+res://Scripts/skill_button.gd
+res://Scripts/mind_wave_bar.gd
+res://Scripts/player.gd
+res://Scenes/combat_test.tscn

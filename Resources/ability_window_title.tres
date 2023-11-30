@@ -1,0 +1,9 @@
+[gd_resource type="LabelSettings" load_steps=2 format=3 uid="uid://cqjvm7b5w72yk"]
+
+[ext_resource type="FontFile" uid="uid://ddimb683llnpb" path="res://Fonts/Lambda-Regular.otf" id="1_6swhe"]
+
+[resource]
+line_spacing = 0.0
+font = ExtResource("1_6swhe")
+font_size = 36
+font_color = Color(0, 0, 0, 1)

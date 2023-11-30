@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="Skill" load_steps=2 format=3 uid="uid://c4ydkggb4vvjt"]
+
+[ext_resource type="Script" path="res://Scripts/skill_resource.gd" id="1_iwqws"]
+
+[resource]
+script = ExtResource("1_iwqws")
+skill_name = "Step In Line"
+description = ""
+bonus_effect = "If enemy has a debuff, add +1 to its duration, and skip their turn."
+skill_type = 0
+shift_value = 0
+damage = 1
+healing = 0
+multiplier = 0.0
+linked_skills = Array[ExtResource("1_iwqws")]([])

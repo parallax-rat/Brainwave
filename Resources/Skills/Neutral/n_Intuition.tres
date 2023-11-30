@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="Skill" load_steps=2 format=3 uid="uid://6u412qjwgcux"]
+
+[ext_resource type="Script" path="res://Scripts/skill_resource.gd" id="1_qanyq"]
+
+[resource]
+script = ExtResource("1_qanyq")
+skill_name = "Intuition"
+description = "Utilize your right mode. Prevents the enemy from being buffed for 1 turn."
+bonus_effect = "Steal enemy buffs for the next 2 turns."
+skill_type = 1
+shift_direction = 2
+damage = 1
+healing = 0
+multiplier = 0.0
+linked_skills = Array[ExtResource("1_qanyq")]([])
