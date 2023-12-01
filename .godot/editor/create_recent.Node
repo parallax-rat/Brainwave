@@ -1,5 +1,8 @@
-PanelContainer
+HSlider
+VBoxContainer
+VSeparator
 MarginContainer
+PanelContainer
 Label
 HBoxContainer
 ProgressBar
@@ -10,13 +13,10 @@ Node2D
 HSeparator
 ScrollContainer
 TextureRect
-VBoxContainer
-HSlider
 HScrollBar
 Sprite2D
 GridContainer
 Panel
-VSeparator
 SubViewport
 CenterContainer
 CanvasLayer

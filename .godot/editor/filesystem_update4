@@ -9,3 +9,4 @@ res://Scripts/skill_button.gd
 res://Scripts/mind_wave_bar.gd
 res://Scripts/player.gd
 res://Scenes/combat_test.tscn
+res://Scripts/game.gd

@@ -6,11 +6,11 @@
 [node name="Button" type="Button" node_paths=PackedStringArray("name_label", "shift_label")]
 offset_right = 128.0
 offset_bottom = 128.0
-size_flags_horizontal = 3
+size_flags_horizontal = 6
+size_flags_vertical = 6
 mouse_default_cursor_shape = 2
 icon = ExtResource("1_16ftu")
 icon_alignment = 1
-expand_icon = true
 script = ExtResource("2_utbrm")
 name_label = NodePath("Name")
 shift_label = NodePath("MarginContainer/ShiftDirectionLabel")

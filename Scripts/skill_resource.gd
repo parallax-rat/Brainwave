@@ -7,7 +7,6 @@ const MULTIPLIER = "[m]"
 
 enum WaveTypes {Left, Neutral, Right}
 
-
 @export var skill_name : String
 @export var skill_icon : Texture2D
 @export_group("Display Info")
@@ -17,7 +16,7 @@ enum WaveTypes {Left, Neutral, Right}
 @export var shift_direction : WaveTypes
 @export var damage : int
 @export var healing : int
-@export var multiplier : float
+@export var multiplier : float = 1
 @export var linked_skills : Array[Skill]
 
 func get_description() -> String:
@@ -28,3 +27,9 @@ func get_bonus_effect() -> String:
 
 func get_shift_direction():
 	return [str(WaveTypes.keys()[shift_direction]),shift_direction]
+
+func get_damage() -> int:
+	return (damage * multiplier)
+
+func get_healing() -> int:
+	return (healing * multiplier)

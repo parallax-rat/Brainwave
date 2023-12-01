@@ -1,5 +1,6 @@
-[gd_scene load_steps=7 format=3 uid="uid://dgotg08v1neoe"]
+[gd_scene load_steps=8 format=3 uid="uid://dgotg08v1neoe"]
 
+[ext_resource type="Script" path="res://Scripts/game.gd" id="1_4yies"]
 [ext_resource type="Script" path="res://Scripts/player.gd" id="1_xuo7j"]
 [ext_resource type="PackedScene" uid="uid://7f812eakfokw" path="res://Scenes/skill_button.tscn" id="2_2yfi3"]
 [ext_resource type="Resource" uid="uid://b1rnhk2ui35hv" path="res://Resources/Skills/Neutral/n_By The Book.tres" id="3_q53be"]
@@ -7,9 +8,20 @@
 [ext_resource type="Resource" uid="uid://6u412qjwgcux" path="res://Resources/Skills/Neutral/n_Intuition.tres" id="5_78e0a"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_7mom1"]
-bg_color = Color(0, 0.752941, 0.254902, 1)
+content_margin_left = 2.0
+content_margin_top = 2.0
+content_margin_right = 2.0
+content_margin_bottom = 2.0
+bg_color = Color(0, 0.345098, 0.0980392, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(1, 1, 1, 1)
 
 [node name="CombatTest" type="Node2D"]
+script = ExtResource("1_4yies")
+player = null
 
 [node name="Player" type="Node" parent="."]
 script = ExtResource("1_xuo7j")
@@ -25,63 +37,36 @@ offset_bottom = 1072.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="ActionBar" type="HBoxContainer" parent="GUI"]
-custom_minimum_size = Vector2(0, 200)
+[node name="MarginContainer" type="MarginContainer" parent="GUI"]
 layout_mode = 1
-anchors_preset = 14
-anchor_top = 0.5
+anchors_preset = 15
 anchor_right = 1.0
-anchor_bottom = 0.5
-offset_left = 320.0
-offset_top = -152.0
-offset_right = -320.0
-offset_bottom = 48.0
+anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_constants/separation = 128
+theme_override_constants/margin_left = 300
+theme_override_constants/margin_top = 300
+theme_override_constants/margin_right = 300
+theme_override_constants/margin_bottom = 300
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="GUI/MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_constants/separation = 100
 alignment = 1
 
-[node name="Skill1" parent="GUI/ActionBar" instance=ExtResource("2_2yfi3")]
+[node name="HealthBar" type="ProgressBar" parent="GUI/MarginContainer/VBoxContainer2"]
+custom_minimum_size = Vector2(0, 14)
 layout_mode = 2
-focus_neighbor_right = NodePath("../Skill2")
-focus_next = NodePath("../Skill2")
-skill = ExtResource("3_q53be")
-
-[node name="Skill2" parent="GUI/ActionBar" instance=ExtResource("2_2yfi3")]
-layout_mode = 2
-focus_neighbor_left = NodePath("../Skill1")
-focus_neighbor_right = NodePath("../Skill3")
-focus_next = NodePath("../Skill3")
-focus_previous = NodePath("../Skill1")
-skill = ExtResource("4_6bex3")
-
-[node name="Skill3" parent="GUI/ActionBar" instance=ExtResource("2_2yfi3")]
-layout_mode = 2
-skill = ExtResource("5_78e0a")
-
-[node name="MindWaveBar" type="ProgressBar" parent="GUI"]
-layout_direction = 2
-layout_mode = 0
-offset_left = 320.0
-offset_top = 256.0
-offset_right = 1600.0
-offset_bottom = 320.0
-tooltip_text = "Current wave frequency."
-min_value = -4.0
-max_value = 4.0
-step = 1.0
-show_percentage = false
-
-[node name="HealthBar" type="ProgressBar" parent="GUI"]
-layout_mode = 0
-offset_left = 768.0
-offset_top = 128.0
-offset_right = 1152.0
-offset_bottom = 160.0
+size_flags_vertical = 3
 theme_override_styles/background = SubResource("StyleBoxFlat_7mom1")
+max_value = 10.0
+step = 1.0
+value = 5.0
 show_percentage = false
 
-[node name="HBoxContainer" type="HBoxContainer" parent="GUI/HealthBar"]
+[node name="HBoxContainer" type="HBoxContainer" parent="GUI/MarginContainer/VBoxContainer2/HealthBar"]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -96,7 +81,7 @@ grow_horizontal = 2
 grow_vertical = 2
 alignment = 1
 
-[node name="Label" type="Label" parent="GUI/HealthBar/HBoxContainer"]
+[node name="Label" type="Label" parent="GUI/MarginContainer/VBoxContainer2/HealthBar/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 4
 text = "HP: 
@@ -104,9 +89,70 @@ text = "HP:
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="Label2" type="Label" parent="GUI/HealthBar/HBoxContainer"]
+[node name="Label2" type="Label" parent="GUI/MarginContainer/VBoxContainer2/HealthBar/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 4
 text = "10"
 horizontal_alignment = 1
 vertical_alignment = 1
+
+[node name="VBoxContainer" type="VBoxContainer" parent="GUI/MarginContainer/VBoxContainer2"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_constants/separation = 24
+alignment = 1
+
+[node name="MindWaveBar" type="HSlider" parent="GUI/MarginContainer/VBoxContainer2/VBoxContainer"]
+custom_minimum_size = Vector2(0, 14)
+layout_direction = 2
+layout_mode = 2
+size_flags_vertical = 4
+tooltip_text = "Current wave frequency."
+theme_override_constants/center_grabber = 1
+theme_override_constants/grabber_offset = 20
+min_value = -4.0
+max_value = 4.0
+tick_count = 9
+ticks_on_borders = true
+
+[node name="PanelContainer" type="PanelContainer" parent="GUI/MarginContainer/VBoxContainer2/VBoxContainer"]
+layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="GUI/MarginContainer/VBoxContainer2/VBoxContainer/PanelContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="ActionBar" type="HBoxContainer" parent="GUI/MarginContainer/VBoxContainer2/VBoxContainer/PanelContainer/MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 8
+theme_override_constants/separation = 40
+alignment = 1
+
+[node name="Skill1" parent="GUI/MarginContainer/VBoxContainer2/VBoxContainer/PanelContainer/MarginContainer/ActionBar" instance=ExtResource("2_2yfi3")]
+layout_mode = 2
+focus_neighbor_right = NodePath("../Skill2")
+focus_next = NodePath("../Skill2")
+skill = ExtResource("3_q53be")
+
+[node name="VSeparator" type="VSeparator" parent="GUI/MarginContainer/VBoxContainer2/VBoxContainer/PanelContainer/MarginContainer/ActionBar"]
+layout_mode = 2
+
+[node name="Skill2" parent="GUI/MarginContainer/VBoxContainer2/VBoxContainer/PanelContainer/MarginContainer/ActionBar" instance=ExtResource("2_2yfi3")]
+layout_mode = 2
+focus_neighbor_left = NodePath("../Skill1")
+focus_neighbor_right = NodePath("../Skill3")
+focus_next = NodePath("../Skill3")
+focus_previous = NodePath("../Skill1")
+skill = ExtResource("4_6bex3")
+
+[node name="VSeparator2" type="VSeparator" parent="GUI/MarginContainer/VBoxContainer2/VBoxContainer/PanelContainer/MarginContainer/ActionBar"]
+layout_mode = 2
+
+[node name="Skill3" parent="GUI/MarginContainer/VBoxContainer2/VBoxContainer/PanelContainer/MarginContainer/ActionBar" instance=ExtResource("2_2yfi3")]
+layout_mode = 2
+skill = ExtResource("5_78e0a")
