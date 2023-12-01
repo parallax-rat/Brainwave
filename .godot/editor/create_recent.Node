@@ -1,3 +1,4 @@
+Node
 Label
 Control
 VBoxContainer
@@ -9,7 +10,6 @@ SkillButton
 HSlider
 VSeparator
 PanelContainer
-Node
 Button
 Node2D
 HSeparator

@@ -1,7 +1,9 @@
 class_name SkillButton
 extends Button
 
-@export var skill : Skill:
+signal activate_skill(skill_name:Skill)
+
+@export var skill : Skill :
 	get:
 		return skill
 	set(new_skill):
@@ -27,6 +29,5 @@ func update_skill_data():
 	shift_label.text = skill.get_shift_direction()[0]
 	shift_label.horizontal_alignment = skill.get_shift_direction()[1]
 
-
 func _on_pressed():
-	pass # Replace with function body.
+	activate_skill.emit(skill)

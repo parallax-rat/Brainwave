@@ -3,7 +3,7 @@
 [ext_resource type="Texture2D" uid="uid://dcwcwy1ckkdoh" path="res://icon.svg" id="1_16ftu"]
 [ext_resource type="Script" path="res://Scripts/skill_button.gd" id="2_utbrm"]
 
-[node name="Button" type="Button" node_paths=PackedStringArray("name_label", "shift_label") groups=["SkillButtons"]]
+[node name="Button" type="Button" node_paths=PackedStringArray("name_label", "shift_label") groups=["skill_buttons"]]
 custom_minimum_size = Vector2(128, 128)
 offset_right = 128.0
 offset_bottom = 128.0
@@ -44,3 +44,5 @@ grow_horizontal = 2
 size_flags_vertical = 0
 text = "Skill Name"
 horizontal_alignment = 1
+
+[connection signal="pressed" from="." to="." method="_on_pressed"]

@@ -12,3 +12,5 @@ res://Resources/Skills/Right/Holistic Mind.tres
 res://Scripts/skill_resource.gd
 res://Resources/Skills/Left/Interpret.tres
 res://Resources/Skills/Right/Deceive.tres
+res://Scenes/PlayerHealthBar.gd
+res://Scripts/player_health_bar.gd

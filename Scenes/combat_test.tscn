@@ -1,8 +1,8 @@
 [gd_scene load_steps=17 format=3 uid="uid://dgotg08v1neoe"]
 
 [ext_resource type="Script" path="res://Scripts/game.gd" id="1_4yies"]
-[ext_resource type="Script" path="res://Scripts/player.gd" id="1_xuo7j"]
 [ext_resource type="PackedScene" uid="uid://7f812eakfokw" path="res://Scenes/skill_button.tscn" id="2_2yfi3"]
+[ext_resource type="Script" path="res://Scripts/player_health_bar.gd" id="2_koa7l"]
 [ext_resource type="Resource" uid="uid://dhs5yjl57b5oe" path="res://Resources/Skills/Left/Interpret.tres" id="4_gojse"]
 [ext_resource type="Resource" uid="uid://b1rnhk2ui35hv" path="res://Resources/Skills/Neutral/By The Book.tres" id="4_syuua"]
 [ext_resource type="Resource" uid="uid://c4ydkggb4vvjt" path="res://Resources/Skills/Left/Step in Line.tres" id="4_tmc7s"]
@@ -35,12 +35,7 @@ bg_color = Color(0.152941, 0.152941, 0.152941, 1)
 
 [node name="CombatTest" type="Node2D"]
 script = ExtResource("1_4yies")
-
-[node name="Player" type="Node" parent="." node_paths=PackedStringArray("healthBar")]
-script = ExtResource("1_xuo7j")
-health = 10
-healthBar = NodePath("../GUI/CenterContainer/PlayerHealthBar")
-brain_wave = 4
+health = 6
 
 [node name="GUI" type="Control" parent="."]
 layout_mode = 3
@@ -64,7 +59,7 @@ offset_bottom = -144.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="PlayerHealthBar" type="ProgressBar" parent="GUI/CenterContainer"]
+[node name="PlayerHealthBar" type="ProgressBar" parent="GUI/CenterContainer" node_paths=PackedStringArray("hp_display_val")]
 custom_minimum_size = Vector2(0, 32)
 layout_mode = 2
 theme_override_styles/background = SubResource("StyleBoxFlat_7mom1")
@@ -73,6 +68,8 @@ max_value = 10.0
 step = 1.0
 value = 10.0
 show_percentage = false
+script = ExtResource("2_koa7l")
+hp_display_val = NodePath("HBoxContainer/HPVal")
 
 [node name="HBoxContainer" type="HBoxContainer" parent="GUI/CenterContainer/PlayerHealthBar"]
 layout_mode = 1
@@ -97,7 +94,7 @@ text = "HP:
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="Label2" type="Label" parent="GUI/CenterContainer/PlayerHealthBar/HBoxContainer"]
+[node name="HPVal" type="Label" parent="GUI/CenterContainer/PlayerHealthBar/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 4
 text = "10"
@@ -198,126 +195,126 @@ layout_mode = 2
 theme_override_constants/separation = 32
 alignment = 1
 
-[node name="LeftActionBar" type="HBoxContainer" parent="GUI/CenterContainer/VBoxContainer/PanelContainer/MarginContainer/HBoxContainer"]
+[node name="LeftActionBar" type="HBoxContainer" parent="GUI/CenterContainer/VBoxContainer/PanelContainer/MarginContainer/HBoxContainer" groups=["action_bars"]]
 layout_mode = 2
 size_flags_horizontal = 10
 theme_override_constants/separation = 32
 alignment = 1
 
-[node name="Left4" parent="GUI/CenterContainer/VBoxContainer/PanelContainer/MarginContainer/HBoxContainer/LeftActionBar" instance=ExtResource("2_2yfi3")]
+[node name="LeftButton4" parent="GUI/CenterContainer/VBoxContainer/PanelContainer/MarginContainer/HBoxContainer/LeftActionBar" instance=ExtResource("2_2yfi3")]
 layout_mode = 2
 disabled = true
 
-[node name="Left3" parent="GUI/CenterContainer/VBoxContainer/PanelContainer/MarginContainer/HBoxContainer/LeftActionBar" instance=ExtResource("2_2yfi3")]
+[node name="LeftButton3" parent="GUI/CenterContainer/VBoxContainer/PanelContainer/MarginContainer/HBoxContainer/LeftActionBar" instance=ExtResource("2_2yfi3")]
 layout_mode = 2
 size_flags_horizontal = 10
-focus_neighbor_left = NodePath("../Interpret")
-focus_neighbor_right = NodePath("../Left4")
-focus_next = NodePath("../Left4")
-focus_previous = NodePath("../Interpret")
+focus_neighbor_left = NodePath("../LeftButton2")
+focus_neighbor_right = NodePath("../LeftButton4")
+focus_next = NodePath("../LeftButton4")
+focus_previous = NodePath("../LeftButton2")
 disabled = true
 
-[node name="Interpret" parent="GUI/CenterContainer/VBoxContainer/PanelContainer/MarginContainer/HBoxContainer/LeftActionBar" instance=ExtResource("2_2yfi3")]
+[node name="LeftButton2" parent="GUI/CenterContainer/VBoxContainer/PanelContainer/MarginContainer/HBoxContainer/LeftActionBar" instance=ExtResource("2_2yfi3")]
 layout_mode = 2
 size_flags_horizontal = 10
-focus_neighbor_right = NodePath("../Left3")
-focus_next = NodePath("../Left3")
+focus_neighbor_right = NodePath("../LeftButton3")
+focus_next = NodePath("../LeftButton3")
 disabled = true
 skill = ExtResource("4_gojse")
 
-[node name="NeutralActionBar" type="HBoxContainer" parent="GUI/CenterContainer/VBoxContainer/PanelContainer/MarginContainer/HBoxContainer"]
+[node name="MiddleActionBar" type="HBoxContainer" parent="GUI/CenterContainer/VBoxContainer/PanelContainer/MarginContainer/HBoxContainer" groups=["action_bars"]]
 layout_mode = 2
 size_flags_horizontal = 6
 theme_override_constants/separation = 32
 alignment = 1
 
-[node name="Step In Line" parent="GUI/CenterContainer/VBoxContainer/PanelContainer/MarginContainer/HBoxContainer/NeutralActionBar" node_paths=PackedStringArray("enable_skill", "name_label", "shift_label") instance=ExtResource("2_2yfi3")]
+[node name="LeftButton1" parent="GUI/CenterContainer/VBoxContainer/PanelContainer/MarginContainer/HBoxContainer/MiddleActionBar" node_paths=PackedStringArray("enable_skill", "name_label", "shift_label") instance=ExtResource("2_2yfi3")]
 layout_mode = 2
 size_flags_horizontal = 1
 size_flags_vertical = 1
-focus_neighbor_right = NodePath("../Meditate")
-focus_next = NodePath("../Meditate")
+focus_neighbor_right = NodePath("../NeutralButton2")
+focus_next = NodePath("../NeutralButton2")
 disabled = true
 skill = ExtResource("4_tmc7s")
-enable_skill = NodePath("../../LeftActionBar/Interpret")
-name_label = NodePath("../../LeftActionBar/Interpret/Name")
-shift_label = NodePath("../../LeftActionBar/Interpret/MarginContainer/ShiftDirectionLabel")
+enable_skill = NodePath("../../LeftActionBar/LeftButton2")
+name_label = NodePath("../../LeftActionBar/LeftButton2/Name")
+shift_label = NodePath("../../LeftActionBar/LeftButton2/MarginContainer/ShiftDirectionLabel")
 
-[node name="By The Book" parent="GUI/CenterContainer/VBoxContainer/PanelContainer/MarginContainer/HBoxContainer/NeutralActionBar" node_paths=PackedStringArray("enable_skill", "disable_skill", "name_label", "shift_label") instance=ExtResource("2_2yfi3")]
+[node name="NeutralButton1" parent="GUI/CenterContainer/VBoxContainer/PanelContainer/MarginContainer/HBoxContainer/MiddleActionBar" node_paths=PackedStringArray("enable_skill", "disable_skill", "name_label", "shift_label") instance=ExtResource("2_2yfi3")]
 layout_mode = 2
 size_flags_horizontal = 1
 size_flags_vertical = 1
-focus_neighbor_right = NodePath("../Meditate")
-focus_next = NodePath("../Meditate")
+focus_neighbor_right = NodePath("../NeutralButton2")
+focus_next = NodePath("../NeutralButton2")
 skill = ExtResource("4_syuua")
-enable_skill = NodePath("../Step In Line")
-disable_skill = NodePath("../Intuition")
-name_label = NodePath("../../LeftActionBar/Interpret/Name")
-shift_label = NodePath("../../LeftActionBar/Interpret/MarginContainer/ShiftDirectionLabel")
+enable_skill = NodePath("../LeftButton1")
+disable_skill = NodePath("../NeutralButton3")
+name_label = NodePath("../../LeftActionBar/LeftButton2/Name")
+shift_label = NodePath("../../LeftActionBar/LeftButton2/MarginContainer/ShiftDirectionLabel")
 
-[node name="Meditate" parent="GUI/CenterContainer/VBoxContainer/PanelContainer/MarginContainer/HBoxContainer/NeutralActionBar" node_paths=PackedStringArray("name_label", "shift_label") instance=ExtResource("2_2yfi3")]
+[node name="NeutralButton2" parent="GUI/CenterContainer/VBoxContainer/PanelContainer/MarginContainer/HBoxContainer/MiddleActionBar" node_paths=PackedStringArray("name_label", "shift_label") instance=ExtResource("2_2yfi3")]
 layout_mode = 2
 size_flags_horizontal = 1
 size_flags_vertical = 1
-focus_neighbor_left = NodePath("../By The Book")
-focus_neighbor_right = NodePath("../Intuition")
-focus_next = NodePath("../Intuition")
-focus_previous = NodePath("../By The Book")
+focus_neighbor_left = NodePath("../NeutralButton1")
+focus_neighbor_right = NodePath("../NeutralButton3")
+focus_next = NodePath("../NeutralButton3")
+focus_previous = NodePath("../NeutralButton1")
 skill = ExtResource("5_wwlx2")
-name_label = NodePath("../../LeftActionBar/Left3/Name")
-shift_label = NodePath("../../LeftActionBar/Left3/MarginContainer/ShiftDirectionLabel")
+name_label = NodePath("../../LeftActionBar/LeftButton3/Name")
+shift_label = NodePath("../../LeftActionBar/LeftButton3/MarginContainer/ShiftDirectionLabel")
 
-[node name="Intuition" parent="GUI/CenterContainer/VBoxContainer/PanelContainer/MarginContainer/HBoxContainer/NeutralActionBar" node_paths=PackedStringArray("name_label", "shift_label") instance=ExtResource("2_2yfi3")]
+[node name="NeutralButton3" parent="GUI/CenterContainer/VBoxContainer/PanelContainer/MarginContainer/HBoxContainer/MiddleActionBar" node_paths=PackedStringArray("name_label", "shift_label") instance=ExtResource("2_2yfi3")]
 layout_mode = 2
 size_flags_horizontal = 1
 size_flags_vertical = 1
 skill = ExtResource("6_ni2hc")
-name_label = NodePath("../../LeftActionBar/Left4/Name")
-shift_label = NodePath("../../LeftActionBar/Left4/MarginContainer/ShiftDirectionLabel")
+name_label = NodePath("../../LeftActionBar/LeftButton4/Name")
+shift_label = NodePath("../../LeftActionBar/LeftButton4/MarginContainer/ShiftDirectionLabel")
 
-[node name="Holistic Mind" parent="GUI/CenterContainer/VBoxContainer/PanelContainer/MarginContainer/HBoxContainer/NeutralActionBar" node_paths=PackedStringArray("name_label", "shift_label") instance=ExtResource("2_2yfi3")]
+[node name="RightButton1" parent="GUI/CenterContainer/VBoxContainer/PanelContainer/MarginContainer/HBoxContainer/MiddleActionBar" node_paths=PackedStringArray("name_label", "shift_label") instance=ExtResource("2_2yfi3")]
 layout_mode = 2
 size_flags_horizontal = 1
 size_flags_vertical = 1
 disabled = true
 skill = ExtResource("8_yrrqf")
-name_label = NodePath("../../LeftActionBar/Left4/Name")
-shift_label = NodePath("../../LeftActionBar/Left4/MarginContainer/ShiftDirectionLabel")
+name_label = NodePath("../../LeftActionBar/LeftButton4/Name")
+shift_label = NodePath("../../LeftActionBar/LeftButton4/MarginContainer/ShiftDirectionLabel")
 
-[node name="RightActionBar" type="HBoxContainer" parent="GUI/CenterContainer/VBoxContainer/PanelContainer/MarginContainer/HBoxContainer"]
+[node name="RightActionBar" type="HBoxContainer" parent="GUI/CenterContainer/VBoxContainer/PanelContainer/MarginContainer/HBoxContainer" groups=["action_bars"]]
 layout_mode = 2
 size_flags_horizontal = 2
 theme_override_constants/separation = 32
 alignment = 1
 
-[node name="Deceive" parent="GUI/CenterContainer/VBoxContainer/PanelContainer/MarginContainer/HBoxContainer/RightActionBar" node_paths=PackedStringArray("name_label", "shift_label") instance=ExtResource("2_2yfi3")]
+[node name="RightButton2" parent="GUI/CenterContainer/VBoxContainer/PanelContainer/MarginContainer/HBoxContainer/RightActionBar" node_paths=PackedStringArray("name_label", "shift_label") instance=ExtResource("2_2yfi3")]
 layout_mode = 2
 size_flags_horizontal = 2
-focus_neighbor_right = NodePath("../Right3")
-focus_next = NodePath("../Right3")
+focus_neighbor_right = NodePath("../RightButton3")
+focus_next = NodePath("../RightButton3")
 disabled = true
 skill = ExtResource("10_rh13u")
-name_label = NodePath("../../LeftActionBar/Interpret/Name")
-shift_label = NodePath("../../LeftActionBar/Interpret/MarginContainer/ShiftDirectionLabel")
+name_label = NodePath("../../LeftActionBar/LeftButton2/Name")
+shift_label = NodePath("../../LeftActionBar/LeftButton2/MarginContainer/ShiftDirectionLabel")
 
-[node name="Right3" parent="GUI/CenterContainer/VBoxContainer/PanelContainer/MarginContainer/HBoxContainer/RightActionBar" node_paths=PackedStringArray("name_label", "shift_label") instance=ExtResource("2_2yfi3")]
+[node name="RightButton3" parent="GUI/CenterContainer/VBoxContainer/PanelContainer/MarginContainer/HBoxContainer/RightActionBar" node_paths=PackedStringArray("name_label", "shift_label") instance=ExtResource("2_2yfi3")]
 layout_mode = 2
 size_flags_horizontal = 2
 size_flags_vertical = 1
-focus_neighbor_left = NodePath("../Deceive")
-focus_neighbor_right = NodePath("../Right4")
-focus_next = NodePath("../Right4")
-focus_previous = NodePath("../Deceive")
+focus_neighbor_left = NodePath("../RightButton2")
+focus_neighbor_right = NodePath("../RightButton4")
+focus_next = NodePath("../RightButton4")
+focus_previous = NodePath("../RightButton2")
 disabled = true
-name_label = NodePath("../../LeftActionBar/Left3/Name")
-shift_label = NodePath("../../LeftActionBar/Left3/MarginContainer/ShiftDirectionLabel")
+name_label = NodePath("../../LeftActionBar/LeftButton3/Name")
+shift_label = NodePath("../../LeftActionBar/LeftButton3/MarginContainer/ShiftDirectionLabel")
 
-[node name="Right4" parent="GUI/CenterContainer/VBoxContainer/PanelContainer/MarginContainer/HBoxContainer/RightActionBar" node_paths=PackedStringArray("name_label", "shift_label") instance=ExtResource("2_2yfi3")]
+[node name="RightButton4" parent="GUI/CenterContainer/VBoxContainer/PanelContainer/MarginContainer/HBoxContainer/RightActionBar" node_paths=PackedStringArray("name_label", "shift_label") instance=ExtResource("2_2yfi3")]
 layout_mode = 2
 size_flags_horizontal = 2
 size_flags_vertical = 1
 disabled = true
-name_label = NodePath("../../LeftActionBar/Left4/Name")
-shift_label = NodePath("../../LeftActionBar/Left4/MarginContainer/ShiftDirectionLabel")
+name_label = NodePath("../../LeftActionBar/LeftButton4/Name")
+shift_label = NodePath("../../LeftActionBar/LeftButton4/MarginContainer/ShiftDirectionLabel")
 
-[connection signal="pressed" from="GUI/CenterContainer/VBoxContainer/PanelContainer/MarginContainer/HBoxContainer/NeutralActionBar/By The Book" to="GUI/CenterContainer/VBoxContainer/PanelContainer/MarginContainer/HBoxContainer/NeutralActionBar/By The Book" method="_on_pressed"]
+[connection signal="hp_changed" from="." to="GUI/CenterContainer/PlayerHealthBar" method="_on_hp_changed"]
