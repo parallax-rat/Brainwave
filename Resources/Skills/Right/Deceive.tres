@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="Skill" load_steps=2 format=3 uid="uid://bsdmja76utqxs"]
+
+[ext_resource type="Script" path="res://Scripts/skill_resource.gd" id="1_uxtqk"]
+
+[resource]
+script = ExtResource("1_uxtqk")
+skill_name = "Deceive"
+description = ""
+bonus_effect = "For each buff expired, increase stats by x for 1 turn."
+skill_type = 2
+damage = 2
+healing = 0
+multiplier = 1.0
+linked_skills = Array[ExtResource("1_uxtqk")]([])

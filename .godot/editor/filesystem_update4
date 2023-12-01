@@ -1,12 +1,14 @@
-res://Scripts/combat_test.tscn
-res://Resources/Skills/Neutral/n_By The Book.tres
-res://Resources/Skills/Neutral/n_Intuition.tres
+res://Scenes/combat_test.tscn
+res://Resources/Skills/Neutral/Meditate.tres
+res://Resources/Skills/Neutral/Intuition.tres
+res://Scripts/game.gd
+res://global.gd
+res://Scripts/player.gd
+res://Scripts/skill_button.gd
 res://Scenes/skill_button.tscn
 res://Resources/Skills/Left/Step in Line.tres
+res://Resources/Skills/Neutral/By The Book.tres
+res://Resources/Skills/Right/Holistic Mind.tres
 res://Scripts/skill_resource.gd
-res://Resources/Skills/Neutral/n_Meditate.tres
-res://Scripts/skill_button.gd
-res://Scripts/mind_wave_bar.gd
-res://Scripts/player.gd
-res://Scenes/combat_test.tscn
-res://Scripts/game.gd
+res://Resources/Skills/Left/Interpret.tres
+res://Resources/Skills/Right/Deceive.tres

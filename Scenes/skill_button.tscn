@@ -3,14 +3,16 @@
 [ext_resource type="Texture2D" uid="uid://dcwcwy1ckkdoh" path="res://icon.svg" id="1_16ftu"]
 [ext_resource type="Script" path="res://Scripts/skill_button.gd" id="2_utbrm"]
 
-[node name="Button" type="Button" node_paths=PackedStringArray("name_label", "shift_label")]
+[node name="Button" type="Button" node_paths=PackedStringArray("name_label", "shift_label") groups=["SkillButtons"]]
+custom_minimum_size = Vector2(128, 128)
 offset_right = 128.0
 offset_bottom = 128.0
-size_flags_horizontal = 6
+size_flags_horizontal = 3
 size_flags_vertical = 6
 mouse_default_cursor_shape = 2
 icon = ExtResource("1_16ftu")
 icon_alignment = 1
+expand_icon = true
 script = ExtResource("2_utbrm")
 name_label = NodePath("Name")
 shift_label = NodePath("MarginContainer/ShiftDirectionLabel")
@@ -29,7 +31,7 @@ theme_override_constants/margin_right = 4
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 8
-text = "Neutral"
+text = "Shift Direction"
 horizontal_alignment = 1
 vertical_alignment = 2
 

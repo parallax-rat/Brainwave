@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="Skill" load_steps=2 format=3 uid="uid://pp2hhl653lk1"]
+
+[ext_resource type="Script" path="res://Scripts/skill_resource.gd" id="1_tyvoe"]
+
+[resource]
+script = ExtResource("1_tyvoe")
+skill_name = "Holistic Mind"
+description = ""
+bonus_effect = "Increase buff status +1 turn"
+skill_type = 2
+shift_direction = 2
+damage = 1
+healing = 0
+multiplier = 1.0
+linked_skills = Array[ExtResource("1_tyvoe")]([])

@@ -1,0 +1,179 @@
+[gd_scene load_steps=12 format=3 uid="uid://dgotg08v1neoe"]
+
+[ext_resource type="Script" path="res://Scripts/game.gd" id="1_4yies"]
+[ext_resource type="Script" path="res://Scripts/player.gd" id="1_xuo7j"]
+[ext_resource type="PackedScene" uid="uid://7f812eakfokw" path="res://Scenes/skill_button.tscn" id="2_2yfi3"]
+[ext_resource type="Resource" uid="uid://b1rnhk2ui35hv" path="res://Resources/Skills/Neutral/By The Book.tres" id="4_syuua"]
+[ext_resource type="Resource" uid="uid://b5ckt4v7cid7j" path="res://Resources/Skills/Neutral/Meditate.tres" id="5_wwlx2"]
+[ext_resource type="Resource" uid="uid://6u412qjwgcux" path="res://Resources/Skills/Neutral/Intuition.tres" id="6_ni2hc"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_7mom1"]
+content_margin_left = 2.0
+content_margin_top = 2.0
+content_margin_right = 2.0
+content_margin_bottom = 2.0
+bg_color = Color(0, 0.345098, 0.0980392, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_tbkbm"]
+bg_color = Color(0, 0.74902, 0, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_7ci32"]
+bg_color = Color(0.909804, 0, 0.517647, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_vx7kq"]
+bg_color = Color(0, 0.67451, 0.756863, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_mmmdm"]
+bg_color = Color(0.929412, 0.439216, 0, 1)
+
+[node name="CombatTest" type="Node2D" node_paths=PackedStringArray("player", "actionBar")]
+script = ExtResource("1_4yies")
+player = NodePath("")
+actionBar = NodePath("")
+
+[node name="Player" type="Node" parent="."]
+script = ExtResource("1_xuo7j")
+health = 10
+brain_wave = 4
+
+[node name="GUI" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = 1920.0
+offset_bottom = 1072.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="GUI"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 300
+theme_override_constants/margin_top = 300
+theme_override_constants/margin_right = 300
+theme_override_constants/margin_bottom = 300
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="GUI/MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_constants/separation = 100
+alignment = 1
+
+[node name="HealthBar" type="ProgressBar" parent="GUI/MarginContainer/VBoxContainer2"]
+custom_minimum_size = Vector2(0, 18)
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_styles/background = SubResource("StyleBoxFlat_7mom1")
+theme_override_styles/fill = SubResource("StyleBoxFlat_tbkbm")
+max_value = 10.0
+step = 1.0
+value = 10.0
+show_percentage = false
+
+[node name="HBoxContainer" type="HBoxContainer" parent="GUI/MarginContainer/VBoxContainer2/HealthBar"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -64.0
+offset_top = -16.0
+offset_right = 64.0
+offset_bottom = 16.0
+grow_horizontal = 2
+grow_vertical = 2
+alignment = 1
+
+[node name="Label" type="Label" parent="GUI/MarginContainer/VBoxContainer2/HealthBar/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+text = "HP: 
+"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Label2" type="Label" parent="GUI/MarginContainer/VBoxContainer2/HealthBar/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+text = "10"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="VBoxContainer" type="VBoxContainer" parent="GUI/MarginContainer/VBoxContainer2"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_constants/separation = 24
+alignment = 1
+
+[node name="VBoxContainer" type="VBoxContainer" parent="GUI/MarginContainer/VBoxContainer2/VBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="GUI/MarginContainer/VBoxContainer2/VBoxContainer/VBoxContainer"]
+layout_mode = 2
+text = "Mindwave Range"
+horizontal_alignment = 1
+
+[node name="MindWaveBar" type="HSlider" parent="GUI/MarginContainer/VBoxContainer2/VBoxContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 14)
+layout_direction = 2
+layout_mode = 2
+size_flags_vertical = 4
+tooltip_text = "Current wave frequency."
+theme_override_constants/center_grabber = 1
+theme_override_constants/grabber_offset = 20
+theme_override_styles/slider = SubResource("StyleBoxFlat_7ci32")
+theme_override_styles/grabber_area = SubResource("StyleBoxFlat_vx7kq")
+theme_override_styles/grabber_area_highlight = SubResource("StyleBoxFlat_mmmdm")
+min_value = -4.0
+max_value = 4.0
+tick_count = 9
+ticks_on_borders = true
+
+[node name="PanelContainer" type="PanelContainer" parent="GUI/MarginContainer/VBoxContainer2/VBoxContainer"]
+layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="GUI/MarginContainer/VBoxContainer2/VBoxContainer/PanelContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="ActionBar" type="HBoxContainer" parent="GUI/MarginContainer/VBoxContainer2/VBoxContainer/PanelContainer/MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 8
+theme_override_constants/separation = 40
+alignment = 1
+
+[node name="Skill1" parent="GUI/MarginContainer/VBoxContainer2/VBoxContainer/PanelContainer/MarginContainer/ActionBar" instance=ExtResource("2_2yfi3")]
+layout_mode = 2
+focus_neighbor_right = NodePath("../Skill2")
+focus_next = NodePath("../Skill2")
+skill = ExtResource("4_syuua")
+
+[node name="VSeparator" type="VSeparator" parent="GUI/MarginContainer/VBoxContainer2/VBoxContainer/PanelContainer/MarginContainer/ActionBar"]
+layout_mode = 2
+
+[node name="Skill2" parent="GUI/MarginContainer/VBoxContainer2/VBoxContainer/PanelContainer/MarginContainer/ActionBar" instance=ExtResource("2_2yfi3")]
+layout_mode = 2
+focus_neighbor_left = NodePath("../Skill1")
+focus_neighbor_right = NodePath("../Skill3")
+focus_next = NodePath("../Skill3")
+focus_previous = NodePath("../Skill1")
+skill = ExtResource("5_wwlx2")
+
+[node name="VSeparator2" type="VSeparator" parent="GUI/MarginContainer/VBoxContainer2/VBoxContainer/PanelContainer/MarginContainer/ActionBar"]
+layout_mode = 2
+
+[node name="Skill3" parent="GUI/MarginContainer/VBoxContainer2/VBoxContainer/PanelContainer/MarginContainer/ActionBar" instance=ExtResource("2_2yfi3")]
+layout_mode = 2
+skill = ExtResource("6_ni2hc")
