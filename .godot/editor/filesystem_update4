@@ -1,16 +1,19 @@
 res://Scenes/combat_test.tscn
+res://Scripts/skill_button.gd
+res://Resources/Skills/Left/Interpret.tres
+res://Resources/Skills/Neutral/By The Book.tres
+res://Resources/Skills/Left/Step in Line.tres
 res://Resources/Skills/Neutral/Meditate.tres
 res://Resources/Skills/Neutral/Intuition.tres
-res://Scripts/game.gd
-res://global.gd
-res://Scripts/player.gd
-res://Scripts/skill_button.gd
-res://Scenes/skill_button.tscn
-res://Resources/Skills/Left/Step in Line.tres
-res://Resources/Skills/Neutral/By The Book.tres
 res://Resources/Skills/Right/Holistic Mind.tres
-res://Scripts/skill_resource.gd
-res://Resources/Skills/Left/Interpret.tres
 res://Resources/Skills/Right/Deceive.tres
-res://Scenes/PlayerHealthBar.gd
-res://Scripts/player_health_bar.gd
+res://Resources/Skills/Right/Binaural Trance.tres
+res://Resources/Skills/Right/Lucid Daydream.tres
+res://Scenes/skill_button.tscn
+res://Scripts/game.gd
+res://Scripts/skill_resource.gd
+res://global.gd
+res://Resources/Skills/Left/Death Date.tres
+res://Resources/Skills/Left/Logic Paradox.tres
+res://Scripts/LeftProgressBar.gd
+res://Scripts/RightProgressBar.gd

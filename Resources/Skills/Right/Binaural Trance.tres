@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="Skill" load_steps=2 format=3 uid="uid://bwx5aelckmhqd"]
+
+[ext_resource type="Script" path="res://Scripts/skill_resource.gd" id="1_dgvsw"]
+
+[resource]
+script = ExtResource("1_dgvsw")
+skill_name = "Binaural Trance"
+description = "Only in a deep trance can you actualize how to improve. Buffs neutral skills."
+bonus_effect = ""
+type = 2
+step_value = 1
+skill_number = 9
+damage = 3.0
+healing = 0
+multiplier = 1.0

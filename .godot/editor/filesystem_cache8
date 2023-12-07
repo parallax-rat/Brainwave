@@ -1,5 +1,6 @@
 0453c2224f3a23d633b93278348c95c7
-::res://::1701451902
+::res://::1701921242
+global.gd::GDScript::-1::1701908796::0::1::::<>Node<>::
 icon.svg::CompressedTexture2D::7345218071226073119::1701112345::1701112355::1::::<><>::
 ::res://addons/::1701286122
 ::res://addons/csv-data-importer/::1701286122
@@ -7,7 +8,7 @@ csv_data.gd::GDScript::-1::1701286122::0::1::::<>Resource<>::
 import_plugin.gd::GDScript::-1::1701286122::0::1::::<>EditorImportPlugin<>::
 plugin.cfg::TextFile::-1::1701286122::0::1::::<><>::
 plugin.gd::GDScript::-1::1701286122::0::1::::<>EditorPlugin<>::
-::res://Design Docs/::1701370428
+::res://Design Docs/::1701905513
 image2.png::CompressedTexture2D::2862824943445503846::1701292707::1701370428::1::::<><>::
 image.png::CompressedTexture2D::859099084356311396::1701292666::1701370428::1::::<><>::
 ::res://Fonts/::1701153920
@@ -16,29 +17,35 @@ Lambda-Regular.otf::FontFile::7387075674222720635::1701153920::1701153920::1::::
 ::res://Resources/::1701376278
 ability_window_title.tres::LabelSettings::5915740435441973638::1701274729::0::1::::<><>::uid://ddimb683llnpb
 ::res://Resources/Skills/::1701289599
-::res://Resources/Skills/Left/::1701445618
-Interpret.tres::Resource/Skill::7689607616064217056::1701445556::0::1::::<><>::res://Scripts/skill_resource.gd
-Step in Line.tres::Resource/Skill::6858063232397890737::1701445618::0::1::::<><>::res://Scripts/skill_resource.gd
-::res://Resources/Skills/Neutral/::1701445618
-By The Book.tres::Resource/Skill::4247227429428012827::1701445618::0::1::::<><>::res://Scripts/skill_resource.gd
-Intuition.tres::Resource/Skill::2218950374577835767::1701416898::0::1::::<><>::res://Scripts/skill_resource.gd
-Meditate.tres::Resource/Skill::4496857405429021941::1701411514::0::1::::<><>::res://Scripts/skill_resource.gd
-::res://Resources/Skills/Right/::1701416898
-Deceive.tres::Resource/Skill::3656757729367937176::1701416898::0::1::::<><>::res://Scripts/skill_resource.gd
-Holistic Mind.tres::Resource/Skill::1085450566349412602::1701415918::0::1::::<><>::res://Scripts/skill_resource.gd
+::res://Resources/Skills/Left/::1701916958
+Death Date.tres::Resource/Skill::4576873717693522176::1701916921::0::1::::<><>::res://Scripts/skill_resource.gd
+Interpret.tres::Resource/Skill::7689607616064217056::1701914780::0::1::::<><>::res://Scripts/skill_resource.gd
+Logic Paradox.tres::Resource/Skill::5282135307642311724::1701916958::0::1::::<><>::res://Scripts/skill_resource.gd
+Step in Line.tres::Resource/Skill::6858063232397890737::1701914775::0::1::::<><>::res://Scripts/skill_resource.gd
+::res://Resources/Skills/Neutral/::1701919377
+By The Book.tres::Resource/Skill::4247227429428012827::1701919377::0::1::::<><>::res://Scripts/skill_resource.gd
+Intuition.tres::Resource/Skill::2218950374577835767::1701919377::0::1::::<><>::res://Scripts/skill_resource.gd
+Meditate.tres::Resource/Skill::4496857405429021941::1701917024::0::1::::<><>::res://Scripts/skill_resource.gd
+::res://Resources/Skills/Right/::1701917050
+Binaural Trance.tres::Resource/Skill::3979877669047145919::1701917041::0::1::::<><>::res://Scripts/skill_resource.gd
+Deceive.tres::Resource/Skill::3656757729367937176::1701917044::0::1::::<><>::res://Scripts/skill_resource.gd
+Holistic Mind.tres::Resource/Skill::1085450566349412602::1701917047::0::1::::<><>::res://Scripts/skill_resource.gd
+Lucid Daydream.tres::Resource/Skill::2242999746983401219::1701917050::0::1::::<><>::res://Scripts/skill_resource.gd
 ::res://Scanned/::1701376284
 screen.png::CompressedTexture2D::1501576786817990604::1701112593::1701112598::1::::<><>::
-::res://Scenes/::1701451902
+::res://Scenes/::1701921242
 ability_skill.tscn::PackedScene::4864220421800603495::1701155826::0::1::::<><>::uid://ckmypbha0vvvj
-combat_test.tscn::PackedScene::7610462104142030552::1701451913::0::1::::<><>::res://Scripts/game.gd<>uid://7f812eakfokw::::res://Scenes/skill_button.tscn<>res://Scripts/PlayerHealthBar.gd<>uid://dhs5yjl57b5oe::::res://Resources/Skills/Left/Interpret.tres<>uid://b1rnhk2ui35hv::::res://Resources/Skills/Neutral/By The Book.tres<>uid://c4ydkggb4vvjt::::res://Resources/Skills/Left/Step in Line.tres<>uid://b5ckt4v7cid7j::::res://Resources/Skills/Neutral/Meditate.tres<>uid://6u412qjwgcux::::res://Resources/Skills/Neutral/Intuition.tres<>uid://pp2hhl653lk1::::res://Resources/Skills/Right/Holistic Mind.tres<>uid://bsdmja76utqxs::::res://Resources/Skills/Right/Deceive.tres
+combat_test.tscn::PackedScene::7610462104142030552::1701920995::0::1::::<><>::res://Scripts/game.gd<>uid://7f812eakfokw::::res://Scenes/skill_button.tscn<>res://Scripts/player_health_bar.gd<>uid://chix85jyw8uum::::res://Resources/Skills/Left/Logic Paradox.tres<>uid://dhs5yjl57b5oe::::res://Resources/Skills/Left/Interpret.tres<>uid://b1rnhk2ui35hv::::res://Resources/Skills/Neutral/By The Book.tres<>uid://c4ydkggb4vvjt::::res://Resources/Skills/Left/Step in Line.tres<>uid://b5ckt4v7cid7j::::res://Resources/Skills/Neutral/Meditate.tres<>uid://b6hcpaknhvg6s::::res://Resources/Skills/Left/Death Date.tres<>uid://6u412qjwgcux::::res://Resources/Skills/Neutral/Intuition.tres<>uid://pp2hhl653lk1::::res://Resources/Skills/Right/Holistic Mind.tres<>uid://bsdmja76utqxs::::res://Resources/Skills/Right/Deceive.tres<>uid://bwx5aelckmhqd::::res://Resources/Skills/Right/Binaural Trance.tres<>uid://67r44d48xm2v::::res://Resources/Skills/Right/Lucid Daydream.tres
 proto.tscn::PackedScene::3189316248356017383::1701276017::0::1::::<><>::uid://dcgfxcrw4a2pu
-skill_button.tscn::PackedScene::2258416400913403754::1701451597::0::1::::<><>::uid://dcwcwy1ckkdoh::::res://icon.svg<>res://Scripts/skill_button.gd
+skill_button.tscn::PackedScene::2258416400913403754::1701920995::0::1::::<><>::uid://dcwcwy1ckkdoh::::res://icon.svg<>res://Scripts/skill_button.gd
 skill_name.tres::LabelSettings::6930635002912521666::1701274729::0::1::::<><>::uid://dva2kiv00fl33
-::res://Scripts/::1701451902
-game.gd::GDScript::-1::1701451650::0::1::::<>Node2D<>::
-PlayerHealthBar.gd::GDScript::-1::1701451884::0::1::::<>ProgressBar<>::
-skill_button.gd::GDScript::-1::1701451777::0::1::::SkillButton<>Button<>::
-skill_resource.gd::GDScript::-1::1701445618::0::1::::Skill<>Resource<>::
+::res://Scripts/::1701921242
+game.gd::GDScript::-1::1701920531::0::1::::<>Node2D<>::
+LeftProgressBar.gd::GDScript::-1::1701921227::0::1::::<>ProgressBar<>::
+player_health_bar.gd::GDScript::-1::1701452661::0::1::::<>ProgressBar<>::
+RightProgressBar.gd::GDScript::-1::1701921230::0::1::::<>ProgressBar<>::
+skill_button.gd::GDScript::-1::1701913988::0::1::::SkillButton<>Button<>::
+skill_resource.gd::GDScript::-1::1701916689::0::1::::Skill<>Resource<>::
 ::res://Sprites/::1701376297
 bad-gnome (1).svg::CompressedTexture2D::1482890766940746490::1701151266::1701151266::1::::<><>::
 brain (2).svg::CompressedTexture2D::4448712721495385849::1701152212::1701152212::1::::<><>::

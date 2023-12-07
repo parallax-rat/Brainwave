@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="Skill" load_steps=2 format=3 uid="uid://b6hcpaknhvg6s"]
+
+[ext_resource type="Script" path="res://Scripts/skill_resource.gd" id="1_1krgf"]
+
+[resource]
+script = ExtResource("1_1krgf")
+skill_name = "Death Date"
+description = "You've crunched the numbers and found the equation to determine someone's remaining lifespan; now you just need to reduce one of those variables to decrease it quicker."
+bonus_effect = ""
+type = 0
+step_value = 1
+skill_number = 1
+damage = 3.0
+healing = 0
+multiplier = 1.0

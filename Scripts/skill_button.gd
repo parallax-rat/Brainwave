@@ -1,7 +1,7 @@
 class_name SkillButton
 extends Button
 
-signal activate_skill(skill_name:Skill)
+signal activate_skill(skill_name:Skill, button: SkillButton)
 
 @export var skill : Skill :
 	get:
@@ -13,12 +13,9 @@ signal activate_skill(skill_name:Skill)
 		else:
 			push_error("Cannot assign the non-skill: " + str(new_skill) + " to this location.")
 
-@export var enable_skill : SkillButton
-@export var disable_skill : SkillButton
 @export_group("Display") 
 @export var name_label : Label
 @export var shift_label : Label
-
 
 var description : String
 var bonus_effect: String
