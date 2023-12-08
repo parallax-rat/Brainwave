@@ -36,3 +36,9 @@ func get_healing() -> float:
 
 func get_skill_number() -> int:
 	return skill_number
+
+func check_skill_type(check) -> bool:
+	if check == type:
+		return true
+	else:
+		return false

@@ -3,7 +3,7 @@
 [ext_resource type="Texture2D" uid="uid://dcwcwy1ckkdoh" path="res://icon.svg" id="1_16ftu"]
 [ext_resource type="Script" path="res://Scripts/skill_button.gd" id="2_utbrm"]
 
-[node name="Button" type="Button" node_paths=PackedStringArray("name_label", "shift_label") groups=["skill_buttons"]]
+[node name="Button" type="Button" node_paths=PackedStringArray("name_label", "shift_label")]
 custom_minimum_size = Vector2(128, 128)
 offset_right = 128.0
 offset_bottom = 128.0
@@ -16,6 +16,9 @@ expand_icon = true
 script = ExtResource("2_utbrm")
 name_label = NodePath("Name")
 shift_label = NodePath("MarginContainer/ShiftDirectionLabel")
+left_color = Color(0, 1, 1, 1)
+neutral_color = Color(0.572549, 0.572549, 0.572549, 1)
+right_color = Color(0, 0.807843, 0.415686, 1)
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
 layout_mode = 1

@@ -31,14 +31,37 @@ enum {
 		mind_state_changed.emit(new_state)
 		if mind_state < FULL_NEUTRAL:
 			mode = LEFT
-		elif mind_state > FULL_NEUTRAL:
+			if mind_state == FULL_LEFT:
+				skill_buttons[0].visible = true
+		if mind_state > FULL_NEUTRAL:
 			mode = RIGHT
-		else: 
+			if mind_state == FULL_RIGHT:
+				skill_buttons[10].visible = true
+		if mind_state == FULL_NEUTRAL: 
 			mode = NEUTRAL
+		printt("New mind state: ",str(mind_state))
 
 var health_display : Label
 var skill_buttons
-var mode = NEUTRAL
+var mode : int :
+	get:
+		return mode
+	set(new_mode):
+		if new_mode != mode:
+			mode = clamp(new_mode,0,2)
+			printt("New mode: ",str(mode))
+		
+var mode_range = {
+	FULL_LEFT: 0,
+	LEFT_3: range(1,4),
+	LEFT_2: range(2,5),
+	LEFT_1: range(3,6),
+	FULL_NEUTRAL: range(4,7),
+	RIGHT_1: range(5,8),
+	RIGHT_2: range(6,9),
+	RIGHT_3: range(7,10),
+	FULL_RIGHT: 10,
+}
 
 @onready var left_progress_bar = $GUI/CenterContainer/VBoxContainer/HBoxContainer/LeftProgressBar
 @onready var right_progress_bar = $GUI/CenterContainer/VBoxContainer/HBoxContainer/RightProgressBar
@@ -54,6 +77,7 @@ func _enter_tree():
 func _ready():
 	skill_buttons = get_tree().get_nodes_in_group("skill_buttons")
 	mind_state = FULL_NEUTRAL
+	mode
 	printt("Starting Mind State: ",mind_state)
 	call_deferred("connect_buttons")
 	call_deferred("enable_buttons")
@@ -66,47 +90,54 @@ func connect_buttons():
 
 func _on_activate_skill(skill):
 	print(skill.skill_name + " activated.")
+	printt("Type:",str(skill.type),"Step:",str(skill.step_value))
 	
 	for s in skill_buttons:
-		s.disabled = true
-	
-	if skill.type == NEUTRAL and mode == LEFT:
-		mind_shift(RIGHT,skill.step_value)
-	elif skill.type == NEUTRAL and mode == RIGHT:
-		mind_shift(LEFT,skill.step_value)
-	elif skill.type == NEUTRAL and mode == NEUTRAL:
-		match skill.skill_number:
-			4: # by the book
-				mind_shift(LEFT,skill.step_value)
-			6: # intuition
+		s.disabled = false
+		s.visible = false
+		
+	if skill.type == NEUTRAL:
+		match mode:
+			LEFT:
 				mind_shift(RIGHT,skill.step_value)
+			NEUTRAL:
+				if skill.skill_name == "By The Book":
+						mind_shift(LEFT,skill.step_value)
+				if skill.skill_name == "Intuition":
+						mind_shift(RIGHT,skill.step_value)
+			RIGHT:
+				mind_shift(LEFT,skill.step_value)
 	else:
+		printt("Skill NOT neutral","Skill:",str(skill.type))
 		mind_shift(skill.type,skill.step_value)
 	
 	enable_buttons()
-	print(mode)
 
 
-func mind_shift(direction, step_val):
-	printt("Mind shifting...",str(direction),str(step_val))
-	if step_val == FULL_NEUTRAL:
+func mind_shift(direction, val):
+	printt("Mind shifting...",str(direction),str(val))
+	
+	if val == 4:
 		mind_state = FULL_NEUTRAL
 	elif direction == LEFT:
-		mind_state -= step_val
+		mind_state = mind_state - val
 	elif direction == RIGHT:
-		mind_state += step_val
+		mind_state = mind_state + val
+	
+	print("Mind arrived at " + str(mind_state))
 
 
 func enable_buttons():
-	var left = mind_state
-	var center = mind_state + 1
-	var right = mind_state + 2
-	
 	if mind_state == FULL_LEFT:
-		skill_buttons[FULL_LEFT].disabled = false
-	elif mind_state == FULL_RIGHT:
-		skill_buttons[FULL_RIGHT].disabled = false
-	else:
-		skill_buttons[left].disabled = false
-		skill_buttons[center].disabled = false
-		skill_buttons[right].disabled = false
+		for s in skill_buttons:
+			if s.skill.skill_name != "Logic Paradox":
+				s.visible = false
+		return
+	elif mind_state >= FULL_RIGHT:
+		for s in skill_buttons:
+			if s.skill.skill_name != "Lucid Daydream":
+				s.visible = false
+		return
+
+	for n in mode_range[mind_state]:
+		skill_buttons[n].visible = true
