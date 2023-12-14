@@ -1,15 +1,18 @@
-[gd_resource type="Resource" script_class="Skill" load_steps=2 format=3 uid="uid://chix85jyw8uum"]
+[gd_resource type="Resource" script_class="Skill" load_steps=3 format=3 uid="uid://chix85jyw8uum"]
 
-[ext_resource type="Script" path="res://Scripts/skill_resource.gd" id="1_7fglk"]
+[ext_resource type="Script" path="res://Scripts/skill.gd" id="1_7fglk"]
+[ext_resource type="Texture2D" uid="uid://4gcypj0gjs56" path="res://Sprites/Skills/logic_paradox.svg" id="2_k4fif"]
 
 [resource]
 script = ExtResource("1_7fglk")
 skill_name = "Logic Paradox"
-description = "Fully digital, you need to create an escape back to a balanced mind. Thus, the paradox is created in your logic thinking and violently snaps you back to your senses."
-bonus_effect = "Debuff Self- Digital skills half damage for three turns."
+skill_icon = ExtResource("2_k4fif")
+description = "Deal 4 damage"
+bonus_effect = ""
 type = 0
 step_value = 4
 skill_number = 0
 damage = 4.0
 healing = 0
 multiplier = 1.0
+sound_effect = 1

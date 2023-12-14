@@ -1,15 +1,18 @@
-[gd_resource type="Resource" script_class="Skill" load_steps=2 format=3 uid="uid://pp2hhl653lk1"]
+[gd_resource type="Resource" script_class="Skill" load_steps=3 format=3 uid="uid://pp2hhl653lk1"]
 
-[ext_resource type="Script" path="res://Scripts/skill_resource.gd" id="1_tyvoe"]
+[ext_resource type="Script" path="res://Scripts/skill.gd" id="1_tyvoe"]
+[ext_resource type="Texture2D" uid="uid://c7bw6wyi85feq" path="res://Sprites/Skills/holistic_mind.svg" id="2_of7go"]
 
 [resource]
 script = ExtResource("1_tyvoe")
 skill_name = "Holistic Mind"
-description = ""
-bonus_effect = "Increase buff status +1 turn"
+skill_icon = ExtResource("2_of7go")
+description = "Deal 1 damage"
+bonus_effect = ""
 type = 2
 step_value = 1
 skill_number = 7
 damage = 1.0
 healing = 0
 multiplier = 1.0
+sound_effect = 1

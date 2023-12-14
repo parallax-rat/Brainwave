@@ -1,0 +1,355 @@
+[gd_scene load_steps=17 format=3 uid="uid://bl1ifg6yxewim"]
+
+[ext_resource type="Script" path="res://Scripts/enemy.gd" id="1_ittde"]
+[ext_resource type="Texture2D" uid="uid://vek82nedqi4q" path="res://Sprites/bad-gnome (1).svg" id="2_whd7m"]
+[ext_resource type="Resource" uid="uid://bfi5kaj6v33fu" path="res://Resources/EnemyAttacks/Clobber.tres" id="3_0idpa"]
+[ext_resource type="FontFile" uid="uid://dva2kiv00fl33" path="res://Fonts/Kaph-Regular.otf" id="3_w142b"]
+[ext_resource type="Resource" uid="uid://blbmljdf002iq" path="res://Resources/EnemyAttacks/Taunt.tres" id="4_rmqk7"]
+[ext_resource type="Theme" uid="uid://ecubbb5qwsbb" path="res://Resources/brainwave_theme.tres" id="5_bbrqc"]
+[ext_resource type="StyleBox" uid="uid://bjsgmdhxc0he7" path="res://Resources/hp_bar_background.tres" id="5_ggh03"]
+[ext_resource type="LabelSettings" uid="uid://c50istc258y2e" path="res://Resources/skill_name.tres" id="6_beshw"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_txv55"]
+font = ExtResource("3_w142b")
+font_size = 22
+outline_size = 18
+outline_color = Color(0, 0, 0, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_2sa07"]
+bg_color = Color(0.0705882, 0.0705882, 0.0705882, 0.862745)
+
+[sub_resource type="LabelSettings" id="LabelSettings_btaek"]
+font_size = 32
+
+[sub_resource type="Animation" id="Animation_vx3b2"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("%EnemySprite:self_modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("../../DmgLabel:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("../../DmgLabel:position")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(224, 221)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("../../DmgLabel:rotation")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("../../DmgLabel:scale")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("../../DmgLabel:self_modulate")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_t27yl"]
+resource_name = "attack_panel_show"
+length = 2.0
+step = 0.0166667
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.166667, 1.41667, 1.56667),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_af0mx"]
+resource_name = "damaged"
+length = 2.0
+step = 0.05
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("%EnemySprite:self_modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.05, 0.2, 0.35, 0.45, 1),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(0.917647, 0, 0.0313726, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 0.298039, 0.247059, 1), Color(1, 1, 1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("../../DmgLabel:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.05),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [false, true]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("../../DmgLabel:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0.05, 2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(224, 221), Vector2(256, -388)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("../../DmgLabel:rotation")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0.05, 2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, 0.261799]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("../../DmgLabel:scale")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0.05, 2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(1.2, 1.2)]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("../../DmgLabel:self_modulate")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0.05, 1, 2),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_uv3q4"]
+_data = {
+"RESET": SubResource("Animation_vx3b2"),
+"attack_panel_show": SubResource("Animation_t27yl"),
+"damaged": SubResource("Animation_af0mx")
+}
+
+[sub_resource type="LabelSettings" id="LabelSettings_bls0l"]
+line_spacing = 0.0
+font = ExtResource("3_w142b")
+font_size = 48
+font_color = Color(1, 0.996078, 0.992157, 1)
+outline_size = 12
+outline_color = Color(0, 0, 0, 1)
+shadow_size = 8
+shadow_color = Color(0.658824, 0, 0, 0.678431)
+shadow_offset = Vector2(5, 5)
+
+[node name="Enemy" type="Control"]
+layout_mode = 3
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -960.0
+offset_top = -540.0
+offset_right = -448.0
+offset_bottom = -28.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_ittde")
+sprite = ExtResource("2_whd7m")
+_name = "Angry Gnome"
+max_hp = 12
+skills = Array[Resource("res://Scripts/skill.gd")]([ExtResource("3_0idpa"), ExtResource("4_rmqk7")])
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 5
+alignment = 1
+
+[node name="EnemyHPBar" type="ProgressBar" parent="VBoxContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 50)
+layout_mode = 2
+theme_override_styles/background = ExtResource("5_ggh03")
+max_value = 12.0
+step = 1.0
+value = 12.0
+show_percentage = false
+
+[node name="EnemyName" type="Label" parent="VBoxContainer/EnemyHPBar"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -91.5
+offset_top = -14.5
+offset_right = 91.5
+offset_bottom = 14.5
+grow_horizontal = 2
+grow_vertical = 2
+text = "ENEMY NAME"
+label_settings = SubResource("LabelSettings_txv55")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="EnemySprite" type="TextureRect" parent="VBoxContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(384, 384)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 0
+texture = ExtResource("2_whd7m")
+expand_mode = 1
+stretch_mode = 4
+
+[node name="EnemyAttackPanel" type="PanelContainer" parent="VBoxContainer"]
+modulate = Color(1, 1, 1, 0)
+custom_minimum_size = Vector2(0, 64)
+layout_mode = 2
+size_flags_vertical = 0
+theme_override_styles/panel = SubResource("StyleBoxFlat_2sa07")
+
+[node name="MarginContainer" type="MarginContainer" parent="VBoxContainer/EnemyAttackPanel"]
+layout_mode = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 5
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/EnemyAttackPanel/MarginContainer"]
+layout_mode = 2
+
+[node name="AttackDamage" type="Label" parent="VBoxContainer/EnemyAttackPanel/MarginContainer/HBoxContainer"]
+unique_name_in_owner = true
+visible = false
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+theme = ExtResource("5_bbrqc")
+text = "DAMAGE"
+label_settings = ExtResource("6_beshw")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="AttackName" type="Label" parent="VBoxContainer/EnemyAttackPanel/MarginContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+text = "ENEMY ATTACK"
+label_settings = SubResource("LabelSettings_btaek")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+unique_name_in_owner = true
+root_node = NodePath("../VBoxContainer/EnemyAttackPanel")
+libraries = {
+"": SubResource("AnimationLibrary_uv3q4")
+}
+
+[node name="DmgLabel" type="Label" parent="."]
+unique_name_in_owner = true
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -32.0
+offset_top = -35.0
+offset_right = 31.9997
+offset_bottom = 34.9994
+grow_horizontal = 2
+grow_vertical = 2
+text = "-1"
+label_settings = SubResource("LabelSettings_bls0l")
+horizontal_alignment = 1
+vertical_alignment = 1

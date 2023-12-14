@@ -1,15 +1,18 @@
-[gd_resource type="Resource" script_class="Skill" load_steps=2 format=3 uid="uid://b1rnhk2ui35hv"]
+[gd_resource type="Resource" script_class="Skill" load_steps=3 format=3 uid="uid://b1rnhk2ui35hv"]
 
-[ext_resource type="Script" path="res://Scripts/skill_resource.gd" id="1_erigl"]
+[ext_resource type="Script" path="res://Scripts/skill.gd" id="1_erigl"]
+[ext_resource type="Texture2D" uid="uid://bfrht4k2pl74i" path="res://Sprites/Skills/by_the_book.png" id="2_1n8tk"]
 
 [resource]
 script = ExtResource("1_erigl")
 skill_name = "By The Book"
-description = "Utilize your left mode. Protects you from enemy debuffs for 1 turn."
-bonus_effect = "Reflect enemy debuffs back toward them for the next 2 turns."
+skill_icon = ExtResource("2_1n8tk")
+description = "Deal 1 damage and shift left (prevents debuffs for 1 turn)"
+bonus_effect = ""
 type = 1
 step_value = 1
 skill_number = 4
 damage = 1.0
 healing = 0
 multiplier = 1.0
+sound_effect = 1

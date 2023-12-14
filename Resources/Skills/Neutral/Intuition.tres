@@ -1,15 +1,18 @@
-[gd_resource type="Resource" script_class="Skill" load_steps=2 format=3 uid="uid://6u412qjwgcux"]
+[gd_resource type="Resource" script_class="Skill" load_steps=3 format=3 uid="uid://6u412qjwgcux"]
 
-[ext_resource type="Script" path="res://Scripts/skill_resource.gd" id="1_qanyq"]
+[ext_resource type="Script" path="res://Scripts/skill.gd" id="1_qanyq"]
+[ext_resource type="Texture2D" uid="uid://b54pqu3tpkhsq" path="res://Sprites/Skills/intuition.svg" id="2_5t8yb"]
 
 [resource]
 script = ExtResource("1_qanyq")
 skill_name = "Intuition"
-description = "Utilize your right mode. Prevents the enemy from being buffed for 1 turn."
-bonus_effect = "Steal enemy buffs for the next 2 turns."
+skill_icon = ExtResource("2_5t8yb")
+description = "Deal 1 damage"
+bonus_effect = ""
 type = 1
 step_value = 1
 skill_number = 6
 damage = 1.0
 healing = 0
 multiplier = 1.0
+sound_effect = 1

@@ -1,0 +1,17 @@
+res://Resources/Skills/Left/Death Date.tres::fcb39782984902dd0db5686054d03585::1702002804::res://.godot/exported/133200997/export-4f6fa746521747e0609988dc9263b8aa-Death Date.res
+res://Resources/Skills/Left/Interpret.tres::44a4035c6a653a9f54df701910096941::1702011040::res://.godot/exported/133200997/export-5689a6460dc5ade6999f244aad68ef17-Interpret.res
+res://Resources/Skills/Left/Logic Paradox.tres::186095d9d78f0da67cc8bbb3618715f3::1702011754::res://.godot/exported/133200997/export-55fc425babb292a190614447ede18261-Logic Paradox.res
+res://Resources/Skills/Left/Step in Line.tres::7b9663f37b76a53a3bf11f328685c452::1702009623::res://.godot/exported/133200997/export-2591e02a8c7e920800a063a1488cc4bc-Step in Line.res
+res://Resources/Skills/Neutral/By The Book.tres::1ea5299dccfbdaa7459b1bb67260efb0::1702009068::res://.godot/exported/133200997/export-019f40f70b7b985f4033790b0505fb17-By The Book.res
+res://Resources/Skills/Neutral/Intuition.tres::aaa42dbde976283c0d42b1940098067f::1702002804::res://.godot/exported/133200997/export-7c6a5782ddd2f8e2f432d824c43b6391-Intuition.res
+res://Resources/Skills/Neutral/Meditate.tres::dc98ea0dcc86e6bc34f6b09dd171f0ac::1702002804::res://.godot/exported/133200997/export-5f6ea961488651ceaba92ea15d072050-Meditate.res
+res://Resources/Skills/Right/Binaural Trance.tres::fc88d467ce26bb36227ce34b0e0e44fc::1702002804::res://.godot/exported/133200997/export-71dd1bb6fc084600b45442a64ebbf344-Binaural Trance.res
+res://Resources/Skills/Right/Deceive.tres::cfd1c03e4bdfe746a621024eb6e8d086::1702011035::res://.godot/exported/133200997/export-2a15ae84c66543073f04b63c08c3db18-Deceive.res
+res://Resources/Skills/Right/Holistic Mind.tres::4624b1b4eecf2331d0b7eefef237fcb9::1702002804::res://.godot/exported/133200997/export-1509a9396d6e2a61f694b91d2e7ced04-Holistic Mind.res
+res://Resources/Skills/Right/Lucid Daydream.tres::d4c7dfef43b12fa7ef56bfeb4917c93e::1702011762::res://.godot/exported/133200997/export-78a9403a2815cdcdccb3568ee3bc784c-Lucid Daydream.res
+res://Resources/ability_window_title.tres::27ce8785e905e9a29d7533da0bee54f6::1701274729::res://.godot/exported/133200997/export-0048bcf9c3ced1390e6896ade50e79ff-ability_window_title.res
+res://Scenes/ability_skill.tscn::56e7050d350cb5565fb7c01dd4984f26::1701155826::res://.godot/exported/133200997/export-884b4af51a2a90b02a62355ddb69d4ed-ability_skill.scn
+res://Scenes/combat_test.tscn::4aa905a38cf2edec99579cef077c7bd1::1702011994::res://.godot/exported/133200997/export-396dc7c06d644c44d24ce57c867caf30-combat_test.scn
+res://Scenes/proto.tscn::154793b6c20c0ff458bf56f508f09970::1701276017::res://.godot/exported/133200997/export-666859218740268a768258132d3d0a8d-proto.scn
+res://Scenes/skill_button.tscn::6f2fc1dcf08ceb4aed6410e079f3c872::1702011922::res://.godot/exported/133200997/export-330f241b1eadfff634fd6bd4c0f04acb-skill_button.scn
+res://Scenes/skill_name.tres::c0c76864e2b458e702bc98d845945277::1701274729::res://.godot/exported/133200997/export-44f0c28f4afa20fc3a4b6539edfc09c3-skill_name.res

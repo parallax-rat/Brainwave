@@ -1,11 +1,13 @@
-[gd_resource type="Resource" script_class="Skill" load_steps=2 format=3 uid="uid://bwx5aelckmhqd"]
+[gd_resource type="Resource" script_class="Skill" load_steps=3 format=3 uid="uid://bwx5aelckmhqd"]
 
-[ext_resource type="Script" path="res://Scripts/skill_resource.gd" id="1_dgvsw"]
+[ext_resource type="Script" path="res://Scripts/skill.gd" id="1_dgvsw"]
+[ext_resource type="Texture2D" uid="uid://c8idxoqeukf7r" path="res://Sprites/Skills/binaural_trance.svg" id="2_td1g2"]
 
 [resource]
 script = ExtResource("1_dgvsw")
 skill_name = "Binaural Trance"
-description = "Only in a deep trance can you actualize how to improve. Buffs neutral skills."
+skill_icon = ExtResource("2_td1g2")
+description = "Deal 3 damage"
 bonus_effect = ""
 type = 2
 step_value = 1
@@ -13,3 +15,4 @@ skill_number = 9
 damage = 3.0
 healing = 0
 multiplier = 1.0
+sound_effect = 1

@@ -1,15 +1,18 @@
-[gd_resource type="Resource" script_class="Skill" load_steps=2 format=3 uid="uid://bsdmja76utqxs"]
+[gd_resource type="Resource" script_class="Skill" load_steps=3 format=3 uid="uid://bsdmja76utqxs"]
 
-[ext_resource type="Script" path="res://Scripts/skill_resource.gd" id="1_uxtqk"]
+[ext_resource type="Script" path="res://Scripts/skill.gd" id="1_uxtqk"]
+[ext_resource type="Texture2D" uid="uid://h8j4p1b6klgn" path="res://Sprites/Skills/deceive.svg" id="2_q37yi"]
 
 [resource]
 script = ExtResource("1_uxtqk")
 skill_name = "Deceive"
-description = ""
-bonus_effect = "For each buff expired, increase stats by x for 1 turn."
+skill_icon = ExtResource("2_q37yi")
+description = "Deal 2 damage"
+bonus_effect = ""
 type = 2
 step_value = 2
 skill_number = 8
 damage = 2.0
 healing = 0
 multiplier = 1.0
+sound_effect = 1

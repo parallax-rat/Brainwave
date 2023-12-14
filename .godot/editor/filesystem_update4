@@ -1,15 +1,26 @@
-res://Scenes/combat_test.tscn
+res://Scenes/CombatTest.tscn
+res://Resources/brainwave_theme.tres
 res://Scripts/skill_button.gd
+res://Resources/EnemyAttacks/Clobber.tres
+res://Resources/EnemyAttacks/Taunt.tres
 res://Resources/Skills/Left/Logic Paradox.tres
-res://Resources/Skills/Left/Interpret.tres
-res://Resources/Skills/Neutral/By The Book.tres
-res://Resources/Skills/Left/Step in Line.tres
-res://Resources/Skills/Neutral/Meditate.tres
 res://Resources/Skills/Left/Death Date.tres
+res://Resources/Skills/Left/Interpret.tres
+res://Resources/Skills/Left/Step in Line.tres
+res://Resources/Skills/Neutral/By The Book.tres
+res://Resources/Skills/Neutral/Meditate.tres
 res://Resources/Skills/Neutral/Intuition.tres
 res://Resources/Skills/Right/Holistic Mind.tres
 res://Resources/Skills/Right/Deceive.tres
 res://Resources/Skills/Right/Binaural Trance.tres
 res://Resources/Skills/Right/Lucid Daydream.tres
-res://Scenes/skill_button.tscn
 res://Scripts/game.gd
+res://Scenes/Enemy.tscn
+res://Scenes/SkillButton.tscn
+res://Scripts/LeftProgressBar.gd
+res://Scripts/enemy.gd
+res://Scripts/global.gd
+res://Scenes/combat_log.gd
+res://Scripts/audio_bus.gd
+res://Scenes/debug.gd
+res://Scenes/console_window.gd

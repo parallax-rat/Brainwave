@@ -1,0 +1,16 @@
+[gd_resource type="Resource" script_class="Skill" load_steps=2 format=3 uid="uid://bfi5kaj6v33fu"]
+
+[ext_resource type="Script" path="res://Scripts/skill.gd" id="1_on61y"]
+
+[resource]
+script = ExtResource("1_on61y")
+skill_name = "Clobber"
+description = "Clobbers the opponent with a heavy, closed fist."
+bonus_effect = ""
+type = 2
+step_value = 0
+skill_number = 0
+damage = 1.0
+healing = 0
+multiplier = 1.0
+sound_effect = 1

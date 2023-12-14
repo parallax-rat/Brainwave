@@ -1,15 +1,18 @@
-[gd_resource type="Resource" script_class="Skill" load_steps=2 format=3 uid="uid://dhs5yjl57b5oe"]
+[gd_resource type="Resource" script_class="Skill" load_steps=3 format=3 uid="uid://dhs5yjl57b5oe"]
 
-[ext_resource type="Script" path="res://Scripts/skill_resource.gd" id="1_cmohw"]
+[ext_resource type="Script" path="res://Scripts/skill.gd" id="1_cmohw"]
+[ext_resource type="Texture2D" uid="uid://bx4ydslvjyd7x" path="res://Sprites/Skills/interpret.svg" id="2_rp1gg"]
 
 [resource]
 script = ExtResource("1_cmohw")
 skill_name = "Interpret"
-description = ""
-bonus_effect = "For each skipped enemy turn, increase Logic Paradox's next damage dealt."
+skill_icon = ExtResource("2_rp1gg")
+description = "Deal 2 damage"
+bonus_effect = ""
 type = 0
 step_value = 2
 skill_number = 2
 damage = 2.0
 healing = 0
 multiplier = 1.0
+sound_effect = 1

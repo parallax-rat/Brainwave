@@ -1,5 +1,8 @@
 extends ProgressBar
 
+func _ready():
+	value = 0
+
 
 func _on_combat_test_mind_state_changed(new_mind_state):
 	if new_mind_state < 4:

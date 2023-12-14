@@ -1,0 +1,1056 @@
+[gd_scene load_steps=57 format=3 uid="uid://dgotg08v1neoe"]
+
+[ext_resource type="Script" path="res://Scripts/game.gd" id="1_qyedh"]
+[ext_resource type="PackedScene" uid="uid://bl1ifg6yxewim" path="res://Scenes/Enemy.tscn" id="2_m68w7"]
+[ext_resource type="Texture2D" uid="uid://csvjiw5ndxdr1" path="res://Backgrounds/dungeon background 5.png" id="2_rqyxr"]
+[ext_resource type="Script" path="res://Scripts/player_health_bar.gd" id="3_bop05"]
+[ext_resource type="Theme" uid="uid://ecubbb5qwsbb" path="res://Resources/brainwave_theme.tres" id="3_cern1"]
+[ext_resource type="Script" path="res://Scripts/LeftProgressBar.gd" id="4_5cj7g"]
+[ext_resource type="Script" path="res://Scripts/RightProgressBar.gd" id="5_rt705"]
+[ext_resource type="PackedScene" uid="uid://7f812eakfokw" path="res://Scenes/SkillButton.tscn" id="6_cbeqi"]
+[ext_resource type="Resource" uid="uid://chix85jyw8uum" path="res://Resources/Skills/Left/Logic Paradox.tres" id="7_ih6io"]
+[ext_resource type="Script" path="res://Scenes/console_window.gd" id="8_ahhn2"]
+[ext_resource type="Script" path="res://Scenes/combat_log.gd" id="8_we6le"]
+[ext_resource type="Resource" uid="uid://b6hcpaknhvg6s" path="res://Resources/Skills/Left/Death Date.tres" id="8_x65lp"]
+[ext_resource type="Resource" uid="uid://dhs5yjl57b5oe" path="res://Resources/Skills/Left/Interpret.tres" id="9_d38ji"]
+[ext_resource type="Texture2D" uid="uid://cwu67d8m7jhxc" path="res://Sprites/slice70.png" id="10_g33bs"]
+[ext_resource type="Resource" uid="uid://c4ydkggb4vvjt" path="res://Resources/Skills/Left/Step in Line.tres" id="10_u1njx"]
+[ext_resource type="Resource" uid="uid://b1rnhk2ui35hv" path="res://Resources/Skills/Neutral/By The Book.tres" id="11_3m6og"]
+[ext_resource type="Resource" uid="uid://b5ckt4v7cid7j" path="res://Resources/Skills/Neutral/Meditate.tres" id="12_durby"]
+[ext_resource type="Resource" uid="uid://6u412qjwgcux" path="res://Resources/Skills/Neutral/Intuition.tres" id="13_y6v7p"]
+[ext_resource type="Resource" uid="uid://pp2hhl653lk1" path="res://Resources/Skills/Right/Holistic Mind.tres" id="14_1efnx"]
+[ext_resource type="Resource" uid="uid://bsdmja76utqxs" path="res://Resources/Skills/Right/Deceive.tres" id="15_r0tlk"]
+[ext_resource type="Resource" uid="uid://bwx5aelckmhqd" path="res://Resources/Skills/Right/Binaural Trance.tres" id="16_7qmx5"]
+[ext_resource type="Resource" uid="uid://67r44d48xm2v" path="res://Resources/Skills/Right/Lucid Daydream.tres" id="17_cwvwg"]
+[ext_resource type="Script" path="res://Scripts/turn_display.gd" id="19_doclc"]
+[ext_resource type="FontFile" uid="uid://dva2kiv00fl33" path="res://Fonts/Kaph-Regular.otf" id="19_hjrww"]
+[ext_resource type="FontFile" uid="uid://ddimb683llnpb" path="res://Fonts/Lambda-Regular.otf" id="21_4lr0e"]
+[ext_resource type="Script" path="res://Scripts/audio_bus.gd" id="21_dlyn4"]
+[ext_resource type="AudioStream" uid="uid://dnjh56e1c0xce" path="res://Audio/Music/Spinning out.ogg" id="26_donfw"]
+[ext_resource type="Script" path="res://Scenes/debug.gd" id="27_x7ob4"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_wc4a0"]
+bg_color = Color(0.52549, 0.52549, 0.52549, 1)
+skew = Vector2(0.2, 0)
+border_width_left = 8
+border_width_right = 8
+border_width_bottom = 4
+border_color = Color(0, 0, 0, 1)
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+corner_detail = 4
+expand_margin_left = 8.0
+expand_margin_top = 4.0
+expand_margin_right = 8.0
+expand_margin_bottom = 4.0
+shadow_color = Color(0, 0, 0, 0.27451)
+shadow_size = 3
+shadow_offset = Vector2(3, 3)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_dfrv7"]
+bg_color = Color(0.584314, 0, 0.521569, 1)
+skew = Vector2(0.2, 0)
+border_width_right = 20
+border_color = Color(1, 0.286275, 0.901961, 0.615686)
+border_blend = true
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+corner_detail = 4
+expand_margin_top = 2.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_pvstm"]
+bg_color = Color(0.52549, 0.52549, 0.52549, 1)
+skew = Vector2(0.2, 0)
+border_width_left = 8
+border_width_top = 4
+border_width_right = 8
+border_width_bottom = 4
+border_color = Color(0, 0, 0, 1)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+corner_detail = 4
+expand_margin_left = 8.0
+expand_margin_top = 4.0
+expand_margin_right = 8.0
+expand_margin_bottom = 4.0
+shadow_color = Color(0, 0, 0, 0.27451)
+shadow_size = 3
+shadow_offset = Vector2(3, 3)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_vjnbt"]
+bg_color = Color(0, 0.964706, 0.411765, 1)
+skew = Vector2(0.2, 0)
+border_width_right = 20
+border_color = Color(0.556863, 1, 0.623529, 1)
+border_blend = true
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+
+[sub_resource type="LabelSettings" id="LabelSettings_5qj5u"]
+line_spacing = 0.0
+font = ExtResource("19_hjrww")
+font_size = 30
+outline_size = 12
+outline_color = Color(0, 0, 0, 1)
+
+[sub_resource type="Animation" id="Animation_0p1w1"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Label:self_modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_18sxe"]
+resource_name = "turn_start"
+length = 3.0
+step = 0.2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1.18194),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Label:self_modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.102033, 0.870574, 1.18194),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_xtjpx"]
+_data = {
+"RESET": SubResource("Animation_0p1w1"),
+"turn_start": SubResource("Animation_18sxe")
+}
+
+[sub_resource type="Gradient" id="Gradient_llw1y"]
+offsets = PackedFloat32Array(0, 0.516892, 1)
+colors = PackedColorArray(1, 1, 1, 0, 1, 0.724335, 0.51909, 0.615686, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_chcp2"]
+gradient = SubResource("Gradient_llw1y")
+
+[sub_resource type="LabelSettings" id="LabelSettings_cq8gy"]
+line_spacing = 0.0
+font = ExtResource("19_hjrww")
+font_size = 90
+outline_size = 20
+outline_color = Color(0, 0, 0, 1)
+shadow_size = 20
+shadow_color = Color(0, 0, 0, 0.396078)
+shadow_offset = Vector2(5, 5)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_r2q6o"]
+bg_color = Color(0.113725, 0.113725, 0.113725, 0.627451)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.0862745, 0.0862745, 0.0862745, 1)
+border_blend = true
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_8y4iv"]
+content_margin_left = 6.0
+content_margin_right = 6.0
+content_margin_bottom = 6.0
+bg_color = Color(0.0823529, 0.0823529, 0.0823529, 0.839216)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.054902, 0.054902, 0.054902, 0.945098)
+border_blend = true
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_vbj0l"]
+bg_color = Color(0.333333, 0.333333, 0.333333, 0.627451)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.0862745, 0.0862745, 0.0862745, 1)
+border_blend = true
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_kf3rl"]
+bg_color = Color(0.627451, 0.627451, 0.627451, 0.627451)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.0862745, 0.0862745, 0.0862745, 1)
+border_blend = true
+
+[sub_resource type="Animation" id="Animation_e5jyp"]
+resource_name = "close_console"
+length = 0.01
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CombatLog:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Button:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(395, 177)]
+}
+
+[sub_resource type="Animation" id="Animation_6gacu"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CombatLog:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Button:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(396, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_o45sk"]
+_data = {
+"RESET": SubResource("Animation_6gacu"),
+"close_console": SubResource("Animation_e5jyp")
+}
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_gikty"]
+bg_color = Color(0.0588235, 0.0588235, 0.0588235, 0.862745)
+border_width_left = 6
+border_width_top = 4
+border_width_right = 6
+border_width_bottom = 4
+border_color = Color(0, 0, 0, 1)
+expand_margin_left = 6.0
+expand_margin_top = 4.0
+expand_margin_right = 6.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_7vqtm"]
+bg_color = Color(1, 0.301961, 1, 1)
+border_width_top = 20
+border_color = Color(1, 0.52549, 0.996078, 0.898039)
+border_blend = true
+
+[sub_resource type="LabelSettings" id="LabelSettings_e5s7y"]
+font_size = 26
+shadow_size = 12
+shadow_color = Color(0, 0, 0, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_nomib"]
+bg_color = Color(1, 0.4, 0, 1)
+border_width_top = 10
+border_color = Color(1, 0.654902, 0.545098, 1)
+border_blend = true
+
+[sub_resource type="LabelSettings" id="LabelSettings_1ar5s"]
+font_size = 26
+shadow_size = 12
+shadow_color = Color(0, 0, 0, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_7ktma"]
+bg_color = Color(0.0588235, 0.0588235, 0.0588235, 0.921569)
+border_width_left = 6
+border_width_top = 4
+border_width_right = 6
+border_color = Color(0, 0, 0, 1)
+corner_radius_top_left = 20
+corner_radius_top_right = 20
+corner_detail = 3
+
+[sub_resource type="Animation" id="Animation_1n1mv"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CombatTest/GUI/PlayerHealthBar:theme_override_styles/fill:bg_color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(0, 0.964706, 0.411765, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("CombatTest/GUI/PlayerHealthBar/HBoxContainer/Label:theme_override_colors/font_color")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("CombatTest/GUI/PlayerHealthBar/HBoxContainer/HPVal:theme_override_colors/font_color")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("CombatTest/GUI/LeftProgressBar:value")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+
+[sub_resource type="Animation" id="Animation_6adrb"]
+resource_name = "left_mind_shift"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CombatTest/GUI/LeftProgressBar:value")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+
+[sub_resource type="Animation" id="Animation_amb52"]
+resource_name = "take_damage"
+step = 0.05
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CombatTest/GUI/PlayerHealthBar:theme_override_styles/fill:bg_color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.05, 1),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Color(0, 0.964706, 0.411765, 1), Color(0.92549, 0, 0, 1), Color(0, 0.964706, 0.411765, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("CombatTest/GUI/PlayerHealthBar/HBoxContainer/Label:theme_override_colors/font_color")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.05, 1),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(0.92549, 0, 0, 1), Color(1, 1, 1, 1)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("CombatTest/GUI/PlayerHealthBar/HBoxContainer/HPVal:theme_override_colors/font_color")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.05, 1),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(0.92549, 0, 0, 1), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_ubecr"]
+_data = {
+"RESET": SubResource("Animation_1n1mv"),
+"left_mind_shift": SubResource("Animation_6adrb"),
+"take_damage": SubResource("Animation_amb52")
+}
+
+[node name="Control" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_qyedh")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(768, 512)
+texture = ExtResource("2_rqyxr")
+
+[node name="CombatTest" type="Node2D" parent="."]
+
+[node name="AngryGnome" parent="CombatTest" instance=ExtResource("2_m68w7")]
+offset_left = 752.0
+offset_top = 640.0
+offset_right = 752.0
+offset_bottom = 640.0
+scale = Vector2(0.7, 0.7)
+
+[node name="GUI" type="Control" parent="CombatTest"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = 1536.0
+offset_bottom = 928.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="CenterContainer" type="MarginContainer" parent="CombatTest/GUI"]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 32.0
+offset_top = 128.0
+offset_right = -32.0
+offset_bottom = -80.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CombatTest/GUI/CenterContainer"]
+visible = false
+layout_mode = 2
+size_flags_vertical = 8
+theme_override_constants/separation = 20
+alignment = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CombatTest/GUI/CenterContainer"]
+visible = false
+custom_minimum_size = Vector2(0, 600)
+layout_mode = 2
+size_flags_vertical = 10
+theme_override_constants/separation = 40
+
+[node name="PlayerXPBar" type="ProgressBar" parent="CombatTest/GUI"]
+custom_minimum_size = Vector2(0, 16)
+layout_mode = 2
+offset_left = 128.0
+offset_top = 69.0
+offset_right = 1408.0
+offset_bottom = 96.0
+size_flags_vertical = 4
+theme = ExtResource("3_cern1")
+theme_override_font_sizes/font_size = 16
+theme_override_styles/background = SubResource("StyleBoxFlat_wc4a0")
+theme_override_styles/fill = SubResource("StyleBoxFlat_dfrv7")
+step = 1.0
+value = 50.0
+
+[node name="PlayerHealthBar" type="ProgressBar" parent="CombatTest/GUI" node_paths=PackedStringArray("hp_display_val")]
+custom_minimum_size = Vector2(0, 32)
+layout_mode = 2
+offset_left = 32.0
+offset_top = 16.0
+offset_right = 1504.0
+offset_bottom = 64.0
+size_flags_vertical = 4
+theme = ExtResource("3_cern1")
+theme_type_variation = &"PlayerHP"
+theme_override_styles/background = SubResource("StyleBoxFlat_pvstm")
+theme_override_styles/fill = SubResource("StyleBoxFlat_vjnbt")
+max_value = 10.0
+step = 1.0
+value = 10.0
+rounded = true
+show_percentage = false
+script = ExtResource("3_bop05")
+hp_display_val = NodePath("HBoxContainer/HPVal")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CombatTest/GUI/PlayerHealthBar"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -64.0
+offset_top = -16.0
+offset_right = 64.0
+offset_bottom = 16.0
+grow_horizontal = 2
+grow_vertical = 2
+alignment = 1
+
+[node name="Label" type="Label" parent="CombatTest/GUI/PlayerHealthBar/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+theme = ExtResource("3_cern1")
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+text = "HP: 
+"
+label_settings = SubResource("LabelSettings_5qj5u")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="HPVal" type="Label" parent="CombatTest/GUI/PlayerHealthBar/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+theme = ExtResource("3_cern1")
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+text = "10"
+label_settings = SubResource("LabelSettings_5qj5u")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="TurnDisplay" type="Control" parent="CombatTest/GUI"]
+visible = false
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 448.0
+grow_horizontal = 2
+script = ExtResource("19_doclc")
+
+[node name="TurnAnimation" type="AnimationPlayer" parent="CombatTest/GUI/TurnDisplay"]
+libraries = {
+"": SubResource("AnimationLibrary_xtjpx")
+}
+
+[node name="ColorRect" type="TextureRect" parent="CombatTest/GUI/TurnDisplay"]
+visible = false
+self_modulate = Color(1, 1, 1, 0)
+layout_mode = 0
+offset_top = 160.0
+offset_right = 1536.0
+offset_bottom = 288.0
+texture = SubResource("GradientTexture1D_chcp2")
+
+[node name="Label" type="Label" parent="CombatTest/GUI/TurnDisplay"]
+self_modulate = Color(1, 1, 1, 0)
+layout_mode = 1
+anchors_preset = 14
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_top = -104.0
+offset_bottom = 23.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "YOUR TURN!"
+label_settings = SubResource("LabelSettings_cq8gy")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ConsoleWindow" type="Control" parent="CombatTest/GUI"]
+anchors_preset = 0
+offset_left = 128.0
+offset_top = 624.0
+offset_right = 544.0
+offset_bottom = 832.0
+script = ExtResource("8_ahhn2")
+
+[node name="CombatLog" type="PanelContainer" parent="CombatTest/GUI/ConsoleWindow"]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 176.0
+grow_horizontal = 2
+size_flags_horizontal = 0
+size_flags_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_r2q6o")
+
+[node name="MarginContainer" type="MarginContainer" parent="CombatTest/GUI/ConsoleWindow/CombatLog"]
+layout_mode = 2
+theme_override_constants/margin_left = 4
+theme_override_constants/margin_top = 4
+theme_override_constants/margin_right = 4
+theme_override_constants/margin_bottom = 4
+
+[node name="RichTextLabel" type="RichTextLabel" parent="CombatTest/GUI/ConsoleWindow/CombatLog/MarginContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+focus_mode = 2
+theme = ExtResource("3_cern1")
+bbcode_enabled = true
+scroll_following = true
+selection_enabled = true
+script = ExtResource("8_we6le")
+
+[node name="Console" type="LineEdit" parent="CombatTest/GUI/ConsoleWindow"]
+layout_mode = 2
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -32.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_colors/font_placeholder_color = Color(1, 1, 1, 0.113725)
+theme_override_fonts/font = ExtResource("21_4lr0e")
+theme_override_font_sizes/font_size = 18
+theme_override_styles/normal = SubResource("StyleBoxFlat_8y4iv")
+placeholder_text = "Type command.."
+caret_blink = true
+script = ExtResource("27_x7ob4")
+
+[node name="Button" type="Button" parent="CombatTest/GUI/ConsoleWindow"]
+custom_minimum_size = Vector2(20, 0)
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = 396.0
+offset_right = 416.0
+offset_bottom = 25.0
+grow_horizontal = 0
+tooltip_text = "Toggle combat log"
+theme_override_constants/outline_size = 6
+theme_override_fonts/font = ExtResource("21_4lr0e")
+theme_override_styles/normal = SubResource("StyleBoxFlat_vbj0l")
+theme_override_styles/hover = SubResource("StyleBoxFlat_kf3rl")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_vbj0l")
+theme_override_styles/focus = SubResource("StyleBoxFlat_vbj0l")
+text = "-"
+
+[node name="ConsoleAnimation" type="AnimationPlayer" parent="CombatTest/GUI/ConsoleWindow"]
+unique_name_in_owner = true
+libraries = {
+"": SubResource("AnimationLibrary_o45sk")
+}
+
+[node name="LeftProgressBar" type="ProgressBar" parent="CombatTest/GUI"]
+unique_name_in_owner = true
+layout_mode = 2
+offset_left = 32.0
+offset_top = 752.0
+offset_right = 96.0
+offset_bottom = 1024.0
+size_flags_vertical = 3
+theme = ExtResource("3_cern1")
+theme_override_styles/background = SubResource("StyleBoxFlat_gikty")
+theme_override_styles/fill = SubResource("StyleBoxFlat_7vqtm")
+max_value = 4.0
+step = 1.0
+fill_mode = 3
+show_percentage = false
+script = ExtResource("4_5cj7g")
+
+[node name="Control" type="Control" parent="CombatTest/GUI/LeftProgressBar"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -32.0
+offset_top = -272.0
+offset_right = 32.0
+grow_horizontal = 2
+grow_vertical = 0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CombatTest/GUI/LeftProgressBar/Control"]
+layout_mode = 1
+anchors_preset = 13
+anchor_left = 0.5
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -25.0
+offset_right = 25.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="LeftShiftLevel" type="TextureRect" parent="CombatTest/GUI/LeftProgressBar/Control/VBoxContainer"]
+unique_name_in_owner = true
+visible = false
+self_modulate = Color(1, 0.752941, 0.988235, 1)
+custom_minimum_size = Vector2(50, 64)
+layout_mode = 2
+size_flags_vertical = 3
+texture = ExtResource("10_g33bs")
+expand_mode = 1
+stretch_mode = 4
+
+[node name="LeftShiftLevel2" type="TextureRect" parent="CombatTest/GUI/LeftProgressBar/Control/VBoxContainer"]
+unique_name_in_owner = true
+visible = false
+self_modulate = Color(1, 0.752941, 0.988235, 1)
+custom_minimum_size = Vector2(50, 64)
+layout_mode = 2
+size_flags_vertical = 3
+texture = ExtResource("10_g33bs")
+expand_mode = 1
+stretch_mode = 4
+
+[node name="LeftShiftLevel3" type="TextureRect" parent="CombatTest/GUI/LeftProgressBar/Control/VBoxContainer"]
+unique_name_in_owner = true
+visible = false
+self_modulate = Color(1, 0.752941, 0.988235, 1)
+custom_minimum_size = Vector2(50, 64)
+layout_mode = 2
+size_flags_vertical = 3
+texture = ExtResource("10_g33bs")
+expand_mode = 1
+stretch_mode = 4
+
+[node name="LeftShiftLevel4" type="TextureRect" parent="CombatTest/GUI/LeftProgressBar/Control/VBoxContainer"]
+unique_name_in_owner = true
+visible = false
+self_modulate = Color(1, 0.752941, 0.988235, 1)
+custom_minimum_size = Vector2(50, 64)
+layout_mode = 2
+size_flags_vertical = 3
+texture = ExtResource("10_g33bs")
+expand_mode = 1
+stretch_mode = 4
+
+[node name="Label" type="Label" parent="CombatTest/GUI/LeftProgressBar"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -32.0
+offset_top = -32.0
+offset_right = 32.0
+offset_bottom = 48.0
+grow_horizontal = 2
+text = "Left Mode"
+label_settings = SubResource("LabelSettings_e5s7y")
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
+
+[node name="RightProgressBar" type="ProgressBar" parent="CombatTest/GUI"]
+unique_name_in_owner = true
+layout_mode = 2
+offset_left = 1440.0
+offset_top = 704.0
+offset_right = 1504.0
+offset_bottom = 1024.0
+size_flags_vertical = 3
+theme = ExtResource("3_cern1")
+theme_override_styles/background = SubResource("StyleBoxFlat_gikty")
+theme_override_styles/fill = SubResource("StyleBoxFlat_nomib")
+max_value = 4.0
+step = 1.0
+value = 3.0
+fill_mode = 3
+show_percentage = false
+script = ExtResource("5_rt705")
+
+[node name="Label2" type="Label" parent="CombatTest/GUI/RightProgressBar"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -32.0
+offset_top = -20.0
+offset_right = 32.0
+offset_bottom = 48.0
+grow_horizontal = 2
+text = "Right Mode"
+label_settings = SubResource("LabelSettings_1ar5s")
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
+
+[node name="SkillBar" type="PanelContainer" parent="CombatTest/GUI"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -656.0
+offset_top = -80.0
+offset_right = 656.0
+offset_bottom = 96.0
+grow_horizontal = 2
+grow_vertical = 0
+size_flags_horizontal = 3
+size_flags_vertical = 8
+theme_override_styles/panel = SubResource("StyleBoxFlat_7ktma")
+
+[node name="MarginContainer" type="MarginContainer" parent="CombatTest/GUI/SkillBar"]
+layout_mode = 2
+size_flags_vertical = 4
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="HBoxSkillBar" type="HBoxContainer" parent="CombatTest/GUI/SkillBar/MarginContainer"]
+layout_mode = 2
+size_flags_vertical = 4
+theme_override_constants/separation = 16
+alignment = 1
+
+[node name="LogicParadox" parent="CombatTest/GUI/SkillBar/MarginContainer/HBoxSkillBar" instance=ExtResource("6_cbeqi")]
+unique_name_in_owner = true
+visible = false
+custom_minimum_size = Vector2(512, 128)
+layout_mode = 2
+size_flags_horizontal = 6
+disabled = true
+skill = ExtResource("7_ih6io")
+
+[node name="DeathDate" parent="CombatTest/GUI/SkillBar/MarginContainer/HBoxSkillBar" instance=ExtResource("6_cbeqi")]
+unique_name_in_owner = true
+layout_mode = 2
+focus_neighbor_left = NodePath("../Interpret")
+focus_neighbor_right = NodePath("../LogicParadox")
+focus_next = NodePath("../LogicParadox")
+focus_previous = NodePath("../Interpret")
+disabled = true
+skill = ExtResource("8_x65lp")
+
+[node name="Interpret" parent="CombatTest/GUI/SkillBar/MarginContainer/HBoxSkillBar" instance=ExtResource("6_cbeqi")]
+unique_name_in_owner = true
+layout_mode = 2
+focus_neighbor_right = NodePath("../DeathDate")
+focus_next = NodePath("../DeathDate")
+disabled = true
+skill = ExtResource("9_d38ji")
+
+[node name="StepInLine" parent="CombatTest/GUI/SkillBar/MarginContainer/HBoxSkillBar" instance=ExtResource("6_cbeqi")]
+unique_name_in_owner = true
+layout_mode = 2
+focus_neighbor_right = NodePath("../Meditate")
+focus_next = NodePath("../Meditate")
+disabled = true
+skill = ExtResource("10_u1njx")
+
+[node name="ByTheBook" parent="CombatTest/GUI/SkillBar/MarginContainer/HBoxSkillBar" instance=ExtResource("6_cbeqi")]
+unique_name_in_owner = true
+layout_mode = 2
+focus_neighbor_right = NodePath("../Meditate")
+focus_next = NodePath("../Meditate")
+disabled = true
+skill = ExtResource("11_3m6og")
+
+[node name="Meditate" parent="CombatTest/GUI/SkillBar/MarginContainer/HBoxSkillBar" instance=ExtResource("6_cbeqi")]
+unique_name_in_owner = true
+layout_mode = 2
+focus_neighbor_left = NodePath("../ByTheBook")
+focus_neighbor_right = NodePath("../Intuition")
+focus_next = NodePath("../Intuition")
+focus_previous = NodePath("../ByTheBook")
+disabled = true
+skill = ExtResource("12_durby")
+
+[node name="Intuition" parent="CombatTest/GUI/SkillBar/MarginContainer/HBoxSkillBar" instance=ExtResource("6_cbeqi")]
+unique_name_in_owner = true
+layout_mode = 2
+disabled = true
+skill = ExtResource("13_y6v7p")
+
+[node name="HolisticMind" parent="CombatTest/GUI/SkillBar/MarginContainer/HBoxSkillBar" instance=ExtResource("6_cbeqi")]
+unique_name_in_owner = true
+layout_mode = 2
+disabled = true
+skill = ExtResource("14_1efnx")
+
+[node name="Deceive" parent="CombatTest/GUI/SkillBar/MarginContainer/HBoxSkillBar" instance=ExtResource("6_cbeqi")]
+unique_name_in_owner = true
+layout_mode = 2
+focus_neighbor_right = NodePath("../BinauralTrance")
+focus_next = NodePath("../BinauralTrance")
+disabled = true
+skill = ExtResource("15_r0tlk")
+
+[node name="BinauralTrance" parent="CombatTest/GUI/SkillBar/MarginContainer/HBoxSkillBar" instance=ExtResource("6_cbeqi")]
+unique_name_in_owner = true
+layout_mode = 2
+focus_neighbor_left = NodePath("../Deceive")
+focus_neighbor_right = NodePath("../LucidDaydream")
+focus_next = NodePath("../LucidDaydream")
+focus_previous = NodePath("../Deceive")
+disabled = true
+skill = ExtResource("16_7qmx5")
+
+[node name="LucidDaydream" parent="CombatTest/GUI/SkillBar/MarginContainer/HBoxSkillBar" instance=ExtResource("6_cbeqi")]
+unique_name_in_owner = true
+visible = false
+custom_minimum_size = Vector2(512, 128)
+layout_mode = 2
+size_flags_horizontal = 6
+disabled = true
+skill = ExtResource("17_cwvwg")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+unique_name_in_owner = true
+libraries = {
+"": SubResource("AnimationLibrary_ubecr")
+}
+
+[node name="AudioBus" type="Node" parent="."]
+unique_name_in_owner = true
+script = ExtResource("21_dlyn4")
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="AudioBus"]
+unique_name_in_owner = true
+
+[node name="BGMusic" type="AudioStreamPlayer" parent="AudioBus"]
+unique_name_in_owner = true
+stream = ExtResource("26_donfw")
+volume_db = -7.131
+autoplay = true
+
+[node name="LeftDebugButtons" type="VBoxContainer" parent="." groups=["debug"]]
+unique_name_in_owner = true
+visible = false
+layout_mode = 0
+offset_left = 16.0
+offset_top = 544.0
+offset_right = 256.0
+offset_bottom = 612.0
+theme_override_constants/separation = 6
+
+[node name="HBoxContainer" type="HBoxContainer" parent="LeftDebugButtons"]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 4
+theme_override_constants/separation = 10
+
+[node name="LeftPlusOne" type="Button" parent="LeftDebugButtons/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 6
+size_flags_vertical = 4
+text = "+1"
+
+[node name="LeftMinusOne" type="Button" parent="LeftDebugButtons/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 6
+size_flags_vertical = 4
+text = "-1"
+
+[node name="FullLeftDebug" type="Button" parent="LeftDebugButtons"]
+layout_mode = 2
+size_flags_horizontal = 0
+text = "FULL LEFT (DEBUG)"
+
+[node name="RightDebugButtons" type="VBoxContainer" parent="." groups=["debug"]]
+unique_name_in_owner = true
+visible = false
+layout_mode = 0
+offset_left = 1274.0
+offset_top = 544.0
+offset_right = 1520.0
+offset_bottom = 612.0
+theme_override_constants/separation = 6
+
+[node name="HBoxContainer" type="HBoxContainer" parent="RightDebugButtons"]
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 4
+theme_override_constants/separation = 10
+
+[node name="RightPlusOne" type="Button" parent="RightDebugButtons/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 6
+size_flags_vertical = 4
+text = "+1"
+
+[node name="RightMinusOne" type="Button" parent="RightDebugButtons/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 6
+size_flags_vertical = 4
+text = "-1"
+
+[node name="FullRightDebug" type="Button" parent="RightDebugButtons"]
+layout_mode = 2
+text = "FULL RIGHT (DEBUG)"
+
+[node name="FullNeutralDebug" type="Button" parent="." groups=["debug"]]
+visible = false
+layout_mode = 0
+offset_left = 640.0
+offset_top = 832.0
+offset_right = 896.0
+offset_bottom = 864.0
+text = "FULL NEUTRAL (DEBUG)"
+text_overrun_behavior = 3
+
+[connection signal="mind_state_changed" from="." to="CombatTest/GUI/LeftProgressBar" method="_on_combat_test_mind_state_changed"]
+[connection signal="mind_state_changed" from="." to="CombatTest/GUI/RightProgressBar" method="_on_combat_test_mind_state_changed"]
+[connection signal="player_hp_changed" from="." to="CombatTest/GUI/PlayerHealthBar" method="_on_hp_changed"]
+[connection signal="player_skill_activated" from="." to="." method="_on_player_skill_activated"]
+[connection signal="player_skill_activated" from="." to="CombatTest/AngryGnome" method="_on_player_skill_activated"]
+[connection signal="player_skill_activated" from="." to="AudioBus" method="_on_player_attacked"]
+[connection signal="player_turn_ended" from="." to="CombatTest/AngryGnome" method="_on_enemy_turn"]
+[connection signal="player_turn_started" from="." to="CombatTest/GUI/TurnDisplay" method="_on_turn_started"]
+[connection signal="enemy_attacked" from="CombatTest/AngryGnome" to="." method="_on_enemy_attacked"]
+[connection signal="enemy_attacked" from="CombatTest/AngryGnome" to="AudioBus" method="_on_enemy_attacked"]
+[connection signal="enemy_turn_ended" from="CombatTest/AngryGnome" to="." method="_player_turn"]
+[connection signal="enemy_turn_started" from="CombatTest/AngryGnome" to="CombatTest/GUI/TurnDisplay" method="_on_turn_started"]
+[connection signal="text_submitted" from="CombatTest/GUI/ConsoleWindow/Console" to="CombatTest/GUI/ConsoleWindow/Console" method="_on_text_submitted"]
+[connection signal="pressed" from="CombatTest/GUI/ConsoleWindow/Button" to="CombatTest/GUI/ConsoleWindow" method="_on_button_pressed"]
+[connection signal="finished" from="AudioBus/BGMusic" to="AudioBus" method="_on_bg_music_finished"]
+[connection signal="pressed" from="LeftDebugButtons/HBoxContainer/LeftPlusOne" to="." method="_on_plus_one_pressed" binds= [0]]
+[connection signal="pressed" from="LeftDebugButtons/HBoxContainer/LeftMinusOne" to="." method="_on_minus_one_pressed" binds= [0]]
+[connection signal="pressed" from="LeftDebugButtons/FullLeftDebug" to="." method="_on_full_left_debug_pressed"]
+[connection signal="pressed" from="RightDebugButtons/HBoxContainer/RightPlusOne" to="." method="_on_plus_one_pressed" binds= [2]]
+[connection signal="pressed" from="RightDebugButtons/HBoxContainer/RightMinusOne" to="." method="_on_minus_one_pressed" binds= [2]]
+[connection signal="pressed" from="RightDebugButtons/FullRightDebug" to="." method="_on_full_right_debug_pressed"]
+[connection signal="pressed" from="FullNeutralDebug" to="." method="_on_full_neutral_debug_pressed"]

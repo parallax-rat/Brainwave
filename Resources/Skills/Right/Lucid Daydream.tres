@@ -1,15 +1,18 @@
-[gd_resource type="Resource" script_class="Skill" load_steps=2 format=3 uid="uid://67r44d48xm2v"]
+[gd_resource type="Resource" script_class="Skill" load_steps=3 format=3 uid="uid://67r44d48xm2v"]
 
-[ext_resource type="Script" path="res://Scripts/skill_resource.gd" id="1_gfwkp"]
+[ext_resource type="Script" path="res://Scripts/skill.gd" id="1_gfwkp"]
+[ext_resource type="Texture2D" uid="uid://n8mnmm33s0fs" path="res://Sprites/Skills/lucid_daydream.svg" id="2_vum2e"]
 
 [resource]
 script = ExtResource("1_gfwkp")
 skill_name = "Lucid Daydream"
-description = "Fully analog, you need to create an escape back to a balanced mind. Thus, your lucidity snaps you out of an endless daydream and back to reality."
-bonus_effect = "Debuff Self- Analog skills half damage for three turns."
+skill_icon = ExtResource("2_vum2e")
+description = "Deal 4 damage"
+bonus_effect = ""
 type = 2
 step_value = 4
 skill_number = 10
 damage = 4.0
 healing = 0
 multiplier = 1.0
+sound_effect = 1

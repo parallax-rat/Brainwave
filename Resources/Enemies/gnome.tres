@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="Enemy" load_steps=4 format=3 uid="uid://dqx2o7hlhwa6q"]
+
+[ext_resource type="Script" path="res://Scripts/enemy.gd" id="1_5f1k1"]
+[ext_resource type="Texture2D" uid="uid://vek82nedqi4q" path="res://Sprites/bad-gnome (1).svg" id="2_khnoc"]
+[ext_resource type="Resource" uid="uid://6u412qjwgcux" path="res://Resources/Skills/Neutral/Intuition.tres" id="2_pxe3h"]
+
+[resource]
+script = ExtResource("1_5f1k1")
+sprite = ExtResource("2_khnoc")
+_name = ""
+max_hp = 0
+weakness = 0
+skills = Array[Resource("res://Scripts/skill.gd")]([ExtResource("2_pxe3h")])
+xp_value = 100.0

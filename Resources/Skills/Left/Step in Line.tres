@@ -1,15 +1,18 @@
-[gd_resource type="Resource" script_class="Skill" load_steps=2 format=3 uid="uid://c4ydkggb4vvjt"]
+[gd_resource type="Resource" script_class="Skill" load_steps=3 format=3 uid="uid://c4ydkggb4vvjt"]
 
-[ext_resource type="Script" path="res://Scripts/skill_resource.gd" id="1_iwqws"]
+[ext_resource type="Script" path="res://Scripts/skill.gd" id="1_iwqws"]
+[ext_resource type="Texture2D" uid="uid://bjtgnddsbj524" path="res://Sprites/Skills/step_in_line.svg" id="2_p0624"]
 
 [resource]
 script = ExtResource("1_iwqws")
 skill_name = "Step In Line"
-description = ""
-bonus_effect = "If enemy has a debuff, add +1 to its duration, and skip their turn."
+skill_icon = ExtResource("2_p0624")
+description = "Deal 1 damage and shift left."
+bonus_effect = ""
 type = 0
 step_value = 1
 skill_number = 3
 damage = 1.0
 healing = 0
 multiplier = 1.0
+sound_effect = 1

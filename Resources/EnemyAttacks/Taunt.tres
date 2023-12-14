@@ -1,0 +1,16 @@
+[gd_resource type="Resource" script_class="Skill" load_steps=2 format=3 uid="uid://blbmljdf002iq"]
+
+[ext_resource type="Script" path="res://Scripts/skill.gd" id="1_hltmt"]
+
+[resource]
+script = ExtResource("1_hltmt")
+skill_name = "Taunt"
+description = "The gnome makes fun of your haircut, pulling your mind towards an analog reaction."
+bonus_effect = ""
+type = 2
+step_value = 0
+skill_number = 0
+damage = 0.0
+healing = 0
+multiplier = 1.0
+sound_effect = 7
