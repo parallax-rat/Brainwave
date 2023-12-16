@@ -1,0 +1,6 @@
+[gd_resource type="GradientTexture1D" load_steps=2 format=3 uid="uid://det4xei18p50n"]
+
+[ext_resource type="Gradient" uid="uid://d3rto5k3tooew" path="res://Scenes/enemy_turn_gradient.tres" id="1_lf7dj"]
+
+[resource]
+gradient = ExtResource("1_lf7dj")

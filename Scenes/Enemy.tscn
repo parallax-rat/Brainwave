@@ -1,25 +1,19 @@
-[gd_scene load_steps=17 format=3 uid="uid://bl1ifg6yxewim"]
+[gd_scene load_steps=28 format=3 uid="uid://bl1ifg6yxewim"]
 
 [ext_resource type="Script" path="res://Scripts/enemy.gd" id="1_ittde"]
-[ext_resource type="Texture2D" uid="uid://vek82nedqi4q" path="res://Sprites/bad-gnome (1).svg" id="2_whd7m"]
 [ext_resource type="Resource" uid="uid://bfi5kaj6v33fu" path="res://Resources/EnemyAttacks/Clobber.tres" id="3_0idpa"]
 [ext_resource type="FontFile" uid="uid://dva2kiv00fl33" path="res://Fonts/Kaph-Regular.otf" id="3_w142b"]
 [ext_resource type="Resource" uid="uid://blbmljdf002iq" path="res://Resources/EnemyAttacks/Taunt.tres" id="4_rmqk7"]
+[ext_resource type="Texture2D" uid="uid://blw0bfibfal5" path="res://Sprites/Enemies/demon/Character5_face1.png" id="5_0mmtc"]
 [ext_resource type="Theme" uid="uid://ecubbb5qwsbb" path="res://Resources/brainwave_theme.tres" id="5_bbrqc"]
-[ext_resource type="StyleBox" uid="uid://bjsgmdhxc0he7" path="res://Resources/hp_bar_background.tres" id="5_ggh03"]
+[ext_resource type="Texture2D" uid="uid://cv4ybylw8idmj" path="res://Sprites/Enemies/demon/Character5_face2.png" id="5_qv4ff"]
 [ext_resource type="LabelSettings" uid="uid://c50istc258y2e" path="res://Resources/skill_name.tres" id="6_beshw"]
-
-[sub_resource type="LabelSettings" id="LabelSettings_txv55"]
-font = ExtResource("3_w142b")
-font_size = 22
-outline_size = 18
-outline_color = Color(0, 0, 0, 1)
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_2sa07"]
-bg_color = Color(0.0705882, 0.0705882, 0.0705882, 0.862745)
-
-[sub_resource type="LabelSettings" id="LabelSettings_btaek"]
-font_size = 32
+[ext_resource type="Texture2D" uid="uid://i51ukbwpkv7v" path="res://Sprites/Enemies/demon/Character5_face4.png" id="6_n4qkx"]
+[ext_resource type="Texture2D" uid="uid://bm2bdrr1hjnlb" path="res://Sprites/Enemies/demon/Character5_face3.png" id="7_v476i"]
+[ext_resource type="FontFile" uid="uid://ddimb683llnpb" path="res://Fonts/Lambda-Regular.otf" id="10_h5yk8"]
+[ext_resource type="AudioStream" uid="uid://cwvdtvsuy8tnk" path="res://Audio/deadly_combat/somersault_01.wav" id="12_ys77a"]
+[ext_resource type="AudioStream" uid="uid://nte082ip2g8u" path="res://Audio/deadly_combat/wood_bat_finisher_01.wav" id="13_r32ww"]
+[ext_resource type="AudioStream" uid="uid://miw5gh5h2d26" path="res://Audio/taunt_laugh.ogg" id="15_74425"]
 
 [sub_resource type="Animation" id="Animation_vx3b2"]
 length = 0.001
@@ -38,80 +32,315 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("%EnemySprite:self_modulate")
+tracks/1/path = NodePath("../EnemySprite:position")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Color(1, 1, 1, 1)]
+"values": [Vector2(0, 0)]
 }
 tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("../../DmgLabel:visible")
+tracks/2/path = NodePath("../EnemySprite2:position")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [false]
+"update": 0,
+"values": [Vector2(10, -33)]
 }
 tracks/3/type = "value"
 tracks/3/imported = false
 tracks/3/enabled = true
-tracks/3/path = NodePath("../../DmgLabel:position")
+tracks/3/path = NodePath("../EnemySprite:frame")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(224, 221)]
+"update": 1,
+"values": [0]
 }
 tracks/4/type = "value"
 tracks/4/imported = false
 tracks/4/enabled = true
-tracks/4/path = NodePath("../../DmgLabel:rotation")
+tracks/4/path = NodePath("../EnemySprite:scale")
 tracks/4/interp = 1
 tracks/4/loop_wrap = true
 tracks/4/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [0.0]
+"values": [Vector2(3, 3)]
 }
 tracks/5/type = "value"
 tracks/5/imported = false
 tracks/5/enabled = true
-tracks/5/path = NodePath("../../DmgLabel:scale")
+tracks/5/path = NodePath("../EnemySprite:skew")
 tracks/5/interp = 1
 tracks/5/loop_wrap = true
 tracks/5/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector2(1, 1)]
+"values": [0.0]
 }
 tracks/6/type = "value"
 tracks/6/imported = false
 tracks/6/enabled = true
-tracks/6/path = NodePath("../../DmgLabel:self_modulate")
+tracks/6/path = NodePath("../EnemySprite:position")
 tracks/6/interp = 1
 tracks/6/loop_wrap = true
 tracks/6/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
+"values": [Vector2(0, 0)]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("../EnemySprite2:position")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(12, -1)]
+}
+tracks/8/type = "value"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath("../EnemySprite2:scale")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(3, 3)]
+}
+tracks/9/type = "value"
+tracks/9/imported = false
+tracks/9/enabled = true
+tracks/9/path = NodePath("../EnemySprite2:skew")
+tracks/9/interp = 1
+tracks/9/loop_wrap = true
+tracks/9/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/10/type = "value"
+tracks/10/imported = false
+tracks/10/enabled = true
+tracks/10/path = NodePath("../atk_hit:playing")
+tracks/10/interp = 1
+tracks/10/loop_wrap = true
+tracks/10/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/11/type = "value"
+tracks/11/imported = false
+tracks/11/enabled = true
+tracks/11/path = NodePath("../DmgLabel:modulate")
+tracks/11/interp = 1
+tracks/11/loop_wrap = true
+tracks/11/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+tracks/12/type = "value"
+tracks/12/imported = false
+tracks/12/enabled = true
+tracks/12/path = NodePath("../DmgLabel:position")
+tracks/12/interp = 1
+tracks/12/loop_wrap = true
+tracks/12/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-64, -224)]
+}
+tracks/13/type = "value"
+tracks/13/imported = false
+tracks/13/enabled = true
+tracks/13/path = NodePath(".:position")
+tracks/13/interp = 1
+tracks/13/loop_wrap = true
+tracks/13/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-224, -576)]
+}
+tracks/14/type = "value"
+tracks/14/imported = false
+tracks/14/enabled = true
+tracks/14/path = NodePath("../taunt:playing")
+tracks/14/interp = 1
+tracks/14/loop_wrap = true
+tracks/14/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/15/type = "value"
+tracks/15/imported = false
+tracks/15/enabled = true
+tracks/15/path = NodePath("../EnemySprite:self_modulate")
+tracks/15/interp = 1
+tracks/15/loop_wrap = true
+tracks/15/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
 "values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_holgf"]
+resource_name = "attack"
+length = 3.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("../EnemySprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [3]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("../EnemySprite:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.7, 0.733333, 0.766667, 0.8, 0.845593, 1.1),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(3, 3), Vector2(4.48052, 4.48052), Vector2(4.88707, 4.88707), Vector2(4.8, 4.8), Vector2(4.8, 4.8), Vector2(5.78701, 5.78701), Vector2(6.05805, 6.05805), Vector2(6, 6), Vector2(6, 6), Vector2(3, 3)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("../EnemySprite:skew")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.336888, 0.436888, 0.536888, 0.636888, 0.7, 0.733333, 0.766667, 0.8, 0.845593, 1.1),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [0.0, 0.028711, 0.0365951, 0.0349066, 0.0349066, 0.221528, 0.272775, 0.261799, 0.261799, -0.384197, -0.56159, -0.523599, -0.523599, 0.0]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("../EnemySprite:position")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.336888, 0.436888, 0.536888, 0.636888, 0.7, 0.733333, 0.766667, 0.8, 0.845593, 1.1),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(0, 105.281), Vector2(0, 134.192), Vector2(0, 128), Vector2(0, 128), Vector2(26.3203, 49.0392), Vector2(33.5479, 27.3563), Vector2(32, 32), Vector2(32, 32), Vector2(175.939, 210.484), Vector2(215.465, 259.497), Vector2(207, 249), Vector2(207, 249), Vector2(0, 0)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("../EnemySprite2:position")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.336888, 0.436888, 0.536888, 0.636888, 0.7, 0.733333, 0.766667, 0.8, 0.845593, 1.1),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(12, -1), Vector2(28.4502, 131.424), Vector2(32.9674, 167.788), Vector2(32, 160), Vector2(32, 160), Vector2(76.4155, 135.325), Vector2(88.6121, 128.549), Vector2(86, 130), Vector2(86, 130), Vector2(274.354, 282.987), Vector2(326.077, 324.997), Vector2(315, 316), Vector2(315, 316), Vector2(12, -1)]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("../EnemySprite2:scale")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.7, 0.733333, 0.766667, 0.8, 0.845593, 1.1),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(3, 3), Vector2(4.48052, 4.48052), Vector2(4.88707, 4.88707), Vector2(4.8, 4.8), Vector2(4.8, 4.8), Vector2(5.78701, 5.78701), Vector2(6.05805, 6.05805), Vector2(6, 6), Vector2(6, 6), Vector2(3, 3)]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("../EnemySprite2:skew")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.336888, 0.436888, 0.536888, 0.636888, 0.7, 0.733333, 0.766667, 0.8, 0.845593, 1.1),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [0.0, 0.0143555, 0.0182975, 0.0174533, 0.0174533, 0.189719, 0.237024, 0.226893, 0.226893, -0.275549, -0.413521, -0.383972, -0.383972, 0.0]
+}
+tracks/7/type = "method"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("..")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0.766054),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"attack"
+}]
+}
+tracks/8/type = "value"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath("../atk_hit:playing")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = {
+"times": PackedFloat32Array(0, 0.752997),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [false, true]
+}
+tracks/9/type = "method"
+tracks/9/imported = false
+tracks/9/enabled = true
+tracks/9/path = NodePath("..")
+tracks/9/interp = 1
+tracks/9/loop_wrap = true
+tracks/9/keys = {
+"times": PackedFloat32Array(0.770407),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [Color(1, 0.388235, 0.321569, 1)],
+"method": &"call_screen_flash"
+}]
 }
 
 [sub_resource type="Animation" id="Animation_t27yl"]
 resource_name = "attack_panel_show"
 length = 2.0
-step = 0.0166667
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -119,128 +348,320 @@ tracks/0/path = NodePath(".:modulate")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.166667, 1.41667, 1.56667),
+"times": PackedFloat32Array(0, 0.1, 1.4, 1.5),
 "transitions": PackedFloat32Array(1, 1, 1, 1),
 "update": 0,
 "values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
 }
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.1, 1.4, 1.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(-224, -576), Vector2(-224, -544), Vector2(-224, -544), Vector2(-224, -576)]
+}
 
-[sub_resource type="Animation" id="Animation_af0mx"]
-resource_name = "damaged"
-length = 2.0
-step = 0.05
+[sub_resource type="Animation" id="Animation_k5t7h"]
+resource_name = "idle"
+length = 6.00001
+loop_mode = 1
+step = 0.5
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("%EnemySprite:self_modulate")
+tracks/0/path = NodePath("../EnemySprite:position")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.05, 0.2, 0.35, 0.45, 1),
+"times": PackedFloat32Array(0, 2, 3, 4.67641, 5.5, 6),
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
 "update": 0,
-"values": [Color(1, 1, 1, 1), Color(0.917647, 0, 0.0313726, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 0.298039, 0.247059, 1), Color(1, 1, 1, 1)]
+"values": [Vector2(0, 0), Vector2(0, -32), Vector2(0, -24), Vector2(0, -8), Vector2(0, 0), Vector2(0, 0)]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("../../DmgLabel:visible")
+tracks/1/path = NodePath("../EnemySprite2:position")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.05),
+"times": PackedFloat32Array(0, 2, 3),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(16, 4), Vector2(16, -32), Vector2(16, -20)]
+}
+
+[sub_resource type="Animation" id="Animation_cr05w"]
+resource_name = "damage_numbers"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("../DmgLabel:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.7, 1),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("../DmgLabel:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 1),
 "transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(-64, -224), Vector2(-64, -448)]
+}
+
+[sub_resource type="Animation" id="Animation_p5yfm"]
+resource_name = "taunt"
+length = 3.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("../EnemySprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 2, 2.5),
+"transitions": PackedFloat32Array(1, 1, 1),
 "update": 1,
-"values": [false, true]
+"values": [3, 3, 3]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("../EnemySprite:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.2, 2, 2.2, 2.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(3, 3), Vector2(2.6, 2.6), Vector2(2.6, 2.6), Vector2(3, 3), Vector2(3, 3)]
 }
 tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("../../DmgLabel:position")
+tracks/2/path = NodePath("../EnemySprite:skew")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
-"times": PackedFloat32Array(0.05, 2),
-"transitions": PackedFloat32Array(1, 1),
+"times": PackedFloat32Array(0, 0.5, 0.6, 0.8, 0.9, 1.1, 1.2, 2, 2.2, 2.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
 "update": 0,
-"values": [Vector2(224, 221), Vector2(256, -388)]
+"values": [0.0, 0.0, 0.10472, 0.0, 0.10472, 0.0, 0.10472, 0.0, 0.0, 0.0]
 }
 tracks/3/type = "value"
 tracks/3/imported = false
 tracks/3/enabled = true
-tracks/3/path = NodePath("../../DmgLabel:rotation")
+tracks/3/path = NodePath("../EnemySprite:position")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
-"times": PackedFloat32Array(0.05, 2),
-"transitions": PackedFloat32Array(1, 1),
+"times": PackedFloat32Array(0, 2, 2.2, 2.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
 "update": 0,
-"values": [0.0, 0.261799]
+"values": [Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0)]
 }
 tracks/4/type = "value"
 tracks/4/imported = false
 tracks/4/enabled = true
-tracks/4/path = NodePath("../../DmgLabel:scale")
+tracks/4/path = NodePath("../EnemySprite2:position")
 tracks/4/interp = 1
 tracks/4/loop_wrap = true
 tracks/4/keys = {
-"times": PackedFloat32Array(0.05, 2),
-"transitions": PackedFloat32Array(1, 1),
+"times": PackedFloat32Array(0, 0.2, 2, 2.2),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
 "update": 0,
-"values": [Vector2(1, 1), Vector2(1.2, 1.2)]
+"values": [Vector2(12, -1), Vector2(0, 0), Vector2(0, 0), Vector2(12, -1)]
 }
 tracks/5/type = "value"
 tracks/5/imported = false
 tracks/5/enabled = true
-tracks/5/path = NodePath("../../DmgLabel:self_modulate")
+tracks/5/path = NodePath("../EnemySprite2:scale")
 tracks/5/interp = 1
 tracks/5/loop_wrap = true
 tracks/5/keys = {
-"times": PackedFloat32Array(0.05, 1, 2),
+"times": PackedFloat32Array(0, 0.2, 2, 2.2),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(3, 3), Vector2(4, 4), Vector2(4, 4), Vector2(3, 3)]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("../EnemySprite2:skew")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0, 1.9, 2.5),
 "transitions": PackedFloat32Array(1, 1, 1),
 "update": 0,
-"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+"values": [0.0, 0.0, 0.0]
+}
+tracks/7/type = "method"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("..")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(2),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"attack"
+}]
+}
+tracks/8/type = "value"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath("../taunt:playing")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [false, true]
+}
+tracks/9/type = "value"
+tracks/9/imported = false
+tracks/9/enabled = true
+tracks/9/path = NodePath("../EnemySprite:self_modulate")
+tracks/9/interp = 1
+tracks/9/loop_wrap = true
+tracks/9/keys = {
+"times": PackedFloat32Array(0, 0.2, 2, 2.2),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(0.0941176, 0.0941176, 0.0941176, 1), Color(0.0941176, 0.0941176, 0.0941176, 1), Color(1, 1, 1, 1)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_uv3q4"]
 _data = {
 "RESET": SubResource("Animation_vx3b2"),
+"attack": SubResource("Animation_holgf"),
 "attack_panel_show": SubResource("Animation_t27yl"),
-"damaged": SubResource("Animation_af0mx")
+"damage_numbers": SubResource("Animation_cr05w"),
+"idle": SubResource("Animation_k5t7h"),
+"taunt": SubResource("Animation_p5yfm")
 }
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_b4lmd"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("5_qv4ff")
+}],
+"loop": true,
+"name": &"damaged",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("5_0mmtc")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_qv4ff")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_v476i")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_n4qkx")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("6_n4qkx")
+}],
+"loop": true,
+"name": &"evil_grin",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("7_v476i")
+}],
+"loop": true,
+"name": &"smile",
+"speed": 5.0
+}]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_2sa07"]
+bg_color = Color(0.0823529, 0.0823529, 0.0823529, 0.584314)
+border_width_left = 4
+border_width_right = 4
+border_width_bottom = 4
+border_color = Color(0, 0, 0, 1)
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+
+[sub_resource type="LabelSettings" id="LabelSettings_fkt1k"]
+font = ExtResource("10_h5yk8")
+font_size = 26
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_n3t0o"]
+bg_color = Color(0.215686, 0.0117647, 0, 1)
+skew = Vector2(0.2, 0)
+border_width_left = 8
+border_width_top = 4
+border_width_right = 8
+border_width_bottom = 4
+border_color = Color(0, 0, 0, 1)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+corner_detail = 4
+expand_margin_left = 8.0
+expand_margin_top = 4.0
+expand_margin_right = 8.0
+expand_margin_bottom = 4.0
+shadow_color = Color(0, 0, 0, 0.27451)
+shadow_size = 3
+shadow_offset = Vector2(3, 3)
+
+[sub_resource type="LabelSettings" id="LabelSettings_txv55"]
+font = ExtResource("3_w142b")
+font_size = 22
+outline_size = 18
+outline_color = Color(0, 0, 0, 1)
 
 [sub_resource type="LabelSettings" id="LabelSettings_bls0l"]
 line_spacing = 0.0
 font = ExtResource("3_w142b")
-font_size = 48
+font_size = 32
 font_color = Color(1, 0.996078, 0.992157, 1)
 outline_size = 12
 outline_color = Color(0, 0, 0, 1)
-shadow_size = 8
-shadow_color = Color(0.658824, 0, 0, 0.678431)
-shadow_offset = Vector2(5, 5)
+shadow_size = 12
+shadow_color = Color(0, 0, 0, 0.807843)
+shadow_offset = Vector2(8, 8)
 
-[node name="Enemy" type="Control"]
-layout_mode = 3
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -960.0
-offset_top = -540.0
-offset_right = -448.0
-offset_bottom = -28.0
-grow_horizontal = 2
-grow_vertical = 2
+[node name="Enemy" type="Node2D"]
 script = ExtResource("1_ittde")
-sprite = ExtResource("2_whd7m")
-_name = "Angry Gnome"
+sprite = ExtResource("5_0mmtc")
+_name = "Trickster Devil"
 max_hp = 12
 skills = Array[Resource("res://Scripts/skill.gd")]([ExtResource("3_0idpa"), ExtResource("4_rmqk7")])
 
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
-layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -249,17 +670,81 @@ grow_vertical = 2
 theme_override_constants/separation = 5
 alignment = 1
 
-[node name="EnemyHPBar" type="ProgressBar" parent="VBoxContainer"]
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+unique_name_in_owner = true
+root_node = NodePath("../EnemyAttackPanel")
+libraries = {
+"": SubResource("AnimationLibrary_uv3q4")
+}
+
+[node name="EnemySprite2" type="Sprite2D" parent="."]
+unique_name_in_owner = true
+self_modulate = Color(0, 0, 0, 0.243137)
+position = Vector2(12, -1)
+scale = Vector2(3, 3)
+texture = ExtResource("5_0mmtc")
+
+[node name="EnemySprite" type="AnimatedSprite2D" parent="."]
+unique_name_in_owner = true
+scale = Vector2(3, 3)
+sprite_frames = SubResource("SpriteFrames_b4lmd")
+
+[node name="EnemyAttackPanel" type="PanelContainer" parent="."]
+modulate = Color(1, 1, 1, 0)
+custom_minimum_size = Vector2(0, 64)
+offset_left = -224.0
+offset_top = -576.0
+offset_right = 224.0
+offset_bottom = -512.0
+size_flags_vertical = 0
+theme_override_styles/panel = SubResource("StyleBoxFlat_2sa07")
+
+[node name="MarginContainer" type="MarginContainer" parent="EnemyAttackPanel"]
+layout_mode = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 5
+
+[node name="HBoxContainer" type="HBoxContainer" parent="EnemyAttackPanel/MarginContainer"]
+layout_mode = 2
+
+[node name="AttackDamage" type="Label" parent="EnemyAttackPanel/MarginContainer/HBoxContainer"]
+unique_name_in_owner = true
+visible = false
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+theme = ExtResource("5_bbrqc")
+text = "DAMAGE"
+label_settings = ExtResource("6_beshw")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="AttackName" type="Label" parent="EnemyAttackPanel/MarginContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+text = "ENEMY ATTACK"
+label_settings = SubResource("LabelSettings_fkt1k")
+horizontal_alignment = 1
+vertical_alignment = 2
+
+[node name="EnemyHPBar" type="ProgressBar" parent="."]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(0, 50)
-layout_mode = 2
-theme_override_styles/background = ExtResource("5_ggh03")
+offset_left = -256.0
+offset_top = -576.0
+offset_right = 256.0
+offset_bottom = -526.0
+theme_override_styles/background = SubResource("StyleBoxFlat_n3t0o")
 max_value = 12.0
 step = 1.0
-value = 12.0
+value = 10.0
 show_percentage = false
 
-[node name="EnemyName" type="Label" parent="VBoxContainer/EnemyHPBar"]
+[node name="EnemyName" type="Label" parent="EnemyHPBar"]
 unique_name_in_owner = true
 layout_mode = 1
 anchors_preset = 8
@@ -278,78 +763,31 @@ label_settings = SubResource("LabelSettings_txv55")
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="EnemySprite" type="TextureRect" parent="VBoxContainer"]
-unique_name_in_owner = true
-custom_minimum_size = Vector2(384, 384)
-layout_mode = 2
-size_flags_horizontal = 4
-size_flags_vertical = 0
-texture = ExtResource("2_whd7m")
-expand_mode = 1
-stretch_mode = 4
-
-[node name="EnemyAttackPanel" type="PanelContainer" parent="VBoxContainer"]
-modulate = Color(1, 1, 1, 0)
-custom_minimum_size = Vector2(0, 64)
-layout_mode = 2
-size_flags_vertical = 0
-theme_override_styles/panel = SubResource("StyleBoxFlat_2sa07")
-
-[node name="MarginContainer" type="MarginContainer" parent="VBoxContainer/EnemyAttackPanel"]
-layout_mode = 2
-theme_override_constants/margin_left = 10
-theme_override_constants/margin_top = 5
-theme_override_constants/margin_right = 10
-theme_override_constants/margin_bottom = 5
-
-[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/EnemyAttackPanel/MarginContainer"]
-layout_mode = 2
-
-[node name="AttackDamage" type="Label" parent="VBoxContainer/EnemyAttackPanel/MarginContainer/HBoxContainer"]
-unique_name_in_owner = true
-visible = false
-layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 1
-theme = ExtResource("5_bbrqc")
-text = "DAMAGE"
-label_settings = ExtResource("6_beshw")
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="AttackName" type="Label" parent="VBoxContainer/EnemyAttackPanel/MarginContainer"]
-unique_name_in_owner = true
-layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 1
-text = "ENEMY ATTACK"
-label_settings = SubResource("LabelSettings_btaek")
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-unique_name_in_owner = true
-root_node = NodePath("../VBoxContainer/EnemyAttackPanel")
-libraries = {
-"": SubResource("AnimationLibrary_uv3q4")
-}
-
 [node name="DmgLabel" type="Label" parent="."]
 unique_name_in_owner = true
-visible = false
-layout_mode = 1
-anchors_preset = 8
+modulate = Color(1, 1, 1, 0)
+anchors_preset = -1
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -32.0
-offset_top = -35.0
-offset_right = 31.9997
-offset_bottom = 34.9994
+offset_left = -64.0
+offset_top = -224.0
+offset_right = 64.0
+offset_bottom = -96.0
 grow_horizontal = 2
 grow_vertical = 2
 text = "-1"
 label_settings = SubResource("LabelSettings_bls0l")
 horizontal_alignment = 1
 vertical_alignment = 1
+
+[node name="atk_swing" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("12_ys77a")
+
+[node name="atk_hit" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("13_r32ww")
+
+[node name="taunt" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("15_74425")
+volume_db = -8.157

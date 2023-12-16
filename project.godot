@@ -26,6 +26,11 @@ window/size/viewport_height=1024
 window/stretch/mode="canvas_items"
 window/stretch/aspect="keep_width"
 
+[editor]
+
+movie_writer/mjpeg_quality=1.0
+movie_writer/movie_file="C:/Users/synth/Desktop/Brainwave/brainwave_vid.avi"
+
 [editor_plugins]
 
 enabled=PackedStringArray("res://addons/csv-data-importer/plugin.cfg")

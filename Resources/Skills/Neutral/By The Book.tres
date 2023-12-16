@@ -7,7 +7,7 @@
 script = ExtResource("1_erigl")
 skill_name = "By The Book"
 skill_icon = ExtResource("2_1n8tk")
-description = "Deal 1 damage and shift left (prevents debuffs for 1 turn)"
+description = "Deal 1 damage and shift left. Prevents enemy actions from shifting your mind next turn."
 bonus_effect = ""
 type = 1
 step_value = 1

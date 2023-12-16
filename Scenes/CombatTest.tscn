@@ -1,19 +1,21 @@
-[gd_scene load_steps=57 format=3 uid="uid://dgotg08v1neoe"]
+[gd_scene load_steps=64 format=3 uid="uid://dgotg08v1neoe"]
 
 [ext_resource type="Script" path="res://Scripts/game.gd" id="1_qyedh"]
+[ext_resource type="Texture2D" uid="uid://dy37w2c04qnv6" path="res://Backgrounds/hd.png" id="2_ligwt"]
 [ext_resource type="PackedScene" uid="uid://bl1ifg6yxewim" path="res://Scenes/Enemy.tscn" id="2_m68w7"]
-[ext_resource type="Texture2D" uid="uid://csvjiw5ndxdr1" path="res://Backgrounds/dungeon background 5.png" id="2_rqyxr"]
 [ext_resource type="Script" path="res://Scripts/player_health_bar.gd" id="3_bop05"]
 [ext_resource type="Theme" uid="uid://ecubbb5qwsbb" path="res://Resources/brainwave_theme.tres" id="3_cern1"]
+[ext_resource type="Texture2D" uid="uid://dt38ohdolp81n" path="res://Sprites/19.png" id="3_p0pbb"]
 [ext_resource type="Script" path="res://Scripts/LeftProgressBar.gd" id="4_5cj7g"]
+[ext_resource type="Texture2D" uid="uid://le0qyygtbq02" path="res://Sprites/4.png" id="4_77gpv"]
 [ext_resource type="Script" path="res://Scripts/RightProgressBar.gd" id="5_rt705"]
 [ext_resource type="PackedScene" uid="uid://7f812eakfokw" path="res://Scenes/SkillButton.tscn" id="6_cbeqi"]
 [ext_resource type="Resource" uid="uid://chix85jyw8uum" path="res://Resources/Skills/Left/Logic Paradox.tres" id="7_ih6io"]
+[ext_resource type="Texture2D" uid="uid://det4xei18p50n" path="res://Scenes/player_turn_gradient_texture.tres" id="8_6jpup"]
 [ext_resource type="Script" path="res://Scenes/console_window.gd" id="8_ahhn2"]
 [ext_resource type="Script" path="res://Scenes/combat_log.gd" id="8_we6le"]
 [ext_resource type="Resource" uid="uid://b6hcpaknhvg6s" path="res://Resources/Skills/Left/Death Date.tres" id="8_x65lp"]
 [ext_resource type="Resource" uid="uid://dhs5yjl57b5oe" path="res://Resources/Skills/Left/Interpret.tres" id="9_d38ji"]
-[ext_resource type="Texture2D" uid="uid://cwu67d8m7jhxc" path="res://Sprites/slice70.png" id="10_g33bs"]
 [ext_resource type="Resource" uid="uid://c4ydkggb4vvjt" path="res://Resources/Skills/Left/Step in Line.tres" id="10_u1njx"]
 [ext_resource type="Resource" uid="uid://b1rnhk2ui35hv" path="res://Resources/Skills/Neutral/By The Book.tres" id="11_3m6og"]
 [ext_resource type="Resource" uid="uid://b5ckt4v7cid7j" path="res://Resources/Skills/Neutral/Meditate.tres" id="12_durby"]
@@ -28,6 +30,379 @@
 [ext_resource type="Script" path="res://Scripts/audio_bus.gd" id="21_dlyn4"]
 [ext_resource type="AudioStream" uid="uid://dnjh56e1c0xce" path="res://Audio/Music/Spinning out.ogg" id="26_donfw"]
 [ext_resource type="Script" path="res://Scenes/debug.gd" id="27_x7ob4"]
+[ext_resource type="Texture2D" uid="uid://bfrht4k2pl74i" path="res://Sprites/Skills/by_the_book.png" id="29_eo2o6"]
+
+[sub_resource type="Gradient" id="Gradient_onwvx"]
+offsets = PackedFloat32Array(0, 0.340659, 0.675824, 1)
+colors = PackedColorArray(0, 0, 0, 0.65098, 0.6, 0.6, 0.6, 0, 0.48, 0.48, 0.48, 0.2, 0, 0, 0, 0.65098)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_bo4h5"]
+gradient = SubResource("Gradient_onwvx")
+
+[sub_resource type="Animation" id="Animation_0p1w1"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Label:self_modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("enemy_gradient:self_modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Label:position")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-560, 272)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("player_gradient:self_modulate")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_18sxe"]
+resource_name = "player_turn_start"
+length = 3.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1.8),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Label:self_modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1, 1.1, 1.2, 1.3, 1.4, 1.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 0.580131), Color(1, 1, 1, 0.824047), Color(1, 1, 1, 0.9266), Color(1, 1, 1, 0.969719), Color(1, 1, 1, 0.987848), Color(1, 1, 1, 0.99547), Color(1, 1, 1, 0.998675), Color(1, 1, 1, 1), Color(1, 1, 1, 0.998371), Color(1, 1, 1, 0.993924), Color(1, 1, 1, 0.981953), Color(1, 1, 1, 0.949729), Color(1, 1, 1, 0.862989), Color(1, 1, 1, 0.629501), Color(1, 1, 1, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = false
+tracks/2/path = NodePath("enemy_gradient:self_modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1, 1.1, 1.2, 1.3, 1.4, 1.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 0.580131), Color(1, 1, 1, 0.824047), Color(1, 1, 1, 0.9266), Color(1, 1, 1, 0.969719), Color(1, 1, 1, 0.987848), Color(1, 1, 1, 0.99547), Color(1, 1, 1, 0.998675), Color(1, 1, 1, 1), Color(1, 1, 1, 0.998371), Color(1, 1, 1, 0.993924), Color(1, 1, 1, 0.981953), Color(1, 1, 1, 0.949729), Color(1, 1, 1, 0.862989), Color(1, 1, 1, 0.629501), Color(1, 1, 1, 0)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Label:position")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 1.2, 1.3, 1.4, 1.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(-352, 278.5), Vector2(210.37, 273.284), Vector2(388.148, 272.08), Vector2(432, 272), Vector2(560, 272), Vector2(649.482, 272), Vector2(791.704, 272), Vector2(1408, 272)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("player_gradient:self_modulate")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 0.3, 1.2, 1.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_8so3o"]
+resource_name = "enemy_turn_start"
+length = 3.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1.8),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Label:self_modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1, 1.1, 1.2, 1.3, 1.4, 1.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 0.580131), Color(1, 1, 1, 0.824047), Color(1, 1, 1, 0.9266), Color(1, 1, 1, 0.969719), Color(1, 1, 1, 0.987848), Color(1, 1, 1, 0.99547), Color(1, 1, 1, 0.998675), Color(1, 1, 1, 1), Color(1, 1, 1, 0.998371), Color(1, 1, 1, 0.993924), Color(1, 1, 1, 0.981953), Color(1, 1, 1, 0.949729), Color(1, 1, 1, 0.862989), Color(1, 1, 1, 0.629501), Color(1, 1, 1, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("enemy_gradient:self_modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1, 1.1, 1.2, 1.3, 1.4, 1.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 0.580131), Color(1, 1, 1, 0.824047), Color(1, 1, 1, 0.9266), Color(1, 1, 1, 0.969719), Color(1, 1, 1, 0.987848), Color(1, 1, 1, 0.99547), Color(1, 1, 1, 0.998675), Color(1, 1, 1, 1), Color(1, 1, 1, 0.998371), Color(1, 1, 1, 0.993924), Color(1, 1, 1, 0.981953), Color(1, 1, 1, 0.949729), Color(1, 1, 1, 0.862989), Color(1, 1, 1, 0.629501), Color(1, 1, 1, 0)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Label:position")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 1.2, 1.3, 1.4, 1.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(-352, 278.5), Vector2(210.37, 273.284), Vector2(388.148, 272.08), Vector2(400, 272), Vector2(640, 272), Vector2(649.482, 272), Vector2(791.704, 272), Vector2(1408, 272)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_xtjpx"]
+_data = {
+"RESET": SubResource("Animation_0p1w1"),
+"enemy_turn_start": SubResource("Animation_8so3o"),
+"player_turn_start": SubResource("Animation_18sxe")
+}
+
+[sub_resource type="Gradient" id="Gradient_7j6aa"]
+offsets = PackedFloat32Array(0.0176471, 0.405882, 0.6, 0.964706)
+colors = PackedColorArray(0.6, 0.6, 0.6, 0, 0.831373, 0, 0.121569, 0.470588, 0.831373, 0, 0.121569, 0.470588, 0.48, 0.48, 0.48, 0.2)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_c2euk"]
+gradient = SubResource("Gradient_7j6aa")
+
+[sub_resource type="LabelSettings" id="LabelSettings_cq8gy"]
+line_spacing = 0.0
+font = ExtResource("19_hjrww")
+font_size = 72
+outline_size = 20
+outline_color = Color(0, 0, 0, 1)
+shadow_size = 20
+shadow_color = Color(0, 0, 0, 0.396078)
+shadow_offset = Vector2(5, 5)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_r2q6o"]
+bg_color = Color(0.113725, 0.113725, 0.113725, 0.627451)
+border_width_left = 4
+border_width_top = 4
+border_width_right = 4
+border_color = Color(0, 0, 0, 1)
+border_blend = true
+corner_radius_top_left = 2
+corner_radius_top_right = 2
+expand_margin_left = 2.0
+expand_margin_right = 2.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_8y4iv"]
+content_margin_left = 6.0
+content_margin_right = 6.0
+content_margin_bottom = 6.0
+bg_color = Color(0.0823529, 0.0823529, 0.0823529, 0.839216)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.054902, 0.054902, 0.054902, 0.945098)
+border_blend = true
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_vbj0l"]
+bg_color = Color(0.333333, 0.333333, 0.333333, 0.627451)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.0862745, 0.0862745, 0.0862745, 1)
+border_blend = true
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_kf3rl"]
+bg_color = Color(0.627451, 0.627451, 0.627451, 0.627451)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.0862745, 0.0862745, 0.0862745, 1)
+border_blend = true
+
+[sub_resource type="Animation" id="Animation_6gacu"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CombatLog:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Button:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(396, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_e5jyp"]
+resource_name = "close_console"
+length = 0.01
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CombatLog:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Button:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(395, 177)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_o45sk"]
+_data = {
+"RESET": SubResource("Animation_6gacu"),
+"close_console": SubResource("Animation_e5jyp")
+}
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_1ftjw"]
+bg_color = Color(0.52549, 0.52549, 0.52549, 0.509804)
+border_width_left = 4
+border_width_top = 4
+border_width_right = 2
+border_color = Color(0, 0, 0, 1)
+corner_detail = 4
+expand_margin_left = 4.0
+expand_margin_top = 4.0
+shadow_color = Color(0, 0, 0, 0.27451)
+shadow_size = 3
+shadow_offset = Vector2(3, 3)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_hh5r1"]
+bg_color = Color(1, 0.301961, 1, 0.501961)
+border_width_right = 3
+border_color = Color(0, 0, 0, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_e5s7y"]
+font_size = 18
+shadow_size = 12
+shadow_color = Color(0, 0, 0, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_hf7xv"]
+bg_color = Color(0.52549, 0.52549, 0.52549, 0.509804)
+border_width_left = 2
+border_width_top = 4
+border_width_right = 4
+border_color = Color(0, 0, 0, 1)
+corner_detail = 4
+expand_margin_top = 4.0
+expand_margin_right = 4.0
+shadow_color = Color(0, 0, 0, 0.27451)
+shadow_size = 3
+shadow_offset = Vector2(3, 3)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_nomib"]
+bg_color = Color(0.945098, 0.262745, 0.117647, 0.501961)
+border_width_left = 2
+border_color = Color(0, 0, 0, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_1ar5s"]
+font_size = 18
+shadow_size = 12
+shadow_color = Color(0, 0, 0, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_jerjn"]
+bg_color = Color(0.52549, 0.52549, 0.52549, 0.509804)
+border_width_left = 8
+border_width_top = 8
+border_width_right = 8
+border_color = Color(0, 0, 0, 1)
+corner_detail = 4
+expand_margin_top = 4.0
+expand_margin_right = 8.0
+shadow_color = Color(0, 0, 0, 0.27451)
+shadow_size = 3
+shadow_offset = Vector2(3, 3)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_wc4a0"]
 bg_color = Color(0.52549, 0.52549, 0.52549, 1)
@@ -97,234 +472,24 @@ font_size = 30
 outline_size = 12
 outline_color = Color(0, 0, 0, 1)
 
-[sub_resource type="Animation" id="Animation_0p1w1"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:visible")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [false]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("Label:self_modulate")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Color(1, 1, 1, 0)]
-}
-
-[sub_resource type="Animation" id="Animation_18sxe"]
-resource_name = "turn_start"
-length = 3.0
-step = 0.2
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:visible")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 1.18194),
-"transitions": PackedFloat32Array(1, 1),
-"update": 1,
-"values": [true, false]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("Label:self_modulate")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.102033, 0.870574, 1.18194),
-"transitions": PackedFloat32Array(1, 1, 1, 1),
-"update": 0,
-"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
-}
-
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_xtjpx"]
-_data = {
-"RESET": SubResource("Animation_0p1w1"),
-"turn_start": SubResource("Animation_18sxe")
-}
-
-[sub_resource type="Gradient" id="Gradient_llw1y"]
-offsets = PackedFloat32Array(0, 0.516892, 1)
-colors = PackedColorArray(1, 1, 1, 0, 1, 0.724335, 0.51909, 0.615686, 1, 1, 1, 0)
-
-[sub_resource type="GradientTexture1D" id="GradientTexture1D_chcp2"]
-gradient = SubResource("Gradient_llw1y")
-
-[sub_resource type="LabelSettings" id="LabelSettings_cq8gy"]
-line_spacing = 0.0
-font = ExtResource("19_hjrww")
-font_size = 90
-outline_size = 20
-outline_color = Color(0, 0, 0, 1)
-shadow_size = 20
-shadow_color = Color(0, 0, 0, 0.396078)
-shadow_offset = Vector2(5, 5)
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_r2q6o"]
-bg_color = Color(0.113725, 0.113725, 0.113725, 0.627451)
-border_width_left = 2
-border_width_top = 2
-border_width_right = 2
-border_width_bottom = 2
-border_color = Color(0.0862745, 0.0862745, 0.0862745, 1)
-border_blend = true
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_8y4iv"]
-content_margin_left = 6.0
-content_margin_right = 6.0
-content_margin_bottom = 6.0
-bg_color = Color(0.0823529, 0.0823529, 0.0823529, 0.839216)
-border_width_left = 2
-border_width_top = 2
-border_width_right = 2
-border_width_bottom = 2
-border_color = Color(0.054902, 0.054902, 0.054902, 0.945098)
-border_blend = true
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_vbj0l"]
-bg_color = Color(0.333333, 0.333333, 0.333333, 0.627451)
-border_width_left = 2
-border_width_top = 2
-border_width_right = 2
-border_width_bottom = 2
-border_color = Color(0.0862745, 0.0862745, 0.0862745, 1)
-border_blend = true
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_kf3rl"]
-bg_color = Color(0.627451, 0.627451, 0.627451, 0.627451)
-border_width_left = 2
-border_width_top = 2
-border_width_right = 2
-border_width_bottom = 2
-border_color = Color(0.0862745, 0.0862745, 0.0862745, 1)
-border_blend = true
-
-[sub_resource type="Animation" id="Animation_e5jyp"]
-resource_name = "close_console"
-length = 0.01
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("CombatLog:visible")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [false]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("Button:position")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(395, 177)]
-}
-
-[sub_resource type="Animation" id="Animation_6gacu"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("CombatLog:visible")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [true]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("Button:position")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(396, 0)]
-}
-
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_o45sk"]
-_data = {
-"RESET": SubResource("Animation_6gacu"),
-"close_console": SubResource("Animation_e5jyp")
-}
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_gikty"]
-bg_color = Color(0.0588235, 0.0588235, 0.0588235, 0.862745)
-border_width_left = 6
-border_width_top = 4
-border_width_right = 6
-border_width_bottom = 4
-border_color = Color(0, 0, 0, 1)
-expand_margin_left = 6.0
-expand_margin_top = 4.0
-expand_margin_right = 6.0
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_7vqtm"]
-bg_color = Color(1, 0.301961, 1, 1)
-border_width_top = 20
-border_color = Color(1, 0.52549, 0.996078, 0.898039)
-border_blend = true
-
-[sub_resource type="LabelSettings" id="LabelSettings_e5s7y"]
-font_size = 26
-shadow_size = 12
-shadow_color = Color(0, 0, 0, 1)
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_nomib"]
-bg_color = Color(1, 0.4, 0, 1)
-border_width_top = 10
-border_color = Color(1, 0.654902, 0.545098, 1)
-border_blend = true
-
-[sub_resource type="LabelSettings" id="LabelSettings_1ar5s"]
-font_size = 26
-shadow_size = 12
-shadow_color = Color(0, 0, 0, 1)
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_7ktma"]
-bg_color = Color(0.0588235, 0.0588235, 0.0588235, 0.921569)
-border_width_left = 6
-border_width_top = 4
-border_width_right = 6
-border_color = Color(0, 0, 0, 1)
-corner_radius_top_left = 20
-corner_radius_top_right = 20
-corner_detail = 3
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ahr1y"]
+bg_color = Color(0, 0.611765, 0.317647, 1)
+border_width_left = 5
+border_width_top = 5
+border_width_right = 5
+border_width_bottom = 5
+border_color = Color(0.141176, 0.141176, 0.141176, 0.819608)
+corner_radius_top_left = 2
+corner_radius_top_right = 2
+corner_radius_bottom_right = 2
+corner_radius_bottom_left = 2
 
 [sub_resource type="Animation" id="Animation_1n1mv"]
 length = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("CombatTest/GUI/PlayerHealthBar:theme_override_styles/fill:bg_color")
+tracks/0/path = NodePath("CanvasLayer/GUI/PlayerHealthBar:theme_override_styles/fill:bg_color")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -336,7 +501,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("CombatTest/GUI/PlayerHealthBar/HBoxContainer/Label:theme_override_colors/font_color")
+tracks/1/path = NodePath("CanvasLayer/GUI/PlayerHealthBar/HBoxContainer/Label:theme_override_colors/font_color")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -348,7 +513,7 @@ tracks/1/keys = {
 tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("CombatTest/GUI/PlayerHealthBar/HBoxContainer/HPVal:theme_override_colors/font_color")
+tracks/2/path = NodePath("CanvasLayer/GUI/PlayerHealthBar/HBoxContainer/HPVal:theme_override_colors/font_color")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
@@ -357,34 +522,6 @@ tracks/2/keys = {
 "update": 0,
 "values": [Color(1, 1, 1, 1)]
 }
-tracks/3/type = "value"
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/path = NodePath("CombatTest/GUI/LeftProgressBar:value")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [0.0]
-}
-
-[sub_resource type="Animation" id="Animation_6adrb"]
-resource_name = "left_mind_shift"
-length = 0.5
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("CombatTest/GUI/LeftProgressBar:value")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [0.0]
-}
 
 [sub_resource type="Animation" id="Animation_amb52"]
 resource_name = "take_damage"
@@ -392,7 +529,7 @@ step = 0.05
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("CombatTest/GUI/PlayerHealthBar:theme_override_styles/fill:bg_color")
+tracks/0/path = NodePath("CanvasLayer/GUI/PlayerHealthBar:theme_override_styles/fill:bg_color")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -404,7 +541,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("CombatTest/GUI/PlayerHealthBar/HBoxContainer/Label:theme_override_colors/font_color")
+tracks/1/path = NodePath("CanvasLayer/GUI/PlayerHealthBar/HBoxContainer/Label:theme_override_colors/font_color")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -416,7 +553,7 @@ tracks/1/keys = {
 tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("CombatTest/GUI/PlayerHealthBar/HBoxContainer/HPVal:theme_override_colors/font_color")
+tracks/2/path = NodePath("CanvasLayer/GUI/PlayerHealthBar/HBoxContainer/HPVal:theme_override_colors/font_color")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
@@ -429,11 +566,11 @@ tracks/2/keys = {
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_ubecr"]
 _data = {
 "RESET": SubResource("Animation_1n1mv"),
-"left_mind_shift": SubResource("Animation_6adrb"),
 "take_damage": SubResource("Animation_amb52")
 }
 
 [node name="Control" type="Control"]
+clip_children = 2
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -442,192 +579,134 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_qyedh")
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
+[node name="CanvasModulate" type="CanvasModulate" parent="."]
+unique_name_in_owner = true
+
+[node name="Background" type="Sprite2D" parent="."]
 position = Vector2(768, 512)
-texture = ExtResource("2_rqyxr")
+scale = Vector2(0.633333, 0.632099)
+texture = ExtResource("2_ligwt")
+metadata/_edit_lock_ = true
 
-[node name="CombatTest" type="Node2D" parent="."]
-
-[node name="AngryGnome" parent="CombatTest" instance=ExtResource("2_m68w7")]
-offset_left = 752.0
-offset_top = 640.0
-offset_right = 752.0
-offset_bottom = 640.0
-scale = Vector2(0.7, 0.7)
-
-[node name="GUI" type="Control" parent="CombatTest"]
-layout_mode = 3
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_right = 1536.0
-offset_bottom = 928.0
-grow_horizontal = 2
-grow_vertical = 2
-
-[node name="CenterContainer" type="MarginContainer" parent="CombatTest/GUI"]
-visible = false
+[node name="Overlay" type="TextureRect" parent="."]
+self_modulate = Color(1, 1, 1, 0.427451)
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = 32.0
-offset_top = 128.0
-offset_right = -32.0
-offset_bottom = -80.0
 grow_horizontal = 2
 grow_vertical = 2
+texture = ExtResource("3_p0pbb")
+expand_mode = 1
 
-[node name="VBoxContainer" type="VBoxContainer" parent="CombatTest/GUI/CenterContainer"]
-visible = false
-layout_mode = 2
-size_flags_vertical = 8
-theme_override_constants/separation = 20
-alignment = 1
-
-[node name="HBoxContainer" type="HBoxContainer" parent="CombatTest/GUI/CenterContainer"]
-visible = false
-custom_minimum_size = Vector2(0, 600)
-layout_mode = 2
-size_flags_vertical = 10
-theme_override_constants/separation = 40
-
-[node name="PlayerXPBar" type="ProgressBar" parent="CombatTest/GUI"]
-custom_minimum_size = Vector2(0, 16)
-layout_mode = 2
-offset_left = 128.0
-offset_top = 69.0
-offset_right = 1408.0
-offset_bottom = 96.0
-size_flags_vertical = 4
-theme = ExtResource("3_cern1")
-theme_override_font_sizes/font_size = 16
-theme_override_styles/background = SubResource("StyleBoxFlat_wc4a0")
-theme_override_styles/fill = SubResource("StyleBoxFlat_dfrv7")
-step = 1.0
-value = 50.0
-
-[node name="PlayerHealthBar" type="ProgressBar" parent="CombatTest/GUI" node_paths=PackedStringArray("hp_display_val")]
-custom_minimum_size = Vector2(0, 32)
-layout_mode = 2
-offset_left = 32.0
-offset_top = 16.0
-offset_right = 1504.0
-offset_bottom = 64.0
-size_flags_vertical = 4
-theme = ExtResource("3_cern1")
-theme_type_variation = &"PlayerHP"
-theme_override_styles/background = SubResource("StyleBoxFlat_pvstm")
-theme_override_styles/fill = SubResource("StyleBoxFlat_vjnbt")
-max_value = 10.0
-step = 1.0
-value = 10.0
-rounded = true
-show_percentage = false
-script = ExtResource("3_bop05")
-hp_display_val = NodePath("HBoxContainer/HPVal")
-
-[node name="HBoxContainer" type="HBoxContainer" parent="CombatTest/GUI/PlayerHealthBar"]
+[node name="OverlayRage" type="TextureRect" parent="."]
+unique_name_in_owner = true
+self_modulate = Color(1, 1, 1, 0)
 layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -64.0
-offset_top = -16.0
-offset_right = 64.0
-offset_bottom = 16.0
-grow_horizontal = 2
-grow_vertical = 2
-alignment = 1
-
-[node name="Label" type="Label" parent="CombatTest/GUI/PlayerHealthBar/HBoxContainer"]
-layout_mode = 2
-size_flags_horizontal = 4
-theme = ExtResource("3_cern1")
-theme_override_colors/font_color = Color(1, 1, 1, 1)
-text = "HP: 
-"
-label_settings = SubResource("LabelSettings_5qj5u")
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="HPVal" type="Label" parent="CombatTest/GUI/PlayerHealthBar/HBoxContainer"]
-layout_mode = 2
-size_flags_horizontal = 4
-theme = ExtResource("3_cern1")
-theme_override_colors/font_color = Color(1, 1, 1, 1)
-text = "10"
-label_settings = SubResource("LabelSettings_5qj5u")
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="TurnDisplay" type="Control" parent="CombatTest/GUI"]
-visible = false
-layout_mode = 1
-anchors_preset = 10
+anchors_preset = 15
 anchor_right = 1.0
-offset_bottom = 448.0
+anchor_bottom = 1.0
 grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("4_77gpv")
+expand_mode = 1
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(767.793, 510.367)
+rotation = 1.57079
+scale = Vector2(4.03279, 1545.92)
+texture = SubResource("GradientTexture1D_bo4h5")
+
+[node name="Enemy" parent="." node_paths=PackedStringArray("overlay_rage") instance=ExtResource("2_m68w7")]
+position = Vector2(768, 720)
+scale = Vector2(1.11886, 1.11886)
+overlay_rage = NodePath("../OverlayRage")
+
+[node name="TurnDisplay" type="Control" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = 192.0
+offset_bottom = -192.0
+grow_horizontal = 2
+grow_vertical = 2
 script = ExtResource("19_doclc")
 
-[node name="TurnAnimation" type="AnimationPlayer" parent="CombatTest/GUI/TurnDisplay"]
+[node name="TurnAnimation" type="AnimationPlayer" parent="TurnDisplay"]
 libraries = {
 "": SubResource("AnimationLibrary_xtjpx")
 }
 
-[node name="ColorRect" type="TextureRect" parent="CombatTest/GUI/TurnDisplay"]
-visible = false
+[node name="enemy_gradient" type="Sprite2D" parent="TurnDisplay"]
 self_modulate = Color(1, 1, 1, 0)
-layout_mode = 0
-offset_top = 160.0
-offset_right = 1536.0
-offset_bottom = 288.0
-texture = SubResource("GradientTexture1D_chcp2")
+position = Vector2(771, 317.473)
+rotation = 1.57079
+scale = Vector2(3.9632, 1545.92)
+texture = SubResource("GradientTexture1D_c2euk")
 
-[node name="Label" type="Label" parent="CombatTest/GUI/TurnDisplay"]
+[node name="player_gradient" type="Sprite2D" parent="TurnDisplay"]
+self_modulate = Color(1, 1, 1, 0)
+position = Vector2(771, 317.473)
+rotation = 1.57079
+scale = Vector2(3.9632, 1545.92)
+texture = ExtResource("8_6jpup")
+
+[node name="Label" type="Label" parent="TurnDisplay"]
 self_modulate = Color(1, 1, 1, 0)
 layout_mode = 1
-anchors_preset = 14
+anchors_preset = 4
 anchor_top = 0.5
-anchor_right = 1.0
 anchor_bottom = 0.5
-offset_top = -104.0
-offset_bottom = 23.0
-grow_horizontal = 2
+offset_left = -560.0
+offset_top = -48.0
+offset_right = -8.99976
+offset_bottom = 35.0
 grow_vertical = 2
 text = "YOUR TURN!"
 label_settings = SubResource("LabelSettings_cq8gy")
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="ConsoleWindow" type="Control" parent="CombatTest/GUI"]
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="GUI" type="Control" parent="CanvasLayer"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ConsoleWindow" type="Control" parent="CanvasLayer/GUI"]
+layout_mode = 3
 anchors_preset = 0
-offset_left = 128.0
-offset_top = 624.0
-offset_right = 544.0
+offset_left = 592.0
+offset_top = 758.0
+offset_right = 944.0
 offset_bottom = 832.0
 script = ExtResource("8_ahhn2")
 
-[node name="CombatLog" type="PanelContainer" parent="CombatTest/GUI/ConsoleWindow"]
+[node name="CombatLog" type="PanelContainer" parent="CanvasLayer/GUI/ConsoleWindow"]
 layout_mode = 1
-anchors_preset = 10
+anchors_preset = 15
 anchor_right = 1.0
-offset_bottom = 176.0
+anchor_bottom = 1.0
 grow_horizontal = 2
+grow_vertical = 2
 size_flags_horizontal = 0
 size_flags_vertical = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_r2q6o")
 
-[node name="MarginContainer" type="MarginContainer" parent="CombatTest/GUI/ConsoleWindow/CombatLog"]
+[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/GUI/ConsoleWindow/CombatLog"]
 layout_mode = 2
 theme_override_constants/margin_left = 4
 theme_override_constants/margin_top = 4
 theme_override_constants/margin_right = 4
 theme_override_constants/margin_bottom = 4
 
-[node name="RichTextLabel" type="RichTextLabel" parent="CombatTest/GUI/ConsoleWindow/CombatLog/MarginContainer"]
+[node name="RichTextLabel" type="RichTextLabel" parent="CanvasLayer/GUI/ConsoleWindow/CombatLog/MarginContainer"]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
@@ -639,7 +718,8 @@ scroll_following = true
 selection_enabled = true
 script = ExtResource("8_we6le")
 
-[node name="Console" type="LineEdit" parent="CombatTest/GUI/ConsoleWindow"]
+[node name="Console" type="LineEdit" parent="CanvasLayer/GUI/ConsoleWindow"]
+visible = false
 layout_mode = 2
 anchor_top = 1.0
 anchor_right = 1.0
@@ -655,14 +735,15 @@ placeholder_text = "Type command.."
 caret_blink = true
 script = ExtResource("27_x7ob4")
 
-[node name="Button" type="Button" parent="CombatTest/GUI/ConsoleWindow"]
+[node name="Button" type="Button" parent="CanvasLayer/GUI/ConsoleWindow"]
+visible = false
 custom_minimum_size = Vector2(20, 0)
 layout_mode = 1
 anchors_preset = 1
 anchor_left = 1.0
 anchor_right = 1.0
-offset_left = 396.0
-offset_right = 416.0
+offset_left = 44.0
+offset_right = 64.0
 offset_bottom = 25.0
 grow_horizontal = 0
 tooltip_text = "Toggle combat log"
@@ -674,105 +755,36 @@ theme_override_styles/pressed = SubResource("StyleBoxFlat_vbj0l")
 theme_override_styles/focus = SubResource("StyleBoxFlat_vbj0l")
 text = "-"
 
-[node name="ConsoleAnimation" type="AnimationPlayer" parent="CombatTest/GUI/ConsoleWindow"]
+[node name="ConsoleAnimation" type="AnimationPlayer" parent="CanvasLayer/GUI/ConsoleWindow"]
 unique_name_in_owner = true
 libraries = {
 "": SubResource("AnimationLibrary_o45sk")
 }
 
-[node name="LeftProgressBar" type="ProgressBar" parent="CombatTest/GUI"]
+[node name="LeftProgressBar" type="ProgressBar" parent="CanvasLayer/GUI"]
 unique_name_in_owner = true
-layout_mode = 2
-offset_left = 32.0
-offset_top = 752.0
-offset_right = 96.0
-offset_bottom = 1024.0
+layout_mode = 0
+offset_left = 272.0
+offset_top = 784.0
+offset_right = 592.0
+offset_bottom = 832.0
 size_flags_vertical = 3
 theme = ExtResource("3_cern1")
-theme_override_styles/background = SubResource("StyleBoxFlat_gikty")
-theme_override_styles/fill = SubResource("StyleBoxFlat_7vqtm")
+theme_override_styles/background = SubResource("StyleBoxFlat_1ftjw")
+theme_override_styles/fill = SubResource("StyleBoxFlat_hh5r1")
 max_value = 4.0
 step = 1.0
-fill_mode = 3
+fill_mode = 1
 show_percentage = false
 script = ExtResource("4_5cj7g")
 
-[node name="Control" type="Control" parent="CombatTest/GUI/LeftProgressBar"]
-layout_mode = 1
-anchors_preset = 7
-anchor_left = 0.5
-anchor_top = 1.0
-anchor_right = 0.5
-anchor_bottom = 1.0
-offset_left = -32.0
-offset_top = -272.0
-offset_right = 32.0
-grow_horizontal = 2
-grow_vertical = 0
-
-[node name="VBoxContainer" type="VBoxContainer" parent="CombatTest/GUI/LeftProgressBar/Control"]
-layout_mode = 1
-anchors_preset = 13
-anchor_left = 0.5
-anchor_right = 0.5
-anchor_bottom = 1.0
-offset_left = -25.0
-offset_right = 25.0
-grow_horizontal = 2
-grow_vertical = 2
-
-[node name="LeftShiftLevel" type="TextureRect" parent="CombatTest/GUI/LeftProgressBar/Control/VBoxContainer"]
-unique_name_in_owner = true
-visible = false
-self_modulate = Color(1, 0.752941, 0.988235, 1)
-custom_minimum_size = Vector2(50, 64)
-layout_mode = 2
-size_flags_vertical = 3
-texture = ExtResource("10_g33bs")
-expand_mode = 1
-stretch_mode = 4
-
-[node name="LeftShiftLevel2" type="TextureRect" parent="CombatTest/GUI/LeftProgressBar/Control/VBoxContainer"]
-unique_name_in_owner = true
-visible = false
-self_modulate = Color(1, 0.752941, 0.988235, 1)
-custom_minimum_size = Vector2(50, 64)
-layout_mode = 2
-size_flags_vertical = 3
-texture = ExtResource("10_g33bs")
-expand_mode = 1
-stretch_mode = 4
-
-[node name="LeftShiftLevel3" type="TextureRect" parent="CombatTest/GUI/LeftProgressBar/Control/VBoxContainer"]
-unique_name_in_owner = true
-visible = false
-self_modulate = Color(1, 0.752941, 0.988235, 1)
-custom_minimum_size = Vector2(50, 64)
-layout_mode = 2
-size_flags_vertical = 3
-texture = ExtResource("10_g33bs")
-expand_mode = 1
-stretch_mode = 4
-
-[node name="LeftShiftLevel4" type="TextureRect" parent="CombatTest/GUI/LeftProgressBar/Control/VBoxContainer"]
-unique_name_in_owner = true
-visible = false
-self_modulate = Color(1, 0.752941, 0.988235, 1)
-custom_minimum_size = Vector2(50, 64)
-layout_mode = 2
-size_flags_vertical = 3
-texture = ExtResource("10_g33bs")
-expand_mode = 1
-stretch_mode = 4
-
-[node name="Label" type="Label" parent="CombatTest/GUI/LeftProgressBar"]
+[node name="Label" type="Label" parent="CanvasLayer/GUI/LeftProgressBar"]
 layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
-offset_left = -32.0
-offset_top = -32.0
-offset_right = 32.0
+offset_left = -176.0
+offset_right = 176.0
 offset_bottom = 48.0
 grow_horizontal = 2
 text = "Left Mode"
@@ -781,32 +793,29 @@ horizontal_alignment = 1
 vertical_alignment = 1
 autowrap_mode = 2
 
-[node name="RightProgressBar" type="ProgressBar" parent="CombatTest/GUI"]
+[node name="RightProgressBar" type="ProgressBar" parent="CanvasLayer/GUI"]
 unique_name_in_owner = true
-layout_mode = 2
-offset_left = 1440.0
-offset_top = 704.0
-offset_right = 1504.0
-offset_bottom = 1024.0
+layout_mode = 0
+offset_left = 944.0
+offset_top = 784.0
+offset_right = 1280.0
+offset_bottom = 832.0
 size_flags_vertical = 3
 theme = ExtResource("3_cern1")
-theme_override_styles/background = SubResource("StyleBoxFlat_gikty")
+theme_override_styles/background = SubResource("StyleBoxFlat_hf7xv")
 theme_override_styles/fill = SubResource("StyleBoxFlat_nomib")
 max_value = 4.0
 step = 1.0
-value = 3.0
-fill_mode = 3
 show_percentage = false
 script = ExtResource("5_rt705")
 
-[node name="Label2" type="Label" parent="CombatTest/GUI/RightProgressBar"]
+[node name="Label2" type="Label" parent="CanvasLayer/GUI/RightProgressBar"]
 layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
-offset_left = -32.0
-offset_top = -20.0
-offset_right = 32.0
+offset_left = -176.0
+offset_right = 176.0
 offset_bottom = 48.0
 grow_horizontal = 2
 text = "Right Mode"
@@ -815,24 +824,24 @@ horizontal_alignment = 1
 vertical_alignment = 1
 autowrap_mode = 2
 
-[node name="SkillBar" type="PanelContainer" parent="CombatTest/GUI"]
+[node name="SkillBar" type="PanelContainer" parent="CanvasLayer/GUI"]
 layout_mode = 1
 anchors_preset = 7
 anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
-offset_left = -656.0
-offset_top = -80.0
-offset_right = 656.0
-offset_bottom = 96.0
+offset_left = -704.0
+offset_top = -192.0
+offset_right = 704.0
+offset_bottom = -64.0
 grow_horizontal = 2
 grow_vertical = 0
 size_flags_horizontal = 3
 size_flags_vertical = 8
-theme_override_styles/panel = SubResource("StyleBoxFlat_7ktma")
+theme_override_styles/panel = SubResource("StyleBoxFlat_jerjn")
 
-[node name="MarginContainer" type="MarginContainer" parent="CombatTest/GUI/SkillBar"]
+[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/GUI/SkillBar"]
 layout_mode = 2
 size_flags_vertical = 4
 theme_override_constants/margin_left = 10
@@ -840,22 +849,22 @@ theme_override_constants/margin_top = 10
 theme_override_constants/margin_right = 10
 theme_override_constants/margin_bottom = 10
 
-[node name="HBoxSkillBar" type="HBoxContainer" parent="CombatTest/GUI/SkillBar/MarginContainer"]
+[node name="HBoxSkillBar" type="HBoxContainer" parent="CanvasLayer/GUI/SkillBar/MarginContainer"]
 layout_mode = 2
 size_flags_vertical = 4
-theme_override_constants/separation = 16
+theme_override_constants/separation = 50
 alignment = 1
 
-[node name="LogicParadox" parent="CombatTest/GUI/SkillBar/MarginContainer/HBoxSkillBar" instance=ExtResource("6_cbeqi")]
+[node name="LogicParadox" parent="CanvasLayer/GUI/SkillBar/MarginContainer/HBoxSkillBar" instance=ExtResource("6_cbeqi")]
 unique_name_in_owner = true
 visible = false
-custom_minimum_size = Vector2(512, 128)
+custom_minimum_size = Vector2(300, 100)
 layout_mode = 2
 size_flags_horizontal = 6
 disabled = true
 skill = ExtResource("7_ih6io")
 
-[node name="DeathDate" parent="CombatTest/GUI/SkillBar/MarginContainer/HBoxSkillBar" instance=ExtResource("6_cbeqi")]
+[node name="DeathDate" parent="CanvasLayer/GUI/SkillBar/MarginContainer/HBoxSkillBar" instance=ExtResource("6_cbeqi")]
 unique_name_in_owner = true
 layout_mode = 2
 focus_neighbor_left = NodePath("../Interpret")
@@ -865,7 +874,7 @@ focus_previous = NodePath("../Interpret")
 disabled = true
 skill = ExtResource("8_x65lp")
 
-[node name="Interpret" parent="CombatTest/GUI/SkillBar/MarginContainer/HBoxSkillBar" instance=ExtResource("6_cbeqi")]
+[node name="Interpret" parent="CanvasLayer/GUI/SkillBar/MarginContainer/HBoxSkillBar" instance=ExtResource("6_cbeqi")]
 unique_name_in_owner = true
 layout_mode = 2
 focus_neighbor_right = NodePath("../DeathDate")
@@ -873,7 +882,7 @@ focus_next = NodePath("../DeathDate")
 disabled = true
 skill = ExtResource("9_d38ji")
 
-[node name="StepInLine" parent="CombatTest/GUI/SkillBar/MarginContainer/HBoxSkillBar" instance=ExtResource("6_cbeqi")]
+[node name="StepInLine" parent="CanvasLayer/GUI/SkillBar/MarginContainer/HBoxSkillBar" instance=ExtResource("6_cbeqi")]
 unique_name_in_owner = true
 layout_mode = 2
 focus_neighbor_right = NodePath("../Meditate")
@@ -881,7 +890,7 @@ focus_next = NodePath("../Meditate")
 disabled = true
 skill = ExtResource("10_u1njx")
 
-[node name="ByTheBook" parent="CombatTest/GUI/SkillBar/MarginContainer/HBoxSkillBar" instance=ExtResource("6_cbeqi")]
+[node name="ByTheBook" parent="CanvasLayer/GUI/SkillBar/MarginContainer/HBoxSkillBar" instance=ExtResource("6_cbeqi")]
 unique_name_in_owner = true
 layout_mode = 2
 focus_neighbor_right = NodePath("../Meditate")
@@ -889,7 +898,7 @@ focus_next = NodePath("../Meditate")
 disabled = true
 skill = ExtResource("11_3m6og")
 
-[node name="Meditate" parent="CombatTest/GUI/SkillBar/MarginContainer/HBoxSkillBar" instance=ExtResource("6_cbeqi")]
+[node name="Meditate" parent="CanvasLayer/GUI/SkillBar/MarginContainer/HBoxSkillBar" instance=ExtResource("6_cbeqi")]
 unique_name_in_owner = true
 layout_mode = 2
 focus_neighbor_left = NodePath("../ByTheBook")
@@ -899,19 +908,19 @@ focus_previous = NodePath("../ByTheBook")
 disabled = true
 skill = ExtResource("12_durby")
 
-[node name="Intuition" parent="CombatTest/GUI/SkillBar/MarginContainer/HBoxSkillBar" instance=ExtResource("6_cbeqi")]
+[node name="Intuition" parent="CanvasLayer/GUI/SkillBar/MarginContainer/HBoxSkillBar" instance=ExtResource("6_cbeqi")]
 unique_name_in_owner = true
 layout_mode = 2
 disabled = true
 skill = ExtResource("13_y6v7p")
 
-[node name="HolisticMind" parent="CombatTest/GUI/SkillBar/MarginContainer/HBoxSkillBar" instance=ExtResource("6_cbeqi")]
+[node name="HolisticMind" parent="CanvasLayer/GUI/SkillBar/MarginContainer/HBoxSkillBar" instance=ExtResource("6_cbeqi")]
 unique_name_in_owner = true
 layout_mode = 2
 disabled = true
 skill = ExtResource("14_1efnx")
 
-[node name="Deceive" parent="CombatTest/GUI/SkillBar/MarginContainer/HBoxSkillBar" instance=ExtResource("6_cbeqi")]
+[node name="Deceive" parent="CanvasLayer/GUI/SkillBar/MarginContainer/HBoxSkillBar" instance=ExtResource("6_cbeqi")]
 unique_name_in_owner = true
 layout_mode = 2
 focus_neighbor_right = NodePath("../BinauralTrance")
@@ -919,7 +928,7 @@ focus_next = NodePath("../BinauralTrance")
 disabled = true
 skill = ExtResource("15_r0tlk")
 
-[node name="BinauralTrance" parent="CombatTest/GUI/SkillBar/MarginContainer/HBoxSkillBar" instance=ExtResource("6_cbeqi")]
+[node name="BinauralTrance" parent="CanvasLayer/GUI/SkillBar/MarginContainer/HBoxSkillBar" instance=ExtResource("6_cbeqi")]
 unique_name_in_owner = true
 layout_mode = 2
 focus_neighbor_left = NodePath("../Deceive")
@@ -929,14 +938,112 @@ focus_previous = NodePath("../Deceive")
 disabled = true
 skill = ExtResource("16_7qmx5")
 
-[node name="LucidDaydream" parent="CombatTest/GUI/SkillBar/MarginContainer/HBoxSkillBar" instance=ExtResource("6_cbeqi")]
+[node name="LucidDaydream" parent="CanvasLayer/GUI/SkillBar/MarginContainer/HBoxSkillBar" instance=ExtResource("6_cbeqi")]
 unique_name_in_owner = true
 visible = false
-custom_minimum_size = Vector2(512, 128)
+custom_minimum_size = Vector2(300, 100)
 layout_mode = 2
 size_flags_horizontal = 6
 disabled = true
 skill = ExtResource("17_cwvwg")
+
+[node name="PlayerXPBar" type="ProgressBar" parent="CanvasLayer/GUI"]
+visible = false
+custom_minimum_size = Vector2(0, 16)
+layout_mode = 0
+offset_left = 128.0
+offset_top = 981.0
+offset_right = 1408.0
+offset_bottom = 1008.0
+size_flags_vertical = 4
+theme = ExtResource("3_cern1")
+theme_override_font_sizes/font_size = 16
+theme_override_styles/background = SubResource("StyleBoxFlat_wc4a0")
+theme_override_styles/fill = SubResource("StyleBoxFlat_dfrv7")
+step = 1.0
+value = 50.0
+
+[node name="PlayerHealthBar" type="ProgressBar" parent="CanvasLayer/GUI" node_paths=PackedStringArray("hp_display_val")]
+custom_minimum_size = Vector2(0, 32)
+layout_mode = 0
+offset_left = 32.0
+offset_top = 960.0
+offset_right = 1504.0
+offset_bottom = 1008.0
+size_flags_vertical = 4
+theme = ExtResource("3_cern1")
+theme_type_variation = &"PlayerHP"
+theme_override_styles/background = SubResource("StyleBoxFlat_pvstm")
+theme_override_styles/fill = SubResource("StyleBoxFlat_vjnbt")
+max_value = 10.0
+step = 1.0
+value = 10.0
+rounded = true
+show_percentage = false
+script = ExtResource("3_bop05")
+hp_display_val = NodePath("HBoxContainer/HPVal")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/GUI/PlayerHealthBar"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -64.0
+offset_top = -16.0
+offset_right = 64.0
+offset_bottom = 16.0
+grow_horizontal = 2
+grow_vertical = 2
+alignment = 1
+
+[node name="Label" type="Label" parent="CanvasLayer/GUI/PlayerHealthBar/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+theme = ExtResource("3_cern1")
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+text = "HP: 
+"
+label_settings = SubResource("LabelSettings_5qj5u")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="HPVal" type="Label" parent="CanvasLayer/GUI/PlayerHealthBar/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+theme = ExtResource("3_cern1")
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+text = "10"
+label_settings = SubResource("LabelSettings_5qj5u")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="DebuffImmune" type="PanelContainer" parent="CanvasLayer/GUI"]
+custom_minimum_size = Vector2(64, 64)
+layout_mode = 0
+offset_left = 80.0
+offset_top = 736.0
+offset_right = 160.0
+offset_bottom = 816.0
+tooltip_text = "Immune to debuff effects for 1 turn."
+theme_override_styles/panel = SubResource("StyleBoxFlat_ahr1y")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/GUI/DebuffImmune"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+alignment = 1
+
+[node name="TextureRect" type="TextureRect" parent="CanvasLayer/GUI/DebuffImmune/HBoxContainer"]
+modulate = Color(0.733333, 0.921569, 0.756863, 1)
+custom_minimum_size = Vector2(64, 64)
+layout_mode = 2
+texture = ExtResource("29_eo2o6")
+expand_mode = 1
+stretch_mode = 4
+
+[node name="CombatTest" type="Node2D" parent="."]
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 unique_name_in_owner = true
@@ -1032,20 +1139,15 @@ offset_bottom = 864.0
 text = "FULL NEUTRAL (DEBUG)"
 text_overrun_behavior = 3
 
-[connection signal="mind_state_changed" from="." to="CombatTest/GUI/LeftProgressBar" method="_on_combat_test_mind_state_changed"]
-[connection signal="mind_state_changed" from="." to="CombatTest/GUI/RightProgressBar" method="_on_combat_test_mind_state_changed"]
-[connection signal="player_hp_changed" from="." to="CombatTest/GUI/PlayerHealthBar" method="_on_hp_changed"]
-[connection signal="player_skill_activated" from="." to="." method="_on_player_skill_activated"]
-[connection signal="player_skill_activated" from="." to="CombatTest/AngryGnome" method="_on_player_skill_activated"]
-[connection signal="player_skill_activated" from="." to="AudioBus" method="_on_player_attacked"]
-[connection signal="player_turn_ended" from="." to="CombatTest/AngryGnome" method="_on_enemy_turn"]
-[connection signal="player_turn_started" from="." to="CombatTest/GUI/TurnDisplay" method="_on_turn_started"]
-[connection signal="enemy_attacked" from="CombatTest/AngryGnome" to="." method="_on_enemy_attacked"]
-[connection signal="enemy_attacked" from="CombatTest/AngryGnome" to="AudioBus" method="_on_enemy_attacked"]
-[connection signal="enemy_turn_ended" from="CombatTest/AngryGnome" to="." method="_player_turn"]
-[connection signal="enemy_turn_started" from="CombatTest/AngryGnome" to="CombatTest/GUI/TurnDisplay" method="_on_turn_started"]
-[connection signal="text_submitted" from="CombatTest/GUI/ConsoleWindow/Console" to="CombatTest/GUI/ConsoleWindow/Console" method="_on_text_submitted"]
-[connection signal="pressed" from="CombatTest/GUI/ConsoleWindow/Button" to="CombatTest/GUI/ConsoleWindow" method="_on_button_pressed"]
+[connection signal="mind_state_changed" from="." to="CanvasLayer/GUI/LeftProgressBar" method="_on_combat_test_mind_state_changed"]
+[connection signal="mind_state_changed" from="." to="CanvasLayer/GUI/RightProgressBar" method="_on_combat_test_mind_state_changed"]
+[connection signal="player_hp_changed" from="." to="CanvasLayer/GUI/PlayerHealthBar" method="_on_hp_changed"]
+[connection signal="player_turn_ended" from="." to="Enemy" method="_on_enemy_turn"]
+[connection signal="player_turn_started" from="." to="TurnDisplay" method="_on_turn_started"]
+[connection signal="enemy_turn_ended" from="Enemy" to="." method="_player_turn"]
+[connection signal="enemy_turn_started" from="Enemy" to="TurnDisplay" method="_on_turn_started"]
+[connection signal="text_submitted" from="CanvasLayer/GUI/ConsoleWindow/Console" to="CanvasLayer/GUI/ConsoleWindow/Console" method="_on_text_submitted"]
+[connection signal="pressed" from="CanvasLayer/GUI/ConsoleWindow/Button" to="CanvasLayer/GUI/ConsoleWindow" method="_on_button_pressed"]
 [connection signal="finished" from="AudioBus/BGMusic" to="AudioBus" method="_on_bg_music_finished"]
 [connection signal="pressed" from="LeftDebugButtons/HBoxContainer/LeftPlusOne" to="." method="_on_plus_one_pressed" binds= [0]]
 [connection signal="pressed" from="LeftDebugButtons/HBoxContainer/LeftMinusOne" to="." method="_on_minus_one_pressed" binds= [0]]

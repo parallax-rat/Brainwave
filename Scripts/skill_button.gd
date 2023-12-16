@@ -25,8 +25,9 @@ enum {LEFT, NEUTRAL, RIGHT}
 @export var button_activate : SkillButton
 @export var button_deactivate : SkillButton
 
-@onready var shift_right_arrow = %ShiftRightArrow
-@onready var shift_left_arrow = %ShiftLeftArrow
+@onready var shift_right_arrow = get_node("TextureRect/ShiftRightArrow")
+@onready var shift_left_arrow = get_node("TextureRect2/ShiftLeftArrow")
+
 @onready var damage = %Damage
 @onready var healing = %Healing
 
@@ -35,6 +36,9 @@ var bonus_effect: String
 
 
 ###############################################################################
+
+func _init():
+	disabled = true
 
 
 func _enter_tree():
@@ -46,13 +50,11 @@ func _ready():
 		damage.text = str(skill.damage)
 	else:
 		damage.visible = false
-		damage.get_parent().visible = false
 	
 	if skill.healing != 0:
 		healing.text = str(skill.healing)
 	else:
 		healing.visible = false
-		healing.get_parent().visible = false
 	call_deferred("update_skill_data")
 
 
@@ -75,3 +77,20 @@ func update_skill_data():
 
 func _on_pressed():
 	activate_skill.emit(skill)
+
+
+func arrow(which) -> void:
+	match which:
+		LEFT:
+			%ShiftLeftArrow.visible = true
+			%ShiftRightArrow.visible = false
+		RIGHT:
+			%ShiftRightArrow.visible = true
+			%ShiftLeftArrow.visible = false
+		NEUTRAL:
+			%ShiftLeftArrow.visible = false
+			%ShiftRightArrow.visible = false
+			
+func _notification(what):
+	if what == NOTIFICATION_DISABLED:
+		print(name+" DISABLED")

@@ -3,6 +3,7 @@ res://Resources/brainwave_theme.tres
 res://Scripts/skill_button.gd
 res://Resources/EnemyAttacks/Clobber.tres
 res://Resources/EnemyAttacks/Taunt.tres
+res://Resources/hp_bar_background.tres
 res://Resources/Skills/Left/Logic Paradox.tres
 res://Resources/Skills/Left/Death Date.tres
 res://Resources/Skills/Left/Interpret.tres
@@ -14,13 +15,14 @@ res://Resources/Skills/Right/Holistic Mind.tres
 res://Resources/Skills/Right/Deceive.tres
 res://Resources/Skills/Right/Binaural Trance.tres
 res://Resources/Skills/Right/Lucid Daydream.tres
-res://Scripts/game.gd
+res://Scripts/audio_bus.gd
 res://Scenes/Enemy.tscn
+res://Scripts/game.gd
 res://Scenes/SkillButton.tscn
-res://Scripts/LeftProgressBar.gd
 res://Scripts/enemy.gd
 res://Scripts/global.gd
-res://Scenes/combat_log.gd
-res://Scripts/audio_bus.gd
-res://Scenes/debug.gd
-res://Scenes/console_window.gd
+res://Scripts/skill.gd
+res://Scenes/your_turn_gradient.tres
+res://Scenes/enemy_turn_gradient.tres
+res://Scenes/player_turn_gradient_texture.tres
+res://Scripts/turn_display.gd

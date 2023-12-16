@@ -1,5 +1,5 @@
 class_name Enemy
-extends Control
+extends Node2D
 
 signal enemy_attacked(attack:Skill)
 signal enemy_healed(healing:int)
@@ -7,7 +7,13 @@ signal enemy_debuffed(debuff)
 signal enemy_mind_state_changed(mind_state)
 signal enemy_turn_started(enemy)
 signal enemy_turn_ended()
+signal screen_flash(color)
 
+enum {
+	LEFT, 
+	NEUTRAL, 
+	RIGHT,
+	}
 enum {
 	SELECT,
 	ATTACK,
@@ -34,6 +40,7 @@ enum SkillType {
 @export var weakness : SkillType
 @export var skills : Array[Skill]
 @export var xp_value : float
+@export var overlay_rage : TextureRect
 
 @onready var dmg_label = %DmgLabel
 @onready var animation_player = %AnimationPlayer
@@ -69,11 +76,12 @@ func _enter_tree():
 
 
 func _ready():
+	Global.enemy = self
 	enemy_name.text = _name
 	hp = max_hp
 	for i in skills:
 		usable_attacks.append(i)
-		print(i.skill_name)
+	animation_player.play("idle")
 
 
 func _on_enemy_turn():
@@ -82,20 +90,10 @@ func _on_enemy_turn():
 	Global.enemy_turns += 1
 	await get_tree().create_timer(1.5).timeout
 	await message()
-	await attack()
-	enemy_turn_ended.emit()
+	
 
 
 func message():
-	#choose message to say
-	var msg = rng.randi_range(1,4)
-	
-	match msg:
-		1: print(_name + " looks angry.")
-		2: print(_name + " roars towards the sky.")
-		3: print(_name + " weeps pitifully.")
-		_: print(_name + " stares blankly.")
-	
 	atk = rng.randi_range(0,1)
 	atk = skills[atk]
 	attack_name.text = atk.skill_name
@@ -103,20 +101,56 @@ func message():
 	animation_player.play("attack_panel_show")
 	
 	await get_tree().create_timer(1.5).timeout
+	if atk.skill_name == "Clobber":
+		animation_player.play("attack")
+		
+	elif atk.skill_name == "Taunt":
+		if !Global.player.debuff_immune:
+			animation_player.play("taunt")
+			await animation_player.animation_finished
+			taunt()
+		else:
+			Global._print("You are immune to {Enemy}'s taunt this turn.".format({"Enemy": _name}))
+			await sprite_emote(1, 2.0)
+			await get_tree().create_timer(0.3).timeout
+			enemy_turn_ended.emit()
+
 
 func attack():
-	enemy_attacked.emit(atk)
-	await get_tree().create_timer(1.5).timeout
+	Global.player.take_damage(atk.damage)
+	await animation_player.animation_finished
+	animation_player.play("idle")
+	enemy_turn_ended.emit()
 
 
-func _on_player_skill_activated(player_attack:Skill):
-	var dmg = player_attack.damage
-	if player_attack.type == weakness:
+func taunt():
+	Global.player.mind_shift(RIGHT, 1)
+
+
+func take_damage(dmg, type):
+	if type == weakness:
 		dmg = dmg * 2
 		Global._print("Critical effect!")
 		
-	hp -= dmg
-	dmg_label.text = ("-"+str(dmg))
-	Global._print(_name + " took " + "[color=red]"+str(dmg)+"[/color]" + " damage!")
-	if player_attack.damage != 0:
-		animation_player.play("damaged")
+	if dmg != 0:
+		Global._print(_name + " took " + "[color=red]"+str(dmg)+"[/color]" + " damage!")
+		hp -= dmg
+		dmg_label.text = ("-"+str(dmg))
+		animation_player.play("damage_numbers")
+	sprite_flash()
+	sprite_emote(1, 0.5)
+
+
+func sprite_flash() -> void:
+	var tween: Tween = create_tween()
+	tween.tween_property(enemy_sprite, "self_modulate:v", 1, 0.25).from(5)
+
+
+func sprite_emote(emotion:int, duration:float) -> void:
+	enemy_sprite.frame = emotion
+	await get_tree().create_timer(duration).timeout
+	enemy_sprite.frame = 0
+
+
+func call_screen_flash(color) -> void:
+	screen_flash.emit(color)

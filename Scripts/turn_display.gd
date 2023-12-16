@@ -8,6 +8,7 @@ enum {PLAYER, ENEMY}
 func _on_turn_started(current_turn):
 	if current_turn == PLAYER:
 		label.text = "YOUR TURN!"
+		$TurnAnimation.play("player_turn_start")
 	else:
 		label.text = "ENEMY TURN!"
-	$TurnAnimation.play("turn_start")
+		$TurnAnimation.play("enemy_turn_start")

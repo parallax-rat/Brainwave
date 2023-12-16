@@ -15,24 +15,21 @@ enum {
 @onready var bg_music = %BGMusic
 @onready var audio_stream_player = %AudioStreamPlayer
 @onready var sound = {
-	SELECT: preload("res://Audio/select.ogg"),
-	ATTACK: preload("res://Audio/attack.wav"),
-	HEAL: preload("res://Audio/heal.wav"),
-	LEFT_2: preload("res://Audio/left 2.wav"),
-	LEFT_4: preload("res://Audio/left 4.wav"),
-	RIGHT_2: preload("res://Audio/right 2.wav"),
-	RIGHT_4: preload("res://Audio/right 4.wav"),
-	TAUNT: preload("res://Audio/taunt.wav"),
-	BGM: preload("res://Audio/Music/Spinning out.ogg"),
+	"Attack": preload("res://Audio/deadly_combat/body_hit_small_23.wav"),
+	"Heal": preload("res://Audio/heal.wav"),
+	"Taunt": preload("res://Audio/taunt2.wav"),
 }
 
 
+func _ready():
+	Global.audio_bus = self
+
+
 func _on_enemy_attacked(attack):
-	play(attack.sound_effect)
-
-
-func _on_player_attacked(attack:Skill):
-	play(attack.sound_effect)
+	if attack.skill_name == "Taunt":
+		play(attack.sound_effect)
+		await get_tree().create_timer(2.0).timeout
+		audio_stream_player.stop()
 
 
 func play(to_play):

@@ -35,7 +35,7 @@ enum {
 	}
 
 @export var max_hp : float = 10
-@export var mind_state : int :
+@export var mind_state : int = FULL_NEUTRAL :
 	get:
 		return mind_state
 	set(new_state):
@@ -43,16 +43,16 @@ enum {
 		mind_state_changed.emit(mind_state)
 		if mind_state < FULL_NEUTRAL:
 			mode = LEFT
-			if mind_state == FULL_LEFT:
-				skill_buttons[0].visible = true
+			#if mind_state == FULL_LEFT:
+				#skill_buttons[0].visible = true
 		if mind_state > FULL_NEUTRAL:
 			mode = RIGHT
-			if mind_state == FULL_RIGHT:
-				skill_buttons[10].visible = true
+			#if mind_state == FULL_RIGHT:
+				#skill_buttons[10].visible = true
 		if mind_state == FULL_NEUTRAL: 
 			mode = NEUTRAL
-		printt("New mind state: ",str(mind_state))
 
+@onready var canvas_modulate = %CanvasModulate
 
 @onready var logic_paradox = %LogicParadox
 @onready var death_date = %DeathDate
@@ -65,6 +65,7 @@ enum {
 @onready var deceive = %Deceive
 @onready var binaural_trance = %BinauralTrance
 @onready var lucid_daydream = %LucidDaydream
+@onready var debuff_immune_display = $CanvasLayer/GUI/DebuffImmune
 
 @onready var combat_log = %RichTextLabel
 @onready var audio_bus = %AudioBus
@@ -79,7 +80,6 @@ var hp : float :
 		new_health = clamp(new_health,0,max_hp)
 		hp = new_health
 		player_hp_changed.emit(hp,max_hp)
-		print("Player HP: "+str(hp))
 var skill_buttons
 var mode : int :
 	get:
@@ -87,7 +87,7 @@ var mode : int :
 	set(new_mode):
 		if new_mode != mode:
 			mode = clamp(new_mode,0,2)
-			printt("New mode: ",str(mode))
+
 var mode_range = {
 	FULL_LEFT: 0,
 	LEFT_3: range(1,4),
@@ -99,31 +99,32 @@ var mode_range = {
 	RIGHT_3: range(7,10),
 	FULL_RIGHT: 10,
 	}
-var turn_ending : bool
+var turn_ending : bool = true
+var debuff_immune : bool = false
+
 
 ###############################################################################
 
 
-func _init():
-	mind_state = FULL_NEUTRAL
-
-
-func _ready():
+func _ready() -> void:
+	Global.player = self
 	hp = max_hp
 	skill_buttons = get_tree().get_nodes_in_group("skill_buttons")
+	for s in skill_buttons:
+			s.disabled = true
 	call_deferred("connect_buttons")
 	call_deferred("enable_buttons")
-	get_tree().set_group("skill_buttons", "disabled", true)
-	await get_tree().create_timer(0.5).timeout
+	await get_tree().create_timer(0.75).timeout
+	mode = NEUTRAL
 	_player_turn()
 
 
-func connect_buttons():
+func connect_buttons() -> void:
 	for i in skill_buttons:
 		i.activate_skill.connect(_on_activate_skill)
 
 
-func enable_buttons():
+func enable_buttons() -> void:
 	if mind_state == FULL_LEFT:
 		for s in skill_buttons:
 			s.disabled = true
@@ -141,69 +142,57 @@ func enable_buttons():
 	else:
 		for s in skill_buttons:
 			s.disabled = true
+			s.arrow(s.skill.type)
 			s.visible = true
+			
 			if turn_ending == false:
 				for i in mode_range[mind_state]:
 					if s.skill.skill_number == i:
 						s.disabled = false
 						if s.skill.skill_name == "By The Book":
-							if mind_state < FULL_NEUTRAL:
-								s.shift_left_arrow.visible = false
-								s.shift_right_arrow.visible = true
+							if mind_state != FULL_NEUTRAL:
+								s.skill.description = "Deal 1 damage and return towards neutrality. Prevents enemy actions from shifting your mind next turn."
+								s.tooltip_text = s.skill.description
+								s.arrow(RIGHT)
 							else:
-								s.shift_left_arrow.visible = true
-								s.shift_right_arrow.visible = false
+								s.skill.description = "Deal 1 damage and shift left. Prevents enemy actions from shifting your mind next turn."
+								s.tooltip_text = s.skill.description
+								s.arrow(LEFT)
 						if s.skill.skill_name == "Intuition":
 							if mind_state > FULL_NEUTRAL:
-								s.shift_left_arrow.visible = true
-								s.shift_right_arrow.visible = false
+								s.arrow(LEFT)
 							else:
-								s.shift_left_arrow.visible = false
-								s.shift_right_arrow.visible = true
+								s.arrow(RIGHT)
 		lucid_daydream.visible = false
 		logic_paradox.visible = false
 		return
 
 
-func _player_turn():
+func _player_turn() -> void:
 	turn_ending = false
+	debuff_immune = false
+	debuff_immune_display.visible = false
 	Global.turn += 1
 	Global.player_turns += 1
 	player_turn_started.emit(PLAYER)
-	
-	await get_tree().create_timer(1.0).timeout
 	enable_buttons()
 	await player_skill_activated
 	await get_tree().create_timer(1.5).timeout
-	
+	for s in skill_buttons:
+			s.disabled = true
+			s.arrow(NEUTRAL)
 	player_turn_ended.emit()
 
 
-func _on_activate_skill(skill:Skill):
+func _on_activate_skill(skill:Skill) -> void:
+	_execute_skill(skill)
 	turn_ending = true
-	get_tree().set_group("skill_buttons", "disabled", true)
 	enable_buttons()
-	
-	if skill.type == NEUTRAL:
-		match mode:
-			LEFT:
-				mind_shift(RIGHT,skill.step_value)
-			NEUTRAL:
-				if skill.skill_name == "By The Book":
-						mind_shift(LEFT,skill.step_value)
-				if skill.skill_name == "Intuition":
-						mind_shift(RIGHT,skill.step_value)
-			RIGHT:
-				mind_shift(LEFT,skill.step_value)
-	else:
-		printt("Skill NOT neutral","Skill:",str(skill.type))
-		mind_shift(skill.type,skill.step_value)
-	
-	await get_tree().create_timer(0.3).timeout
-	player_skill_activated.emit(skill)
+	await get_tree().create_timer(1.0).timeout
+	player_turn_ended.emit()
 
 
-func mind_shift(direction, val):
+func mind_shift(direction, val) -> void:
 	var text_dir : String
 	match direction:
 		0: text_dir = "shifts left"
@@ -220,45 +209,90 @@ func mind_shift(direction, val):
 		mind_state = mind_state + val
 	
 	print("Mind arrived at " + str(mind_state))
-	enable_buttons()
 
 
-func _on_enemy_attacked(attack:Skill):
-	if attack.skill_name == "Taunt":
-		print("Taunt shifted your mind to the right.")
-		mind_shift(RIGHT, 1)
-		print("Player HP: "+str(hp))
+func do_damage(dmg:float, type:int) -> void:
+	Global.enemy.take_damage(dmg, type)
+
+
+func take_damage(dmg) -> void:
+	hp -= dmg
+	animation_player.play("take_damage")
+
+
+func heal(amount:int) -> void:
+	hp += amount
+
+
+func play_sound(sound:String) -> void:
+	Global.audio_bus.play(sound)
+
+
+func _execute_skill(skill:Skill) -> void:
+	
+	if skill.skill_name == "By The Book":
+		do_damage(skill.damage, skill.type)
+		Global.audio_bus.play("Attack")
+		debuff_immune = true
+		debuff_immune_display.visible = true
+		match mode:
+			LEFT:
+				mind_shift(RIGHT,skill.step_value)
+			NEUTRAL:
+				mind_shift(LEFT,skill.step_value)
+	
+	elif skill.skill_name == "Intuition":
+		do_damage(skill.damage, skill.type)
+		Global.audio_bus.play("Attack")
+		match mode:
+			RIGHT:
+				mind_shift(LEFT,skill.value)
+			NEUTRAL:
+				mind_shift(RIGHT,skill.step_value)
+	
+	elif skill.skill_name == "Meditation":
+		heal(skill.healing)
+		Global.audio_bus.play("Heal")
+		match mode:
+			NEUTRAL:
+				pass
+			RIGHT:
+				mind_shift(LEFT,skill.step_value)
+			LEFT:
+				mind_shift(RIGHT,skill.step_value)
+	
 	else:
-		hp -= attack.damage
-		animation_player.play("take_damage")
-
-
-func _on_player_skill_activated(_skill:Skill):
-	if _skill.healing != 0:
-		hp += _skill.healing
+		do_damage(skill.damage, skill.type)
+		Global.audio_bus.play("Attack")
+		mind_shift(skill.type,skill.step_value)
 
 
 ###################### DEBUG ##################################################
 
 
-func _on_full_left_debug_pressed():
+func _on_full_left_debug_pressed() -> void:
 	mind_state = FULL_LEFT
 	enable_buttons()
 
 
-func _on_full_right_debug_pressed():
+func _on_full_right_debug_pressed() -> void:
 	mind_state = FULL_RIGHT
 	enable_buttons()
 
 
-func _on_full_neutral_debug_pressed():
+func _on_full_neutral_debug_pressed() -> void:
 	mind_state = FULL_NEUTRAL
 	enable_buttons()
 
 
-func _on_plus_one_pressed(shift_dir):
+func _on_plus_one_pressed(shift_dir) -> void:
 	mind_shift(shift_dir, 1)
 
 
-func _on_minus_one_pressed(shift_dir):
+func _on_minus_one_pressed(shift_dir) -> void:
 	mind_shift(shift_dir, -1)
+
+
+func screen_flash(color) -> void:
+	var tween = create_tween()
+	tween.tween_property(canvas_modulate, "color", color, 0.25)
